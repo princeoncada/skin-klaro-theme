@@ -38,7 +38,7 @@
     "header": {
       "type": "header",
       "custom_css": [
-        "header {max-width: 1440px;}"
+        "header {max-width: 100%;}"
       ],
       "settings": {
         "logo_position": "middle-left",
