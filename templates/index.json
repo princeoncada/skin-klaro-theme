@@ -1,10 +1,26 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "sections": {
     "skin-banner": {
-        "type": "a-skin-banner"
+      "type": "a-skin-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/bg-photo.jpg",
+        "heading": "YOUR PRODUCT NAME",
+        "button_text": "SHOP NOW"
+      }
     },
     "text-banner": {
-        "type": "a-text-banner"
+      "type": "a-text-banner",
+      "settings": {
+      }
     }
   },
   "order": [
