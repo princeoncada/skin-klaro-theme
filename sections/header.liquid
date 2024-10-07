@@ -282,6 +282,58 @@
   </header>
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
 
+<style>
+    
+    .header-wrapper .header {
+        margin-top: 0px !important;
+    }
+
+    @media screen and (min-width: 990px) {
+        summary.list-menu__item {
+            height: 100%;
+            padding-right: 1.2rem;
+        }
+        .header {
+            padding-top: 0rem;
+            padding-bottom: 0rem;
+        }
+
+        .header-wrapper .header {
+            height: 100px;
+        }
+
+        nav.header__inline-menu {
+            height: 100%;
+        }
+
+        ul.list-menu.list-menu--inline {
+            height: 100%;
+        }
+
+        a.header__menu-item, header-menu > details {
+            height: 100%;
+        }
+    }
+</style>
+
+<script>
+    let items = document.querySelector(".header__inline-menu").querySelectorAll("details");
+    
+    items.forEach(item => {
+        item.addEventListener("mouseover", () => {
+            item.setAttribute("open", true);
+            item.querySelector("ul").addEventListener("mouseleave", () => {
+                item.removeAttribute("open");
+            });
+            item.addEventListener("mouseleave", () => {
+                item.removeAttribute("open");
+            });
+        });
+    });
+
+    let links = document.querySelectorAll('.list-menu.list-menu--inline > li');
+</script>
+
 {%- if settings.cart_type == "notification" -%}
   {%- render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: section.settings.menu_type_desktop -%}
 {%- endif -%}

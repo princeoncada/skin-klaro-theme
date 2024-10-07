@@ -1,0 +1,60 @@
+<div class="x-relative x-overflow-hidden x-h-[850px]">
+    <div class="x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center" style="background-image: url({{ section.settings.background_image | img_url: "master" }});">
+    </div>
+    <div class="x-relative x-flex x-items-center x-justify-start x-h-full x-text-center x-p-4 x-max-w-[1440px] x-mx-auto">
+        <div class="x-absolute x-bottom-96 x-text-start x-p-12 x-flex x-flex-col x-justify-center x-items-start x-gap-4">
+            <h2 class="x-text-white x-text-[48px] x-font-medium x-uppercase">{{ section.settings.heading }}</h2>
+            <button class="x-bg-transparent x-p-4 x-px-6 x-text-xl x-border x-border-white x-text-white x-uppercase hover:x-bg-white hover:x-text-black x-transition-colors x-duration-300">{{ section.settings.button_text }}</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-photo {
+        background: url({{ section.settings.background_image | image_url: "master" }});
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+<script>
+  document.addEventListener('scroll', function () {
+    const parallaxSections = document.querySelectorAll('.x-absolute.x-inset-0');
+    parallaxSections.forEach((parallax) => {
+      const speed = 0.8; // Smaller value for a subtle effect
+      const scrollPosition = window.scrollY;
+      parallax.style.transform = `translateY(${scrollPosition * speed}px)`;
+    });
+  });
+</script>
+
+{% schema %}
+    {
+      "name": "Parallax Section",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "YOUR PRODUCT NAME"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "SHOP NOW"
+        }
+      ],
+      "presets": [
+        {
+          "name": "Parallax Section",
+          "category": "Custom"
+        }
+      ]
+    }
+    {% endschema %}

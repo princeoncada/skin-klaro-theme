@@ -8,7 +8,7 @@
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
-      <li>
+      <li class="details-hover-parent">
         {%- if link.links != blank -%}
           <header-menu>
             <details id="Details-HeaderMenu-{{ forloop.index }}">
@@ -23,7 +23,6 @@
                 >
                   {{- link.title | escape -}}
                 </span>
-                {{- 'icon-caret.svg' | inline_asset_content -}}
               </summary>
               <ul
                 id="HeaderMenu-MenuList-{{ forloop.index }}"
@@ -97,7 +96,68 @@
             </span>
           </a>
         {%- endif -%}
+        <div class="details-hover--children">
+            <div class="left-hover">
+                <div class="details-hover--outline">
+                </div>
+            </div>
+            <div class="right-hover">
+                <div class="details-hover--outline">
+                </div>
+            </div>
+        </div>
       </li>
     {%- endfor -%}
   </ul>
 </nav>
+
+<style>
+    .details-hover--children {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 2px;
+        margin-top: -2px;
+    }
+
+    .left-hover, .right-hover {
+        display: flex;
+        width: 50%;
+    }
+
+    .left-hover {
+        justify-content: flex-end;
+    }
+
+    .right-hover {
+        justify-content: flex-start;
+    }
+
+    .details-hover--outline  {
+        background-color: black;
+        width: 0%;
+    }
+
+</style>
+
+<script>
+    let parentElement = document.querySelectorAll('.details-hover-parent');
+    let childElement = document.querySelectorAll('.details-hover--outline');
+
+    parentElement.forEach((element, index) => {
+        element.addEventListener('mouseover', () => {
+            childElement[index * 2].style.width = '100%';
+            childElement[index * 2].style.transition = 'width 0.5s';
+            childElement[index * 2 + 1].style.width = '100%';
+            childElement[index * 2 + 1].style.transition = 'width 0.5s';
+        });
+
+        element.addEventListener('mouseout', () => {
+            childElement[index * 2].style.width = '0%';
+            childElement[index * 2].style.transition = 'width 0.5s';
+            childElement[index * 2 + 1].style.width = '0%';
+            childElement[index * 2 + 1].style.transition = 'width 0.5s';
+        });
+    });
+    
+</script>
