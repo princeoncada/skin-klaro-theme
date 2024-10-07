@@ -1,0 +1,67 @@
+{% layout none %}
+{% paginate search.results by 10000 %}
+  [
+    {% for item in search.results %}
+        {
+            "id": {{ item.id | json }},
+            "title": {{ item.title | json }},
+            "images": {{ item.images | json }},
+            "featured_image": {{ item.featured_image | json }},
+            "tags": {{ item.tags | json }},
+            "handle": {{ item.handle | json }},
+            "type": {{ item.type | json }},
+            "vendor": {{ item.vendor| json }},
+            "content": {{ item.content| json }},
+            "description": {{ item.description| json }},
+            "variants": [
+                {% for variant in item.variants %}
+                    {
+                        "id": {{ variant.id | json }},
+                        "title": {{ variant.title | json }},
+                        "price": {{ variant.price | json }},
+                        "featured_image": {{ variant.featured_image | json }},
+                        "compare_at_price": {{ variant.compare_at_price | json }},
+                        "available": {{ variant.available | json }},
+                        "inventory_management": {{ variant.inventory_management | json }},
+                        "inventory_policy": {{ variant.inventory_policy | json }},
+                        "inventory_quantity": {{ variant.inventory_quantity | json }},
+                        "option": {{ variant.option | json }},
+                        "requires_selling_plan": {{ variant.requires_selling_plan | json }},
+                        "quantity_rule": {{ variant.quantity_rule | json }},
+                        "unit_price": {{ variant.unit_price | json }},
+                        "base_measure": {{ variant.unit_price_measurement.reference_value | json }},
+                        "quantity_value": {{ variant.unit_price_measurement.quantity_value | json }}
+                    }
+                    {% unless forloop.last %},{% endunless %}
+                {% endfor %}
+            ],
+            "first_available_variant": {{ item.first_available_variant | json }},
+            "options": {{ item.options | json }},
+            "options_by_name": {{ item.options_by_name | json }},
+            "options_with_values": {{ item.options_with_values | json }},
+            "available": {{ item.available | json }},
+            "gift_card": {{ item.gift_card | json }},
+            "has_only_default_variant": {{ item.has_only_default_variant | json }},
+            "requires_selling_plan": {{ item.requires_selling_plan | json }},
+            "selling_plan_groups": {{ item.selling_plan_groups | json }},
+            "compare_at_price_max": {{ item.compare_at_price_max | json }},
+            "compare_at_price_min": {{ item.compare_at_price_min | json }},
+            "price": {{ item.price | json }},
+            "compare_at_price": {{ item.compare_at_price | json }},
+            "price_max": {{ item.price_max | json }},
+            "price_min": {{ item.price_min | json }},
+            "collections": [
+                {% for collection in item.collections %}
+                    {
+                        "id": {{ collection.id | json }},
+                        "title": {{ collection.title | json }},
+                        "tags": {{ collection.tags | json }}
+                    }
+                    {% unless forloop.last %},{% endunless %}
+                {% endfor %}
+            ]
+        }
+        {% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+{% endpaginate %}
