@@ -1,0 +1,152 @@
+<div class="product-card x-flex-1 x-border-gray-500 x-border-[1px] x-snap-start x-ml-[-1px] x-mt-[-1px]">
+    <div class="product-image x-group md:x-min-w-full x-min-w-[400px] x-h-[330px] x-flex x-flex-col">
+        <div class="x-w-full x-flex-1">
+            <img class="x-w-full x-h-full x-object-cover" src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}">
+        </div>
+        <button class="add-to-cart-btn x-block x-absolute x-bg-[#F2E8DA] x-bg-opacity-60 x-bottom-0 x-w-full x-h-0 group-hover:x-h-16 x-transition-all x-duration-300" data-product-id="{{ product.variants.first.id }}">
+            <div class="group-hover:x-opacity-100 x-opacity-0 x-transition-opacity x-duration-300 x-ease-out">Add to Cart</div>
+        </button>
+    </div>
+    
+    <!-- Variant selection area (hidden by default) -->
+    <div class="product-variants x-absolute x-bottom-0 x-w-full x-flex x-flex-row x-justify-center x-items-center x-transition-all x-duration-300 x-gap-3 x-py-4 x-bg-[#FFE4D9] x-bg-opacity-40" style="transform: translateY(0px)">
+        <!-- Back button to hide swatches and show "Add to Cart" button -->
+        <button class="back-btn x-bg-[#3c3c3c] x-pl-1 x-cursor-pointer x-absolute x-left-4 x-text-white x-h-12 x-w-12 x-rounded-full x-flex x-justify-center x-items-center" style="margin-right: 10px;"><i class='bx bx-arrow-back'></i></button>
+
+        {% for variant in product.variants %}
+            {% assign color_hexcode = variant.metafields.custom.color_hexcode %}
+
+            <!-- Check if color_hexcode exists; if not, fallback to variant title -->
+            {% if color_hexcode %}
+                <button class="variant-btn x-w-[30px] x-h-[30px] x-rounded-full x-cursor-pointer x-ring-1 x-ring-black" 
+                        data-variant-id="{{ variant.id }}" 
+                        data-image="{{ variant.featured_image | img_url: '600x600' }}"
+                        style="background-color: {{ color_hexcode }}; width: 30px; height: 30px; border: none; border-radius: 50%; cursor: pointer;">
+                </button>
+            {% else %}
+                <!-- Fallback to variant title if no hex code is available -->
+                <button class="variant-btn" 
+                        data-variant-id="{{ variant.id }}" 
+                        data-image="{{ variant.featured_image | img_url: '600x600' }}">
+                    {{ variant.title }}
+                </button>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <a href="/products/{{ product.handle }}" class="x-relative x-bg-white x-z-[1] product-details x-p-5 x-flex x-items-start x-flex-col x-border-t-[1px] x-border-gray-500">
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.price | money }}</p>
+    </a>
+</div>
+
+<style>
+    .product-card {
+        position: relative;
+    }
+
+    .product-image {
+        position: relative;
+    }
+
+    .product-variants {
+        /* position: absolute;
+        bottom: 50px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        z-index: 2;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.8); /* Optional: Add a semi-transparent background */
+    }
+
+    .variant-btn {
+        /* width: 30px;
+        height: 30px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer; */
+    }
+
+    .add-to-cart-btn {
+        z-index: 1;
+    }
+</style>
+
+
+
+
+
+<script>
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener('click', function () {
+        const productId = this.getAttribute('data-product-id');
+        const productCard = this.closest('.product-card');
+        const variantsContainer = productCard.querySelector('.product-variants');
+
+        // Check if the product has variants
+        if (variantsContainer && variantsContainer.children.length > 2) {
+            // Hide the add-to-cart button and show variant options
+            this.classList.add("x-hidden");
+            variantsContainer.style.transform = 'translateY(-68px)';
+        } else {
+            // Add product directly to cart if there are no variants
+            addToCart(productId);
+        }
+    });
+});
+
+document.querySelectorAll('.back-btn').forEach(button => {
+    button.addEventListener('click', function () {
+        const productCard = this.closest('.product-card');
+        const addToCartButton = productCard.querySelector('.add-to-cart-btn');
+        const variantsContainer = productCard.querySelector('.product-variants');
+
+        // Hide the variants and show the add-to-cart button again
+        variantsContainer.style.transform = 'translateY(0px)';
+        addToCartButton.classList.remove("x-hidden");
+    });
+});
+
+function addToCart(productId) {
+    // Use Shopify AJAX API to add the product to the cart
+    fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: productId, quantity: 1 }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Product added to cart:', data);
+        // Optionally, update the cart UI or show a success message
+    })
+    .catch(error => {
+        console.error('Error adding to cart:', error);
+    });
+}
+
+document.querySelectorAll('.variant-btn').forEach(button => {
+    button.addEventListener('mouseover', function () {
+        const variantId = this.getAttribute('data-variant-id');
+        const imageUrl = this.getAttribute('data-image');
+        const productCard = this.closest('.product-card');
+        const productImage = productCard.querySelector('.product-image img');
+
+        // Change product image based on the hovered variant
+        productImage.src = imageUrl;
+    });
+
+    button.addEventListener('click', function () {
+        const variantId = this.getAttribute('data-variant-id');
+        addToCart(variantId);
+    });
+});
+
+
+</script>
