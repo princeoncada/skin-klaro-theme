@@ -1,0 +1,41 @@
+<div class="x-container x-p-4">
+  <div class="x-flex x-flex-col x-items-center">
+    <div class="x-w-full x-h-auto x-mb-4">
+      {{ product.media.first.preview_image | image_url: width: 1000 | image_tag: loading: 'lazy', sizes: '100vw' }}
+    </div>
+  </div>
+
+  <div class="x-flex x-gap-4 x-overflow-x-auto  x-mx-auto">
+    <div class="x-w-20 x-h-20">
+        <img src="{{ "img1.jpg" | asset_img_url: "1000x1000" }}" alt="Thumbnail 1" class="x-cursor-pointer x-object-cover x-w-full x-h-full"
+         onclick="changeImage('{{ 'img1.jpg' | asset_img_url: '1000x1000' }}')" />
+    </div>
+
+    <div class="x-w-20 x-h-20">
+        <img src="{{ "img2.jpg" | asset_img_url: "1000x1000" }}" alt="Thumbnail 1" class="x-cursor-pointer x-object-cover x-w-full x-h-full"
+         onclick="changeImage('{{ 'img2.jpg' | asset_img_url: '1000x1000' }}')" />
+    </div>
+
+    <div class="x-w-20 x-h-20">
+        <img src="{{ "img3.jpg" | asset_img_url: "1000x1000" }}" alt="Thumbnail 1" class="x-cursor-pointer x-object-cover x-w-full x-h-full"
+         onclick="changeImage('{{ 'img3.jpg' | asset_img_url: '1000x1000' }}')" />
+    </div>
+  </div>
+</div>
+
+<div>
+    {% assign stuffs = product.variants.first.metafields.custom.highlight_content | replace_first: '[', ' ' | replace_last: ']', ' '  %}
+    <p class="x-max-w-full">{{ stuffs }}</p>
+    {% assign stuffs = stuffs | split: ',' %}
+    {% for stuff in stuffs %}
+        <p>{{ stuff }}</p>
+    {% endfor %}
+
+    <p>{{  }}</p>
+</div>
+
+<script>
+  function changeImage(imageUrl) {
+    document.getElementById('mainImage').src = imageUrl;
+  }
+</script>
