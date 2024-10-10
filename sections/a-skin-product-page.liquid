@@ -1,41 +1,254 @@
 <div class="x-container x-p-4">
-  <div class="x-flex x-flex-col x-items-center">
-    <div class="x-w-full x-h-auto x-mb-4">
-      {{ product.media.first.preview_image | image_url: width: 1000 | image_tag: loading: 'lazy', sizes: '100vw' }}
+  <!-- Flickity Carousel for Main and Variant Images -->
+  <div class="carousel" id="mainCarousel">
+    <!-- The carousel will dynamically fill with the main image and variant images -->
+    <div class="carousel-cell">
+      <img
+        id="mainImage"
+        src="{{ product.media.first.preview_image | image_url: width: 1000 }}"
+        alt="{{ product.title }}"
+        class="x-w-full x-h-auto"
+      >
     </div>
   </div>
 
-  <div class="x-flex x-gap-4 x-overflow-x-auto  x-mx-auto">
-    <div class="x-w-20 x-h-20">
-        <img src="{{ "img1.jpg" | asset_img_url: "1000x1000" }}" alt="Thumbnail 1" class="x-cursor-pointer x-object-cover x-w-full x-h-full"
-         onclick="changeImage('{{ 'img1.jpg' | asset_img_url: '1000x1000' }}')" />
+  <!-- Radio Button Variant Selector -->
+  <div class="x-w-full x-mb-4">
+    <div class="x-flex x-gap-4 x-justify-center">
+      {% for variant in product.variants %}
+        <button
+          class="variant-button {% if forloop.first %} active {% endif %}"
+          data-main-img="{{ variant.image | image_url: width: 1000 }}"
+          data-img-src="{{ variant.metafields.custom.img_src | replace: '[', '' | replace: ']', '' | replace: '"', '' }}"
+          onclick="changeVariant(this)"
+        >
+          {{ variant.title }}
+        </button>
+      {% endfor %}
     </div>
+  </div>
 
-    <div class="x-w-20 x-h-20">
-        <img src="{{ "img2.jpg" | asset_img_url: "1000x1000" }}" alt="Thumbnail 1" class="x-cursor-pointer x-object-cover x-w-full x-h-full"
-         onclick="changeImage('{{ 'img2.jpg' | asset_img_url: '1000x1000' }}')" />
-    </div>
-
-    <div class="x-w-20 x-h-20">
-        <img src="{{ "img3.jpg" | asset_img_url: "1000x1000" }}" alt="Thumbnail 1" class="x-cursor-pointer x-object-cover x-w-full x-h-full"
-         onclick="changeImage('{{ 'img3.jpg' | asset_img_url: '1000x1000' }}')" />
+  <!-- Thumbnails with Flickity -->
+  <div class="carousel carousel-thumbnails" id="thumbnailCarousel">
+    <!-- Dynamic Thumbnails will be injected here -->
+    <div class="carousel-cell">
+      <img
+        src="{{ product.media.first.preview_image | image_url: width: 1000 }}"
+        alt="Main Product Image"
+        class="x-cursor-pointer x-object-cover x-w-full x-h-full"
+        onclick="changeImage('{{ product.media.first.preview_image | image_url: width: 1000 }}')"
+      >
     </div>
   </div>
 </div>
 
-<div>
-    {% assign stuffs = product.variants.first.metafields.custom.highlight_content | replace_first: '[', ' ' | replace_last: ']', ' '  %}
-    <p class="x-max-w-full">{{ stuffs }}</p>
-    {% assign stuffs = stuffs | split: ',' %}
-    {% for stuff in stuffs %}
-        <p>{{ stuff }}</p>
-    {% endfor %}
-
-    <p>{{  }}</p>
-</div>
-
+<!-- JavaScript to Handle Image Changes, Thumbnails, and Flickity Initialization -->
 <script>
+  let flickityInstance; // Global variable to store the Flickity instance for the main carousel
+  let thumbnailFlickityInstance; // Global variable for the thumbnails carousel
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Initialize Flickity for the main carousel
+    flickityInstance = new Flickity('#mainCarousel', {
+      wrapAround: true,
+      pageDots: false,
+      prevNextButtons: true,
+      draggable: true,
+    });
+
+    // Initialize Flickity for the thumbnail carousel
+    thumbnailFlickityInstance = new Flickity('#thumbnailCarousel', {
+      asNavFor: '#mainCarousel', // Sync with the main carousel
+      contain: true,
+      pageDots: false,
+      prevNextButtons: false,
+      draggable: true,
+      freeScroll: false,
+      cellAlign: 'left',
+    });
+
+    const firstVariantButton = document.querySelector('.variant-button.active');
+    if (firstVariantButton) {
+      changeVariant(firstVariantButton);
+    }
+  });
+
+  // Function to update the main image and variant images in Flickity
+  function changeVariant(button) {
+    // Highlight the selected button
+    const buttons = document.querySelectorAll('.variant-button');
+    buttons.forEach((btn) => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    const mainImageUrl = button.getAttribute('data-main-img');
+    const variantImages = button.getAttribute('data-img-src');
+
+    // Clear the Flickity main carousel
+    while (flickityInstance.cells.length > 0) {
+      flickityInstance.remove(flickityInstance.cells[0].element);
+    }
+
+    // Clear the Flickity thumbnail carousel
+    while (thumbnailFlickityInstance.cells.length > 0) {
+      thumbnailFlickityInstance.remove(thumbnailFlickityInstance.cells[0].element);
+    }
+
+    // Add the main image to the main carousel
+    const mainImageCell = document.createElement('div');
+    mainImageCell.className = 'carousel-cell';
+    mainImageCell.innerHTML = `
+      <img src="${mainImageUrl}" alt="Main Product Image" class="x-w-full x-h-auto">
+    `;
+    flickityInstance.append(mainImageCell);
+
+    // Add the main image to the thumbnail carousel
+    const mainThumbnail = document.createElement('div');
+    mainThumbnail.className = 'carousel-cell';
+    mainThumbnail.innerHTML = `
+      <img src="${mainImageUrl}" alt="Main Product Image" class="x-cursor-pointer x-object-cover x-w-full x-h-full"
+           onclick="changeImage('${mainImageUrl}')">
+    `;
+    thumbnailFlickityInstance.append(mainThumbnail);
+
+    // Add variant images to both carousels
+    if (variantImages) {
+      const variantImagesArray = variantImages.split(',');
+      variantImagesArray.forEach(function (imageUrl) {
+        // Add to the main carousel
+        const imageCell = document.createElement('div');
+        imageCell.className = 'carousel-cell';
+        imageCell.innerHTML = `
+          <img src="${imageUrl.trim()}" alt="Variant Image" class="x-w-full x-h-auto">
+        `;
+        flickityInstance.append(imageCell);
+
+        // Add to the thumbnail carousel
+        const thumbnailCell = document.createElement('div');
+        thumbnailCell.className = 'carousel-cell';
+        thumbnailCell.innerHTML = `
+          <img src="${imageUrl.trim()}" alt="Variant Thumbnail" class="x-cursor-pointer x-object-cover x-w-full x-h-full"
+               onclick="changeImage('${imageUrl.trim()}')">
+        `;
+        thumbnailFlickityInstance.append(thumbnailCell);
+      });
+    }
+
+    // Reload Flickity for both carousels to apply new images and ensure it starts from the main image
+    flickityInstance.reloadCells();
+    thumbnailFlickityInstance.reloadCells();
+    flickityInstance.select(0);
+    thumbnailFlickityInstance.select(0); // Highlight the first thumbnail
+  }
+
+  // Function to update the main image
   function changeImage(imageUrl) {
-    document.getElementById('mainImage').src = imageUrl;
+    const mainImage = document.getElementById('mainImage');
+    fadeOut(mainImage, function () {
+      mainImage.src = imageUrl;
+      fadeIn(mainImage);
+    });
+
+    // Make sure the thumbnail corresponding to this image is selected
+    const thumbnailIndex = Array.from(thumbnailFlickityInstance.cells).findIndex(
+      (cell) => cell.element.querySelector('img').src === imageUrl
+    );
+    if (thumbnailIndex >= 0) {
+      thumbnailFlickityInstance.select(thumbnailIndex);
+    }
+  }
+
+  // Fade out effect
+  function fadeOut(element, callback) {
+    element.style.opacity = 1;
+    (function fade() {
+      if ((element.style.opacity -= 0.1) < 0) {
+        element.style.display = 'none';
+        if (callback) callback();
+      } else {
+        requestAnimationFrame(fade);
+      }
+    })();
+  }
+
+  // Fade in effect
+  function fadeIn(element) {
+    element.style.opacity = 0;
+    element.style.display = 'block';
+    (function fade() {
+      let val = parseFloat(element.style.opacity);
+      if (!((val += 0.1) > 1)) {
+        element.style.opacity = val;
+        requestAnimationFrame(fade);
+      }
+    })();
   }
 </script>
+
+<!-- Styles -->
+<style>
+  /* Variant Button Styles */
+  .variant-button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+
+  .variant-button.active {
+    background-color: hsl(261deg 80% 48%);
+    color: white;
+    border-color: hsl(261deg 80% 48%);
+  }
+
+  .variant-button:hover {
+    background-color: hsl(261deg 80% 48%);
+    color: white;
+  }
+
+  /* Carousel cell for Flickity */
+  .carousel-cell {
+    width: 100%; /* Full width for images */
+    margin-right: 10px;
+    background: #f7f7f7;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .carousel-cell img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Thumbnail carousel specific styles */
+  .carousel-thumbnails .carousel-cell {
+    width: 100px; /* Fixed width for thumbnails */
+    height: auto;
+  }
+
+  .carousel-thumbnails .carousel-cell img {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+
+  .carousel-thumbnails .carousel-cell.is-selected img {
+    opacity: 1;
+    border: 2px solid hsl(261deg 80% 48%); /* Highlight selected thumbnail */
+  }
+
+  /* Flickity styles for smooth scrolling */
+  .carousel {
+    background: #eee;
+  }
+
+  .flickity-viewport {
+    overflow: hidden;
+  }
+
+  .flickity-page-dots {
+    display: none; /* Hide Flickity dots */
+  }
+</style>
