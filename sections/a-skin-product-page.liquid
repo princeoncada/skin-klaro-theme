@@ -12,22 +12,6 @@
     </div>
   </div>
 
-  <!-- Radio Button Variant Selector -->
-  <div class="x-w-full x-mb-4">
-    <div class="x-flex x-gap-4 x-justify-center">
-      {% for variant in product.variants %}
-        <button
-          class="variant-button {% if forloop.first %} active {% endif %}"
-          data-main-img="{{ variant.image | image_url: width: 1000 }}"
-          data-img-src="{{ variant.metafields.custom.img_src | replace: '[', '' | replace: ']', '' | replace: '"', '' }}"
-          onclick="changeVariant(this)"
-        >
-          {{ variant.title }}
-        </button>
-      {% endfor %}
-    </div>
-  </div>
-
   <!-- Thumbnails with Flickity -->
   <div class="carousel carousel-thumbnails" id="thumbnailCarousel">
     <!-- Dynamic Thumbnails will be injected here -->
@@ -42,17 +26,54 @@
   </div>
 </div>
 
-<!-- JavaScript to Handle Image Changes, Thumbnails, and Flickity Initialization -->
+<!-- Radio Button Variant Selector -->
+<div class="x-w-full x-mb-4">
+  <div class="x-flex x-gap-4 x-justify-center">
+    {% for variant in product.variants %}
+      <button
+        class="variant-button {% if forloop.first %} active {% endif %}"
+        style="--hover-bg-color: {{ variant.metafields.custom.color_hexcode }};"
+        data-main-img="{{ variant.image | image_url: width: 1000 }}"
+        data-img-src="{{ variant.metafields.custom.img_src | replace: '[', '' | replace: ']', '' | replace: '"', '' }}"
+        onclick="changeVariant(this)"
+      >
+        {{ variant.title }}
+      </button>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Product Title -->
+<div class="x-w-full x-mb-4 x-text-center">
+  <h2 class="x-text-xl x-font-bold">{{ product.title }}</h2>
+</div>
+
+<!-- Product Description -->
+<div class="x-w-full x-mb-4 x-text-center">
+  <p class="x-text-md">{{ product.description }}</p>
+</div>
+
+<!-- Variant Availability -->
+<div class="x-w-full x-mb-4 x-text-center">
+  <p id="variant-availability" class="x-text-md">Available</p>
+</div>
+
+<!-- Variant Price -->
+<div class="x-w-full x-mb-4 x-text-center">
+  <p id="variant-price" class="x-text-xl x-font-bold">$0.00</p>
+</div>
+
+<!-- Handle Image Changes, Thumbnails, and Flickity Initialization -->
 <script>
-  let flickityInstance; // Global variable to store the Flickity instance for the main carousel
-  let thumbnailFlickityInstance; // Global variable for the thumbnails carousel
+  let flickityInstance;
+  let thumbnailFlickityInstance;
 
   document.addEventListener('DOMContentLoaded', function () {
     // Initialize Flickity for the main carousel
     flickityInstance = new Flickity('#mainCarousel', {
       wrapAround: true,
       pageDots: false,
-      prevNextButtons: true,
+      prevNextButtons: false,
       draggable: true,
     });
 
@@ -75,41 +96,37 @@
 
   // Function to update the main image and variant images in Flickity
   function changeVariant(button) {
-    // Highlight the selected button
     const buttons = document.querySelectorAll('.variant-button');
     buttons.forEach((btn) => btn.classList.remove('active'));
     button.classList.add('active');
-
     const mainImageUrl = button.getAttribute('data-main-img');
     const variantImages = button.getAttribute('data-img-src');
+    const variantAvailability = button.getAttribute('data-availability') === 'true' ? 'Available' : 'Out of Stock';
+    const variantPrice = button.getAttribute('data-price');
 
+    document.getElementById('variant-availability').textContent = variantAvailability;
+    document.getElementById('variant-price').textContent = variantPrice;
     // Clear the Flickity main carousel
     while (flickityInstance.cells.length > 0) {
       flickityInstance.remove(flickityInstance.cells[0].element);
     }
-
     // Clear the Flickity thumbnail carousel
     while (thumbnailFlickityInstance.cells.length > 0) {
       thumbnailFlickityInstance.remove(thumbnailFlickityInstance.cells[0].element);
     }
-
     // Add the main image to the main carousel
     const mainImageCell = document.createElement('div');
     mainImageCell.className = 'carousel-cell';
     mainImageCell.innerHTML = `
-      <img src="${mainImageUrl}" alt="Main Product Image" class="x-w-full x-h-auto">
-    `;
+    <img src="${mainImageUrl}" alt="Main Product Image" class="x-w-full x-h-auto">`;
     flickityInstance.append(mainImageCell);
-
     // Add the main image to the thumbnail carousel
     const mainThumbnail = document.createElement('div');
     mainThumbnail.className = 'carousel-cell';
     mainThumbnail.innerHTML = `
-      <img src="${mainImageUrl}" alt="Main Product Image" class="x-cursor-pointer x-object-cover x-w-full x-h-full"
-           onclick="changeImage('${mainImageUrl}')">
-    `;
+    <img src="${mainImageUrl}" alt="Main Product Image" class="x-cursor-pointer x-object-cover x-w-full x-h-full"
+         onclick="changeImage('${mainImageUrl}')">`;
     thumbnailFlickityInstance.append(mainThumbnail);
-
     // Add variant images to both carousels
     if (variantImages) {
       const variantImagesArray = variantImages.split(',');
@@ -117,30 +134,24 @@
         // Add to the main carousel
         const imageCell = document.createElement('div');
         imageCell.className = 'carousel-cell';
-        imageCell.innerHTML = `
-          <img src="${imageUrl.trim()}" alt="Variant Image" class="x-w-full x-h-auto">
-        `;
+        imageCell.innerHTML = `<img src="${imageUrl.trim()}" alt="Variant Image" class="x-w-full x-h-auto">`;
         flickityInstance.append(imageCell);
-
         // Add to the thumbnail carousel
         const thumbnailCell = document.createElement('div');
         thumbnailCell.className = 'carousel-cell';
         thumbnailCell.innerHTML = `
-          <img src="${imageUrl.trim()}" alt="Variant Thumbnail" class="x-cursor-pointer x-object-cover x-w-full x-h-full"
-               onclick="changeImage('${imageUrl.trim()}')">
-        `;
+        <img src="${imageUrl.trim()}" alt="Variant Thumbnail" class="x-cursor-pointer x-object-cover x-w-full x-h-full"
+             onclick="changeImage('${imageUrl.trim()}')">`;
         thumbnailFlickityInstance.append(thumbnailCell);
       });
     }
-
     // Reload Flickity for both carousels to apply new images and ensure it starts from the main image
     flickityInstance.reloadCells();
     thumbnailFlickityInstance.reloadCells();
     flickityInstance.select(0);
     thumbnailFlickityInstance.select(0); // Highlight the first thumbnail
   }
-
-  // Function to update the main image
+  // Main image update
   function changeImage(imageUrl) {
     const mainImage = document.getElementById('mainImage');
     fadeOut(mainImage, function () {
@@ -148,7 +159,7 @@
       fadeIn(mainImage);
     });
 
-    // Make sure the thumbnail corresponding to this image is selected
+    // connection between thumbnail and image selected
     const thumbnailIndex = Array.from(thumbnailFlickityInstance.cells).findIndex(
       (cell) => cell.element.querySelector('img').src === imageUrl
     );
@@ -156,7 +167,6 @@
       thumbnailFlickityInstance.select(thumbnailIndex);
     }
   }
-
   // Fade out effect
   function fadeOut(element, callback) {
     element.style.opacity = 1;
@@ -169,7 +179,6 @@
       }
     })();
   }
-
   // Fade in effect
   function fadeIn(element) {
     element.style.opacity = 0;
@@ -186,32 +195,107 @@
 
 <!-- Styles -->
 <style>
-  /* Variant Button Styles */
+  /* Flex container for the variant buttons */
+  .variant-buttons-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow the buttons to wrap onto the next line if needed */
+    justify-content: center; /* Center the buttons */
+    gap: 10px; /* Space between the buttons */
+  }
+
+  /* Variant button styling */
   .variant-button {
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 0.5em 1.5em;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    letter-spacing: 2px; /* Adjusted to fit better on small screens */
+    text-transform: uppercase;
     cursor: pointer;
-    border: 1px solid #ddd;
-    background-color: white;
-    transition: all 0.3s ease;
+    color: black;
+    transition: all 1000ms;
+    font-size: 14px; /* Reduced font size for better fit */
+    position: relative;
+    overflow: hidden;
+    outline: 1px solid black;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100px; /* Responsive min-width */
+    height: 50px; /* Fixed height for consistency */
   }
 
-  .variant-button.active {
-    background-color: hsl(261deg 80% 48%);
-    color: white;
-    border-color: hsl(261deg 80% 48%);
-  }
-
+  /* Hover effect for the text and scale */
   .variant-button:hover {
-    background-color: hsl(261deg 80% 48%);
-    color: white;
+    color: #ffffff;
+    transform: scale(1.05);
+    outline: 2px solid #70bdca;
+    box-shadow: 4px 5px 17px -4px #268391;
   }
 
+  /* Sliding background effect */
+  .variant-button::before {
+    content: '';
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--hover-bg-color); /* Dynamic color for the hover background */
+    transform: skewX(45deg); /* Skew for diagonal effect */
+    z-index: -1; /* Behind the button text */
+    transition: width 1000ms ease; /* Smooth transition for sliding */
+  }
+
+  /* On hover, the background expands */
+  .variant-button:hover::before {
+    width: 250%;
+  }
+
+  /* Active state styling */
+  .variant-button.active {
+    color: white;
+    outline: none;
+    background-color: var(--hover-bg-color); /* Retain hover color when active */
+  }
+
+  /* Active button should retain the sliding background */
+  .variant-button.active::before {
+    width: 250%;
+    background-color: var(--hover-bg-color); /* Keep the dynamic color when active */
+  }
+
+  /* Media queries for responsiveness */
+
+  /* Small screens (less than 600px wide) */
+  @media (max-width: 600px) {
+    .variant-button {
+      min-width: 80px; /* Make the buttons narrower on small screens */
+      font-size: 12px; /* Smaller text size for small screens */
+      padding: 0.5em 1em; /* Adjust padding */
+    }
+  }
+
+  /* Medium screens (600px to 1024px) */
+  @media (min-width: 600px) and (max-width: 1024px) {
+    .variant-button {
+      min-width: 90px; /* Adjust button width */
+      font-size: 13px; /* Adjust font size */
+    }
+  }
+
+  /* Large screens (1024px and up) */
+  @media (min-width: 1024px) {
+    .variant-button {
+      min-width: 120px; /* Larger buttons for larger screens */
+      font-size: 15px; /* Larger text size */
+    }
+  }
   /* Carousel cell for Flickity */
   .carousel-cell {
     width: 100%; /* Full width for images */
     margin-right: 10px;
-    background: #f7f7f7;
+    background: none; /* Ensure no background */
     border-radius: 5px;
     overflow: hidden;
   }
@@ -220,28 +304,51 @@
     display: block;
     width: 100%;
     height: auto;
+    max-height: 500px; /* Control the maximum height */
+    object-fit: cover; /* Ensure image fits within the container while maintaining aspect ratio */
+    margin: 0 auto; /* Center the image horizontally */
+    padding: 10px; /* Add padding around the image for proper spacing */
   }
 
   /* Thumbnail carousel specific styles */
   .carousel-thumbnails .carousel-cell {
     width: 100px; /* Fixed width for thumbnails */
-    height: auto;
+    height: 100px;
+    background: none; /* Remove background */
+    object-fit: cover;
+    margin: 0 auto;
+    position: relative; /* Ensure proper positioning for ::after */
   }
 
   .carousel-thumbnails .carousel-cell img {
     cursor: pointer;
     opacity: 0.6;
     transition: opacity 0.3s;
+    background: none; /* Ensure the image itself has no background */
   }
 
+  /* Add underline effect using ::after */
+  .carousel-thumbnails .carousel-cell.is-selected::after {
+    content: ''; /* Create an empty content that acts as the underline */
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: black; /* Black underline */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 1; /* Ensure it's visible */
+  }
+
+  /* Make the selected thumbnail fully transparent except the underline */
   .carousel-thumbnails .carousel-cell.is-selected img {
     opacity: 1;
-    border: 2px solid hsl(261deg 80% 48%); /* Highlight selected thumbnail */
+    background-color: transparent; /* Remove any background */
   }
 
   /* Flickity styles for smooth scrolling */
   .carousel {
-    background: #eee;
+    background: none; /* No background for the carousel */
   }
 
   .flickity-viewport {
