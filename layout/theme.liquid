@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
+
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" defer></script>
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -427,5 +427,7 @@
     <div class="shopify-dynamic-checkout---buttons" style="display:none!important;">
       {{ content_for_additional_checkout_buttons }}
     </div>
+
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" defer></script>
   </body>
 </html>

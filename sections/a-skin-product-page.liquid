@@ -301,91 +301,95 @@
 
 <!-- Styles -->
 <style>
-  input[type='number']::-webkit-outer-spin-button,
-  input[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 
-  input[type='number'] {
-    -moz-appearance: textfield;
-  }
+    input[type='number'] {
+        -moz-appearance: textfield;
+    }
 
-  .variant-button {
-    transition: all 0.3s ease;
-  }
+    .variant-button {
+        transition: all 0.3s ease;
+    }
 
-  .variant-button.active {
-    border-color: white; /* White border for the outer circle when selected */
-  }
+    .variant-button.active {
+        border-color: white;
+        /* White border for the outer circle when selected */
+    }
 
-  .inner-circle {
-    transition: all 0.3s ease;
-  }
+    .inner-circle {
+        transition: all 0.3s ease;
+    }
 
-  .variant-button.active .inner-circle {
-    border: 2px solid white; /* White border for the inner circle */
-  }
-  .carousel-cell {
-    width: 100%;
-    margin-right: 10px;
-    background: none;
-    border-radius: 5px;
-    overflow: hidden;
-  }
+    .variant-button.active .inner-circle {
+        border: 2px solid white;
+        /* White border for the inner circle */
+    }
 
-  .carousel-cell img {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    object-fit: cover;
-    margin: 0 auto;
-    padding: 10px;
-  }
+    .carousel-cell {
+        width: 100%;
+        margin-right: 10px;
+        background: none;
+        border-radius: 5px;
+        overflow: hidden;
+    }
 
-  .carousel-thumbnails .carousel-cell {
-    width: 100px;
-    height: 100px;
-    background: none;
-    object-fit: cover;
-    margin: 0 auto;
-    position: relative;
-  }
+    .carousel-cell img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 500px;
+        object-fit: cover;
+        margin: 0 auto;
+        padding: 10px;
+    }
 
-  .carousel-thumbnails .carousel-cell img {
-    cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.3s;
-    background: none;
-  }
+    .carousel-thumbnails .carousel-cell {
+        width: 100px;
+        height: 100px;
+        background: none;
+        object-fit: cover;
+        margin: 0 auto;
+        position: relative;
+    }
 
-  .carousel-thumbnails .carousel-cell.is-selected::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: black;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    opacity: 1;
-  }
+    .carousel-thumbnails .carousel-cell img {
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.3s;
+        background: none;
+    }
 
-  .carousel-thumbnails .carousel-cell.is-selected img {
-    opacity: 1;
-    background-color: transparent;
-  }
+    .carousel-thumbnails .carousel-cell.is-selected::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: black;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        opacity: 1;
+    }
 
-  .flickity-viewport {
-    overflow: hidden;
-  }
+    .carousel-thumbnails .carousel-cell.is-selected img {
+        opacity: 1;
+        background-color: transparent;
+    }
 
-  .flickity-page-dots {
-    display: none;
-  }
-  /* Ensure smooth transitions for all state changes */
-  .x-transition-all {
-    transition: all 0.3s ease;
-  }
+    .flickity-viewport {
+        overflow: hidden;
+    }
+
+    .flickity-page-dots {
+        display: none;
+    }
+
+    /* Ensure smooth transitions for all state changes */
+    .x-transition-all {
+        transition: all 0.3s ease;
+    }
 </style>
