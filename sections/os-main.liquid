@@ -1,0 +1,58 @@
+<div class="x-bg-[#f9f8f5]">
+        <div class="x-px-[16px] md:x-px-[24px] x-flex x-flex-col x-gap-[80px] x-py-[80px] lg:x-max-w-[1280px] lg:x-mx-auto">
+            <div class="md:x-w-[95%] lg:x-w-[90%] md:x-mx-auto">
+                <div class="x-border-l-[5px] x-border-black x-pl-[18px] x-leading-[22px] md:x-leading-[28px] x-text-[20px] md:x-text-[26px]">
+                    I HOPE FOR THE BRAND TO BE A PLACE FOR EQUAL REPRESENTATION, SUSTAINABILITY AND TRANSPARENCY WITHIN THE INDUSTRY
+                </div>
+            </div>
+            <div class="x-flex x-flex-col md:x-flex-row x-gap-[80px] md:x-gap-[20px] lg:x-gap-[80px] ">
+                <div class="x-px-[40px] md:x-px-[0px] md:x-py-[40px] md:x-w-1/2">
+                    <div class="x-relative x-overflow-hidden x-h-[400px] md:x-h-full lg:x-h-[600px] x-w-full">
+                        <div class="parallax-cta x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
+                            style="background-image: url({{ 'founder_pholder.png' | asset_url }});">
+                        </div>
+                    </div>
+                </div>
+                <div class="x-flex x-flex-col x-gap-[10px] md:x-gap-[12px] x-text-[10.5px] md:x-text-[16px] x-italic x-leading-[16px] md:x-leading-[20px] md:x-w-1/2 md:x-p-[32px] lg:x-p-[0px] lg:x-my-auto">
+                    <p>I am a person that’s very mindful of what I eat and of what I put on my body. When it comes to makeup
+                        I’ve struggled to find a brand that’s truly clean and with shades that are actually flattering on my
+                        skin tone.</p>
+                    <p>I remember my countless trips to beauty stores where I couldn’t find a single nude pink out of
+                        hundreds of brands they carried that actually showed up on my dark grey lips, without making me look
+                        ashy.</p>
+                    <p>I strived to create a line of products that is inclusive of all skin shades, without compromising on
+                        ingredients or performance.</p>
+                    <p>I began by going back to my South Asian roots, where our ancestors have often used elements in nature
+                        to beautify themselves. I started experimenting with clays and pigment rich fruits and flowers such
+                        as cherries and hibiscus. I researched Ayurvedic principles and its teachings of using powerful
+                        plants and herbs to heal the body, mind and spirit.</p>
+                    <p>After five years of research and hundreds of iterations later, Mango People was born. We are proud to
+                        offer a diverse range of shades where anyone can find the perfect product that accentuates their
+                        natural beauty, no matter the skin tone. Whether light, tanned or dark toned, I hope everyone can
+                        find their perfect match at Mango People.</p>
+                    <p>Beyond the products, I hope for the brand to be a place for equal representation, sustainability and
+                        transparency within the industry.</p>
+                    <p>Sravya Adusumilli, Founder</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('scroll', function () {
+            const parallaxSections = document.querySelectorAll('.parallax-cta');
+            parallaxSections.forEach((parallax) => {
+                const speed = 0.1; // Adjust the speed for the desired parallax effect
+                const initialOffset = 0; // Offset to move the image down initially
+                const sectionTop = parallax.parentElement.offsetTop; // Get the top position of the parent element relative to the document
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+
+                // Check if the section is in the viewport
+                if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + parallax.parentElement.offsetHeight) {
+                    const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
+                    parallax.style.transform = `translateY(${yPos}px)`;
+                }
+            });
+        });
+    </script>
