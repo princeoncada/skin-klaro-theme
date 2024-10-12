@@ -15,31 +15,14 @@
     <!-- Assuming you're showcasing one specific product, hardcode the handle or use dynamic settings -->
     {% assign featured_product = all_products['test-product'] %}
     {% assign featured_product_2 = all_products['test-product-2'] %}
-
-    <!-- Flickity Carousel Wrapper -->
-    <div
-      class="carousel x-w-full x-max-w-full x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden"
-      data-flickity='{ "wrapAround": true, "pageDots": false, "prevNextButtons": true, "cellAlign": "left", "autoPlay": "1500","groupCells": "true"}'
-    >
-      <!-- Include the product-card snippet, passing the featured product -->
-      <div class="carousel-cell x-min-w-[433px] x-max-w-[433px]">
+    <!-- Include the product-card snippet, passing the featured product -->
+    <div class="x-w-full x-max-w-full md:x-grid x-flex md:x-grid-cols-3 lg:x-grid-cols-5 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden">
         {% render 'a-skin-product-card', product: featured_product %}
-      </div>
-      <div class="carousel-cell x-min-w-[433px] x-max-w-[433px]">
         {% render 'a-skin-product-card', product: featured_product_2 %}
-      </div>
-      <div class="carousel-cell x-min-w-[433px] x-max-w-[433px]">
         {% render 'a-skin-product-card', product: featured_product %}
-      </div>
-      <div class="carousel-cell x-min-w-[433px] x-max-w-[433px]">
         {% render 'a-skin-product-card', product: featured_product_2 %}
-      </div>
-      <div class="carousel-cell x-min-w-[433px] x-max-w-[433px]">
         {% render 'a-skin-product-card', product: featured_product %}
-      </div>
     </div>
-  </div>
-</div>
 
 <style>
   .carousel-cell {

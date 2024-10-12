@@ -2267,6 +2267,10 @@ html {
     display: flex !important;
   }
 
+  .md\:x-grid {
+    display: grid !important;
+  }
+
   .md\:x-h-\[600px\] {
     height: 600px !important;
   }
@@ -2285,6 +2289,10 @@ html {
 
   .md\:x-min-w-full {
     min-width: 100% !important;
+  }
+
+  .md\:x-grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 
   .md\:x-flex-row {
@@ -2411,6 +2419,10 @@ html {
 
   .lg\:x-max-w-\[1280px\] {
     max-width: 1280px !important;
+  }
+
+  .lg\:x-grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
   }
 
   .lg\:x-gap-\[80px\] {
