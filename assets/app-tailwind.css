@@ -875,6 +875,16 @@ html {
   z-index: 1 !important;
 }
 
+.x-mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.x-my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
 .x-mb-2 {
   margin-bottom: 0.5rem !important;
 }
@@ -957,6 +967,10 @@ html {
 
 .x-h-\[330px\] {
   height: 330px !important;
+}
+
+.x-h-\[400px\] {
+  height: 400px !important;
 }
 
 .x-h-\[425px\] {
@@ -1099,6 +1113,10 @@ html {
   gap: 16px !important;
 }
 
+.x-gap-\[80px\] {
+  gap: 80px !important;
+}
+
 .x-overflow-hidden {
   overflow: hidden !important;
 }
@@ -1129,6 +1147,10 @@ html {
 
 .x-border-\[1px\] {
   border-width: 1px !important;
+}
+
+.x-border-l-\[5px\] {
+  border-left-width: 5px !important;
 }
 
 .x-border-t-\[1px\] {
@@ -1187,6 +1209,11 @@ html {
 .x-bg-\[\#FFE4D9\] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(255 228 217 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#f9f8f5\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(249 248 245 / var(--tw-bg-opacity)) !important;
 }
 
 .x-bg-gray-300 {
@@ -1280,6 +1307,11 @@ html {
   padding-right: 25px !important;
 }
 
+.x-px-\[40px\] {
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+}
+
 .x-py-16 {
   padding-top: 4rem !important;
   padding-bottom: 4rem !important;
@@ -1300,8 +1332,17 @@ html {
   padding-bottom: 1.5rem !important;
 }
 
+.x-py-\[80px\] {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+}
+
 .x-pl-1 {
   padding-left: 0.25rem !important;
+}
+
+.x-pl-\[18px\] {
+  padding-left: 18px !important;
 }
 
 .x-text-center {
@@ -1336,8 +1377,16 @@ html {
   line-height: 1 !important;
 }
 
+.x-text-\[10\.5px\] {
+  font-size: 10.5px !important;
+}
+
 .x-text-\[16px\] {
   font-size: 16px !important;
+}
+
+.x-text-\[20px\] {
+  font-size: 20px !important;
 }
 
 .x-text-\[32px\] {
@@ -1376,6 +1425,14 @@ html {
 
 .x-leading-10 {
   line-height: 2.5rem !important;
+}
+
+.x-leading-\[16px\] {
+  line-height: 16px !important;
+}
+
+.x-leading-\[22px\] {
+  line-height: 22px !important;
 }
 
 .x-text-black {
@@ -1500,6 +1557,11 @@ html {
     margin: 50px !important;
   }
 
+  .md\:x-mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
   .md\:x-flex {
     display: flex !important;
   }
@@ -1518,6 +1580,10 @@ html {
 
   .md\:x-w-1\/2 {
     width: 50% !important;
+  }
+
+  .md\:x-w-\[95\%\] {
+    width: 95% !important;
   }
 
   .md\:x-min-w-full {
@@ -1556,8 +1622,20 @@ html {
     justify-content: space-between !important;
   }
 
+  .md\:x-gap-\[12px\] {
+    gap: 12px !important;
+  }
+
+  .md\:x-gap-\[20px\] {
+    gap: 20px !important;
+  }
+
   .md\:x-gap-\[50px\] {
     gap: 50px !important;
+  }
+
+  .md\:x-p-\[32px\] {
+    padding: 32px !important;
   }
 
   .md\:x-p-\[50px\] {
@@ -1567,6 +1645,16 @@ html {
   .md\:x-px-16 {
     padding-left: 4rem !important;
     padding-right: 4rem !important;
+  }
+
+  .md\:x-px-\[0px\] {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .md\:x-px-\[24px\] {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
   }
 
   .md\:x-px-\[50px\] {
@@ -1579,14 +1667,65 @@ html {
     padding-bottom: 1.5rem !important;
   }
 
+  .md\:x-py-\[40px\] {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .md\:x-text-\[16px\] {
+    font-size: 16px !important;
+  }
+
+  .md\:x-text-\[26px\] {
+    font-size: 26px !important;
+  }
+
   .md\:x-text-\[56px\] {
     font-size: 56px !important;
+  }
+
+  .md\:x-leading-\[20px\] {
+    line-height: 20px !important;
+  }
+
+  .md\:x-leading-\[28px\] {
+    line-height: 28px !important;
   }
 }
 
 @media (min-width: 1280px) {
+  .lg\:x-mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .lg\:x-my-auto {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+
+  .lg\:x-h-\[600px\] {
+    height: 600px !important;
+  }
+
+  .lg\:x-w-\[90\%\] {
+    width: 90% !important;
+  }
+
+  .lg\:x-max-w-\[1280px\] {
+    max-width: 1280px !important;
+  }
+
   .lg\:x-grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  }
+
+  .lg\:x-gap-\[80px\] {
+    gap: 80px !important;
+  }
+
+  .lg\:x-p-\[0px\] {
+    padding: 0px !important;
   }
 
   .lg\:x-text-\[48px\] {
