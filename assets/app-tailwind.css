@@ -1047,6 +1047,10 @@ html {
   margin-right: auto !important;
 }
 
+.x-mb-10 {
+  margin-bottom: 2.5rem !important;
+}
+
 .x-mb-2 {
   margin-bottom: 0.5rem !important;
 }
@@ -1061,6 +1065,10 @@ html {
 
 .x-mb-5 {
   margin-bottom: 1.25rem !important;
+}
+
+.x-mb-7 {
+  margin-bottom: 1.75rem !important;
 }
 
 .x-ml-\[-1px\] {
@@ -1085,14 +1093,6 @@ html {
 
 .x-mt-\[24px\] {
   margin-top: 24px !important;
-}
-
-.x-mb-10 {
-  margin-bottom: 2.5rem !important;
-}
-
-.x-mb-7 {
-  margin-bottom: 1.75rem !important;
 }
 
 .x-block {
@@ -1349,12 +1349,12 @@ html {
   animation: x-loop 15s linear infinite !important;
 }
 
-.x-cursor-pointer {
-  cursor: pointer !important;
-}
-
 .x-cursor-not-allowed {
   cursor: not-allowed !important;
+}
+
+.x-cursor-pointer {
+  cursor: pointer !important;
 }
 
 .x-snap-x {
@@ -1831,6 +1831,16 @@ html {
   padding-right: 16px !important;
 }
 
+.x-px-\[20px\] {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.x-px-\[25px\] {
+  padding-left: 25px !important;
+  padding-right: 25px !important;
+}
+
 .x-py-10 {
   padding-top: 2.5rem !important;
   padding-bottom: 2.5rem !important;
@@ -1884,16 +1894,6 @@ html {
 .x-py-9 {
   padding-top: 2.25rem !important;
   padding-bottom: 2.25rem !important;
-}
-
-.x-px-\[20px\] {
-  padding-left: 20px !important;
-  padding-right: 20px !important;
-}
-
-.x-px-\[25px\] {
-  padding-left: 25px !important;
-  padding-right: 25px !important;
 }
 
 .x-pl-1 {
@@ -2273,13 +2273,5 @@ html {
 
   .lg\:x-text-\[48px\] {
     font-size: 48px !important;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  @media (min-width: 1280px) {
-    .dark\:lg\:hover\:\[paint-order\:markers\]:hover {
-      paint-order: markers !important;
-    }
   }
 }

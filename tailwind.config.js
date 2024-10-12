@@ -2,7 +2,11 @@
 module.exports = {
     prefix: "x-",
     important: true,
-    content: ["./**/*.{html,js,css,liquid}"],
+   content: [
+        "./**/*.{html,liquid}",
+        "./assets/*.css",
+        "./assets/*.js"
+    ],
     theme: {
       extend: {
         animation: {
