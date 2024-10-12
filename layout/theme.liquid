@@ -259,6 +259,7 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'app-tailwind.css' | asset_url | stylesheet_tag }}
+
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -304,6 +305,10 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -428,6 +433,5 @@
       {{ content_for_additional_checkout_buttons }}
     </div>
 
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" defer></script>
   </body>
 </html>
