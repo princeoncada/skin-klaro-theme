@@ -1,14 +1,14 @@
 <div class="container p-4">
   <!-- Flickity Carousel for Main and Variant Images -->
-  <div id="mainCarousel" class="carousel">
+  <div id="mainCarousel" class="carousel x-h-[425px]">
     <div class="carousel-cell">
       <img
         id="mainImage"
-        src="{{ product.media.first.preview_image | image_url: width: 1000 }}"
+        src="{{ product.media.first.preview_image | image_url: width: 1000, height: 1000 }}"
         alt="{{ product.title }}"
-        class="x-w-full x-h-auto"
+        class="x-w-full"
         width="1000"
-        height="auto"
+        height="1000"
       >
     </div>
   </div>
@@ -17,12 +17,12 @@
   <div id="thumbnailCarousel" class="carousel-thumbnails x-px-[16px]">
     <div class="carousel-cell">
       <img
-        src="{{ product.media.first.preview_image | image_url: width: 1000 }}"
+        src="{{ product.media.first.preview_image | image_url: width: 1000, height: 1000 }}"
         alt="Main Product Image"
         class="x-cursor-pointer x-object-cover x-w-full x-h-full"
         width="1000"
-        height="auto"
-        onclick="changeImage('{{ product.media.first.preview_image | image_url: width: 1000 }}')"
+        height="1000"
+        onclick="changeImage('{{ product.media.first.preview_image | image_url: width: 1000, height: 1000 }}')"
       >
     </div>
   </div>
@@ -288,7 +288,7 @@
         .then((response) => response.json())
         .then((data) => {
           console.log('Product added to cart:', data);
-          {% comment %} alert('Product added to cart!'); {% endcomment %}
+          updateCartCount();
         })
         .catch((error) => {
           console.error('Error adding to cart:', error);
@@ -297,6 +297,29 @@
       alert('The selected variant is out of stock.');
     }
   }
+
+  // Update cart 
+  function updateCartCount() {
+    fetch('/cart.js')
+        .then((response) => response.json())
+        .then((cart) => {
+            const cartCountBubble = document.querySelector('.cart-count-bubble');
+            const cartItemCount = cart.item_count;
+
+            // Update the cart count in the header
+            cartCountBubble.textContent = cartItemCount;
+
+            // Show or hide the bubble based on cart count
+            if (cartItemCount > 0) {
+                cartCountBubble.classList.remove('hide');
+            } else {
+                cartCountBubble.classList.add('hide');
+            }
+        })
+        .catch((error) => {
+            console.error('Error fetching cart data:', error);
+        });
+    }
 </script>
 
 <!-- Styles -->
