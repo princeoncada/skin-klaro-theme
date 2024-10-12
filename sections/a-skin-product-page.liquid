@@ -6,7 +6,7 @@
         id="mainImage"
         src="{{ product.media.first.preview_image | image_url: width: 1000 }}"
         alt="{{ product.title }}"
-        class="x-w-full x-h-auto"
+        class="x-w-full"
         width="1000"
         height="auto"
       >
@@ -267,35 +267,63 @@
   // Checkout button click listener
   document.getElementById('checkoutButton').addEventListener('click', function () {
     if (selectedVariantId) {
-      addToCart(selectedVariantId); // Use addToCart function instead of createCart
+      // Ensure selectedQuantity is passed to the addToCart function
+      const selectedQuantity = parseInt(document.getElementById('quantityInput').value);
+      addToCart(selectedVariantId, selectedQuantity);
     } else {
       alert('Please select a variant before proceeding to checkout.');
     }
   });
 
-  // Add product to cart function
-  function addToCart(productId) {
-    const checkoutButton = document.getElementById('checkoutButton');
-    const quantity = selectedQuantity; // Use the selected quantity
-    if (!checkoutButton.disabled) {
-      fetch('/cart/add.js', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id: productId, quantity: quantity }), // Pass the selected quantity here
+  // Function to add an item to the cart and fetch the updated item count
+  function addToCart(productId, selectedQuantity) {
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: productId, quantity: selectedQuantity }), // Ensure quantity is passed here
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Product added to cart:', data);
+        updateCartCount();
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Product added to cart:', data);
-          {% comment %} alert('Product added to cart!'); {% endcomment %}
-        })
-        .catch((error) => {
-          console.error('Error adding to cart:', error);
-        });
-    } else {
-      alert('The selected variant is out of stock.');
-    }
+      .catch((error) => {
+        console.error('Error adding to cart:', error);
+      });
+  }
+
+  // Function to dynamically update the cart count
+  function updateCartCount() {
+    fetch('/cart.js')
+      .then((response) => response.json())
+      .then((cartData) => {
+        const itemCount = cartData.item_count;
+        const cartCountBubble = document.querySelector('.cart-count-bubble span');
+        const cartIconBubble = document.getElementById('cart-icon-bubble');
+
+        if (itemCount > 0) {
+          // If the bubble exists, update the count
+          if (cartCountBubble) {
+            cartCountBubble.textContent = itemCount;
+          } else {
+            // If no bubble exists, create it
+            const newCountBubble = document.createElement('div');
+            newCountBubble.classList.add('cart-count-bubble');
+            newCountBubble.innerHTML = `<span aria-hidden="true">${itemCount}</span>`;
+            cartIconBubble.appendChild(newCountBubble);
+          }
+        } else {
+          // If the cart is empty, remove the bubble
+          if (cartCountBubble) {
+            cartCountBubble.parentElement.remove();
+          }
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching updated cart:', error);
+      });
   }
 </script>
 
@@ -316,7 +344,8 @@
   }
 
   .variant-button.active {
-    border-color: white; /* White border for the outer circle when selected */
+    border-color: white;
+    /* White border for the outer circle when selected */
   }
 
   .inner-circle {
@@ -324,8 +353,10 @@
   }
 
   .variant-button.active .inner-circle {
-    border: 2px solid white; /* White border for the inner circle */
+    border: 2px solid white;
+    /* White border for the inner circle */
   }
+
   .carousel-cell {
     width: 100%;
     margin-right: 10px;
@@ -384,6 +415,7 @@
   .flickity-page-dots {
     display: none;
   }
+
   /* Ensure smooth transitions for all state changes */
   .x-transition-all {
     transition: all 0.3s ease;
