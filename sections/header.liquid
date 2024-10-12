@@ -272,9 +272,9 @@
         <style> 
             .hide { display: none !important }
         </style>
-        <div class="cart-count-bubble cart-link__count {% if cart == empty %} hide{% endif %}">
+        {% comment %} <div class="cart-count-bubble cart-link__count {% if cart == empty %} hide{% endif %}">
             {{ cart.item_count }}
-        </div>
+        </div> {% endcomment %}
       </a>
     </div>
   </header>
