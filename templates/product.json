@@ -1,36 +1,46 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-"sections": {
-	"main": {
-		"type": "a-skin-product-page",
-		"settings": {
-			// your main product settings here
-		}
-	},
-	"cart-drawer": {
-		"type": "cart-drawer",
-		"settings": {
-			"show_on_add": true,  // Optionally show the drawer when items are added
-			"position": "right"   // Customize position (e.g., right, left)
-		}
-	},
-	"related-products": {
-		"type": "related-products",
-		"settings": {
-			"heading": "You may also like",
-			"heading_size": "h2",
-			"products_to_show": 4,
-			"columns_desktop": 4,
-			"color_scheme": "scheme-1",
-			"image_ratio": "square",
-			"image_shape": "default",
-			"show_secondary_image": true,
-			"show_vendor": false,
-			"show_rating": false,
-			"columns_mobile": "2",
-			"padding_top": 36,
-			"padding_bottom": 28
-		}
-	}
-},
-"order": ["main", "cart-drawer", "related-products"]
+  "sections": {
+    "main": {
+      "type": "a-skin-product-page",
+      "settings": {
+      }
+    },
+    "cart-drawer": {
+      "type": "cart-drawer",
+      "settings": {
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "cart-drawer",
+    "related-products"
+  ]
 }
