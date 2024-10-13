@@ -7,7 +7,7 @@
 
         <!-- Add to Cart Button (visible only on lg and larger - 1280px and above) -->
         <button
-            class="add-to-cart-btn x-absolute x-bg-[#F2E8DA] x-bg-opacity-60 x-bottom-0 x-w-full x-h-0 group-hover:x-h-16 x-transition-all x-duration-300"
+            class="add-to-cart-btn x-absolute x-bg-[#F2E8DA] x-bg-opacity-60 x-bottom-0 x-w-full x-h-0 group-hover:x-h-16 x-transition-all x-duration-300 x-z-0"
             data-product-id="{{ product.variants.first.id }}">
             <span class="button-text">ADD TO CART</span>
         </button>
@@ -33,7 +33,7 @@
     </div>
 
     <!-- Variant selection area (hidden by default) -->
-    <div class="product-variants x-absolute x-bottom-0 x-w-full x-flex x-flex-row x-justify-center x-items-center x-transition-all x-duration-300 x-gap-3 x-py-4 x-bg-[#FFE4D9] x-bg-opacity-40 x-z-[2]"
+    <div class="product-variants x-absolute x-bottom-0 x-w-full x-flex x-flex-row x-justify-center x-items-center x-transition-all x-duration-300 x-gap-3 x-py-4 x-bg-[#FFE4D9] x-bg-opacity-40 x-z-[1]"
         style="transform: translateY(0px)">
         <!-- Back button to hide swatches and show "Add to Cart" button -->
         <button
@@ -60,7 +60,7 @@
     </div>
 
     <a href="/products/{{ product.handle }}"
-        class="x-relative x-bg-white x-z-[3] product-details x-p-5 x-flex x-items-start x-flex-col x-border-t-[1px] x-border-gray-500">
+        class="x-relative x-bg-white x-z-[2] product-details x-p-5 x-flex x-items-start x-flex-col x-border-t-[1px] x-border-gray-500">
         <h3>{{ product.title }}</h3>
         <p>{{ product.price | money }}</p>
     </a>
