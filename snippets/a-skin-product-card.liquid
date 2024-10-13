@@ -1,6 +1,6 @@
 <div class="product-card x-flex-1 x-border-gray-500 x-border-[1px] x-snap-start x-ml-[-1px] x-mt-[-1px]">
     <div class="product-image x-group md:x-min-w-full x-min-w-[400px] x-flex x-flex-col {% if template == "index" %}
-        product-card-5 {% elsif template == "page.shop-all" %} product-card-3 {% endif %}">
+        product-card-5 {% elsif template == "page.shop-all" or template == "page.shop-sets" %} product-card-3 {% endif %}">
         <div class="x-w-full x-flex-1 holder"
             style="background-image: url({{ product.featured_image | image_url: width: 600, height: 600 }}); background-position: 50% 50%; background-size: cover;">
         </div>
