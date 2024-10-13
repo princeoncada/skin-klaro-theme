@@ -851,6 +851,10 @@ html {
   }
 }
 
+.x-invisible {
+  visibility: hidden !important;
+}
+
 .x-absolute {
   position: absolute !important;
 }
