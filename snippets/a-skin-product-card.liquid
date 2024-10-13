@@ -2,7 +2,7 @@
     <div class="product-image x-group md:x-min-w-full x-min-w-[400px] x-flex x-flex-col {% if template == "index" %}
         product-card-5 {% elsif template == "page.shop-all" %} product-card-3 {% endif %}">
         <div class="x-w-full x-flex-1 holder"
-            style="background-image: url({{ product.featured_image | img_url: '600x600' }}); background-position: 50% 50%; background-size: cover;">
+            style="background-image: url({{ product.featured_image | image_url: width: 600, height: 600 }}); background-position: 50% 50%; background-size: cover;">
         </div>
 
         <!-- Add to Cart Button (visible only on lg and larger - 1280px and above) -->
@@ -36,7 +36,7 @@
                 .product-card-3 {
                     height: 400px;
                 }
-                
+
                 .product-card-5 {
                     height: 30vw;
                 }
