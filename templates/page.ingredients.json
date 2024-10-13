@@ -11,6 +11,8 @@
   "sections": {
     "main": {
       "type": "i-main",
+      "settings": {
+      }
     }
   },
   "order": [
