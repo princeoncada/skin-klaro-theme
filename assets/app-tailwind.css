@@ -951,6 +951,10 @@ html {
   order: 2 !important;
 }
 
+.x-m-10 {
+  margin: 2.5rem !important;
+}
+
 .x-mx-auto {
   margin-left: auto !important;
   margin-right: auto !important;
@@ -1016,6 +1020,18 @@ html {
 
 .x-mt-4 {
   margin-top: 1rem !important;
+}
+
+.x-mt-10 {
+  margin-top: 2.5rem !important;
+}
+
+.x-mt-5 {
+  margin-top: 1.25rem !important;
+}
+
+.x-mb-1 {
+  margin-bottom: 0.25rem !important;
 }
 
 .x-block {
@@ -1134,6 +1150,10 @@ html {
   height: 100vh !important;
 }
 
+.x-h-\[32px\] {
+  height: 32px !important;
+}
+
 .x-w-1 {
   width: 0.25rem !important;
 }
@@ -1184,6 +1204,10 @@ html {
 
 .x-w-\[400px\] {
   width: 400px !important;
+}
+
+.x-w-\[32px\] {
+  width: 32px !important;
 }
 
 .x-min-w-\[400px\] {
@@ -1777,6 +1801,18 @@ html {
 .x-text-sm {
   font-size: 0.875rem !important;
   line-height: 1.25rem !important;
+}
+
+.x-text-\[10px\] {
+  font-size: 10px !important;
+}
+
+.x-text-\[25px\] {
+  font-size: 25px !important;
+}
+
+.x-text-\[22px\] {
+  font-size: 22px !important;
 }
 
 .x-font-bold {
