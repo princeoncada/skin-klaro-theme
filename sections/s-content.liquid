@@ -1,18 +1,21 @@
 <!-- BG Senior Dev Request of colors -->
-<section class="x-bg-[#f9f8f5] x-py-12">
+<section class="x-bg-[#f9f8f5] x-py-12 ">
   <!-- First Section: Image on the Left, Text on the Right -->
-  <div class="x-container x-mx-auto x-grid x-grid-cols-1 md:x-grid-cols-2 x-gap-8 x-mb-12">
+  <div class="x-container x-mx-auto x-grid x-grid-cols-1 lg:x-grid-cols-2 x-gap-8 x-mb-12 lg:x-px-10 x-px-6">
     <!-- Image on the left -->
     <div class="x-flex x-justify-center x-items-center">
       <img
-        src="{{ 'pillow.jpg' | asset_img_url: '600x400' }}"
+        src="{{ 'pillow.jpg' | asset_img_url: '400x600' }}"
+        srcset="{{ 'pillow.jpg' | asset_img_url: '400x600' }} 400w, {{ 'pillow.jpg' | asset_img_url: '600x400' }} 600w"
+        sizes="(max-width: 1024px) 400px, 600px"
         alt="Image 1"
-        width="600"
-        height="400"
+        class="x-w-[400px] x-h-[600px] lg:x-w-[600px] lg:x-h-[400px]"
+        width="400"
+        height="600"
       >
     </div>
     <!-- Text on the right -->
-    <div class="x-flex x-flex-col x-justify-center x-border-[1px] x-border-[#bcb2a8] x-px-4 x-py-6">
+    <div class="x-flex x-flex-col x-justify-center x-border-[1px] x-border-[#bcb2a8] x-px-6 lg:x-pr-16 x-py-6">
       <p class="x-text-sm x-text-gray-600 x-mb-2">Makeup that's good for your skin and planet</p>
       <h1 class="x-text-4xl x-font-semibold x-mb-4">OUR SUSTAINABILITY EFFORTS</h1>
       <p class="x-text-base x-text-gray-700">
@@ -24,23 +27,88 @@
   </div>
 
   <!-- Bar Section with Text -->
-
-  <div class="x-mx-auto x-px-[16px]">
+  <div class="x-mx-auto x-px-[16px] x-mb-12">
     <!-- Adding margin auto for centering and padding for space on sides -->
-    <div class="x-w-full x-h-[50px] x-bg-gray-100 x-flex x-justify-center x-items-center x-mb-12">
-      <h2 class="x-text-xl x-font-semibold x-text-center">Bar Text Goes Here + Carousel of text flickity</h2>
+    <div class="x-w-full x-bg-white x-flex x-flex-col x-justify-center x-items-center x-py-8">
+      <h2 class="x-text-xl x-font-semibold x-text-center">1. Formulation & Ingredient Sourcing</h2>
+
+      <!-- Flickity carousel section -->
+      <div class="flickity-container x-w-full x-max-w-full x-overflow-hidden x-mt-4 ">
+        <div class="carousel x-flex x-overflow-x-auto x-scroll-snap-x x-scroll-snap-mandatory x-justify-start lg:x-justify-center">
+          <!-- First instance -->
+          <div class="carousel-cell x-flex-shrink-0 x-w-[300px] x-h-[180px] x-bg-white x-px-4 x-py-4 x-mr-4 x-text-center">
+            <h3 class="x-text-lg x-font-bold">Multi Tasking Products</h3>
+            <p>
+              Our products are designed to be multi-tasking and multi-use, to reduce the number of products in your
+              beauty routine, minimizing packaging waste ending in landfills.
+            </p>
+          </div>
+
+          <!-- Second instance -->
+          <div class="carousel-cell x-flex-shrink-0 x-w-[300px] x-h-[180px] x-bg-white x-px-4 x-py-4 x-mr-4 x-text-center">
+            <h3 class="x-text-lg x-font-bold">Long Lasting Formulation</h3>
+            <p>
+              Our formulas are rich in pigmentation and designed to last long, reducing the need for frequent
+              repurchases, minimizing waste.
+            </p>
+          </div>
+
+          <!-- Third instance -->
+          <div class="carousel-cell x-flex-shrink-0 x-w-[300px] x-h-[180px] x-bg-white x-px-4 x-py-4 x-text-center">
+            <h3 class="x-text-lg x-font-bold">Conscious Ingredients</h3>
+            <p>
+              Our products are made without petrochemicals and other harmful chemicals, making them kind to the planet
+              and your skin.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
+  <!-- Flickity styles -->
+  <style>
+    .carousel {
+      display: flex;
+    }
+
+    .carousel-cell {
+      width: 300px;
+      height: 180px;
+      margin-right: 16px;
+      border-radius: 4px;
+    }
+
+    .flickity-page-dots {
+      display: none;
+    }
+
+    .flickity-button {
+      display: none;
+    }
+
+    .flickity-prev-next-button {
+      width: 50px;
+      height: 50px;
+    }
+
+    .flickity-prev-next-button .flickity-button-icon {
+      fill: #333;
+    }
+  </style>
+
   <!-- Second Section: Image on the Left, Text on the Right -->
-  <div class="x-container x-mx-auto x-grid x-grid-cols-1 md:x-grid-cols-2 x-gap-8 x-mb-12">
+  <div class="x-container x-mx-auto x-grid x-grid-cols-1 lg:x-grid-cols-2 x-gap-8 x-mb-12 lg:x-px-10">
     <!-- Image on the left -->
     <div class="x-flex x-justify-center x-items-center">
       <img
-        src="{{ 'pillow.jpg' | asset_img_url: '600x400' }}"
-        alt="Image 2"
-        width="600"
-        height="400"
+        src="{{ 'pillow.jpg' | asset_img_url: '400x600' }}"
+        srcset="{{ 'pillow.jpg' | asset_img_url: '400x600' }} 400w, {{ 'pillow.jpg' | asset_img_url: '600x400' }} 600w"
+        sizes="(max-width: 1024px) 400px, 600px"
+        alt="Image 1"
+        class="x-w-[400px] x-h-[600px] lg:x-w-[600px] lg:x-h-[400px]"
+        width="400"
+        height="600"
       >
     </div>
     <!-- Text on the right -->
@@ -55,10 +123,22 @@
     </div>
   </div>
 
-  <!-- Third Section: Text on the Left, Image on the Right -->
-  <div class="x-container x-mx-auto x-grid x-grid-cols-1 md:x-grid-cols-2 x-gap-8">
+  <!-- Third Section: Text on the Left, Image on the Right (Reverse Order on lg screens) -->
+  <div class="x-container x-mx-auto x-grid x-grid-cols-1 lg:x-grid-cols-2 x-gap-8 lg:x-px-10">
+    <!-- Image on the right -->
+    <div class="x-flex x-justify-center x-items-center lg:x-order-2">
+      <img
+        src="{{ 'pillow.jpg' | asset_img_url: '400x600' }}"
+        srcset="{{ 'pillow.jpg' | asset_img_url: '400x600' }} 400w, {{ 'pillow.jpg' | asset_img_url: '600x400' }} 600w"
+        sizes="(max-width: 1024px) 400px, 600px"
+        alt="Image 1"
+        class="x-w-[400px] x-h-[600px] lg:x-w-[600px] lg:x-h-[400px]"
+        width="400"
+        height="600"
+      >
+    </div>
     <!-- Text on the left -->
-    <div class="x-flex x-flex-col x-justify-center x-px-4 x-py-6">
+    <div class="x-flex x-flex-col x-justify-center x-px-4 x-py-6 lg:x-order-1">
       <p class="x-text-sm x-text-gray-600 x-mb-2">Makeup that's good for your skin and planet</p>
       <h1 class="x-text-4xl x-font-semibold x-mb-4">OUR SUSTAINABILITY EFFORTS</h1>
       <p class="x-text-base x-text-gray-700">
@@ -66,15 +146,6 @@
         we make. Our goal is to thoughtfully create high performing beauty essentials that are kind to our skin and the
         planet.
       </p>
-    </div>
-    <!-- Image on the right -->
-    <div class="x-flex x-justify-center x-items-center">
-      <img
-        src="{{ 'pillow.jpg' | asset_img_url: '600x400' }}"
-        alt="Image 3"
-        width="600"
-        height="400"
-      >
     </div>
   </div>
 </section>
