@@ -1,8 +1,8 @@
 <div class="product-card x-flex-1 x-border-gray-500 x-border-[1px] x-snap-start x-ml-[-1px] x-mt-[-1px]">
-    <div class="product-image x-group md:x-min-w-full x-min-w-[400px] x-h-[330px] x-flex x-flex-col">
-        <div class="x-w-full x-flex-1">
-            <img class="x-w-full x-h-full x-object-cover" src="{{ product.featured_image | img_url: '600x600' }}"
-                alt="{{ product.title }}">
+    <div class="product-image x-group md:x-min-w-full x-min-w-[400px] x-flex x-flex-col {% if template == "index" %}
+        product-card-5 {% elsif template == "page.shop-all" or template == "page.shop-sets" %} product-card-3 {% endif %}">
+        <div class="x-w-full x-flex-1 holder"
+            style="background-image: url({{ product.featured_image | image_url: width: 600, height: 600 }}); background-position: 50% 50%; background-size: cover;">
         </div>
 
         <!-- Add to Cart Button (visible only on lg and larger - 1280px and above) -->
@@ -20,6 +20,35 @@
             @media (min-width: 1280px) {
                 .add-to-cart-btn {
                     display: block !important;
+                }
+            }
+
+
+            .product-card-5 {
+                height: 400px;
+            }
+
+            .product-card-3 {
+                height: 400px;
+            }
+
+            @media (min-width: 990px) {
+                .product-card-3 {
+                    height: 400px;
+                }
+
+                .product-card-5 {
+                    height: 30vw;
+                }
+            }
+
+            @media (min-width: 1280px) {
+                .product-card-5 {
+                    height: 400px;
+                }
+
+                .product-card-3 {
+                    height: 30vw;
                 }
             }
         </style>
@@ -43,19 +72,19 @@
         </button>
 
         {% for variant in product.variants %}
-        {% assign color_hexcode = variant.metafields.custom.color_hexcode %}
-        <!-- Check if color_hexcode exists; if not, fallback to variant title -->
-        {% if color_hexcode %}
-        <button class="variant-btn x-w-[30px] x-h-[30px] x-rounded-full x-cursor-pointer x-ring-1 x-ring-black"
-            data-variant-id="{{ variant.id }}" data-image="{{ variant.featured_image | img_url: '600x600' }}"
-            style="background-color: {{ color_hexcode }}; width: 30px; height: 30px; border: none; border-radius: 50%; cursor: pointer;"></button>
-        {% else %}
-        <!-- Fallback to variant title if no hex code is available -->
-        <button class="variant-btn" data-variant-id="{{ variant.id }}"
-            data-image="{{ variant.featured_image | img_url: '600x600' }}">
-            {{ variant.title }}
-        </button>
-        {% endif %}
+            {% assign color_hexcode = variant.metafields.custom.color_hexcode %}
+            <!-- Check if color_hexcode exists; if not, fallback to variant title -->
+            {% if color_hexcode %}
+                <button class="variant-btn x-w-[30px] x-h-[30px] x-rounded-full x-cursor-pointer x-ring-1 x-ring-black"
+                    data-variant-id="{{ variant.id }}" data-image="{{ variant.featured_image | img_url: '600x600' }}"
+                    style="background-color: {{ color_hexcode }}; width: 30px; height: 30px; border: none; border-radius: 50%; cursor: pointer;"></button>
+            {% else %}
+                <!-- Fallback to variant title if no hex code is available -->
+                <button class="variant-btn" data-variant-id="{{ variant.id }}"
+                    data-image="{{ variant.featured_image | img_url: '600x600' }}">
+                    {{ variant.title }}
+                </button>
+            {% endif %}
         {% endfor %}
     </div>
 
