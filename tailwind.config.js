@@ -9,15 +9,9 @@ module.exports = {
     ],
     theme: {
       extend: {
-        animation: {
-            "loop": "loop 15s linear infinite"
-        },
-        keyframes: {
-            loop: {
-                "0%": { transform: "translateX(0)" },
-                "100%": { transform: "translateX(calc(-50% - 20px))" },
-            },
-        },
+        transitionProperty: {
+            'collapse': 'height !important, margin !important'
+        }
       },
       screens: {
         'xs': '425px',
