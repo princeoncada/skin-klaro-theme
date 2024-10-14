@@ -1295,12 +1295,20 @@ html {
   gap: 10px !important;
 }
 
+.x-gap-\[12px\] {
+  gap: 12px !important;
+}
+
 .x-gap-\[16px\] {
   gap: 16px !important;
 }
 
 .x-gap-\[40px\] {
   gap: 40px !important;
+}
+
+.x-gap-\[54px\] {
+  gap: 54px !important;
 }
 
 .x-gap-\[80px\] {
@@ -1621,6 +1629,11 @@ html {
   padding-bottom: 32px !important;
 }
 
+.x-py-\[36px\] {
+  padding-top: 36px !important;
+  padding-bottom: 36px !important;
+}
+
 .x-py-\[50px\] {
   padding-top: 50px !important;
   padding-bottom: 50px !important;
@@ -1634,6 +1647,10 @@ html {
 .x-py-\[80px\] {
   padding-top: 80px !important;
   padding-bottom: 80px !important;
+}
+
+.x-pb-\[10px\] {
+  padding-bottom: 10px !important;
 }
 
 .x-pl-1 {
@@ -1744,6 +1761,10 @@ html {
   line-height: 1.75rem !important;
 }
 
+.x-text-\[18px\] {
+  font-size: 18px !important;
+}
+
 .x-font-bold {
   font-weight: 700 !important;
 }
@@ -1802,6 +1823,10 @@ html {
 .x-text-white {
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+}
+
+.x-text-\[\] {
+  color:  !important;
 }
 
 .x-underline {
@@ -1961,24 +1986,20 @@ html {
     width: 50% !important;
   }
 
-  .md\:x-w-\[95\%\] {
-    width: 95% !important;
-  }
-
-  .md\:x-w-\[\] {
-    width:  !important;
-  }
-
-  .md\:x-w-\[60\%\] {
-    width: 60% !important;
-  }
-
   .md\:x-w-\[570px\] {
     width: 570px !important;
   }
 
+  .md\:x-w-\[95\%\] {
+    width: 95% !important;
+  }
+
   .md\:x-min-w-full {
     min-width: 100% !important;
+  }
+
+  .md\:x-flex-1 {
+    flex: 1 1 0% !important;
   }
 
   .md\:x-grid-cols-3 {
@@ -2086,6 +2107,15 @@ html {
     padding-bottom: 40px !important;
   }
 
+  .md\:x-py-\[75px\] {
+    padding-top: 75px !important;
+    padding-bottom: 75px !important;
+  }
+
+  .md\:x-pt-\[75px\] {
+    padding-top: 75px !important;
+  }
+
   .md\:x-text-\[14px\] {
     font-size: 14px !important;
   }
@@ -2114,16 +2144,16 @@ html {
     font-size: 30px !important;
   }
 
+  .md\:x-text-\[36px\] {
+    font-size: 36px !important;
+  }
+
   .md\:x-text-\[56px\] {
     font-size: 56px !important;
   }
 
-  .md\:x-text-\[40px\] {
-    font-size: 40px !important;
-  }
-
-  .md\:x-text-\[36px\] {
-    font-size: 36px !important;
+  .md\:x-leading-\[18px\] {
+    line-height: 18px !important;
   }
 
   .md\:x-leading-\[20px\] {
@@ -2136,10 +2166,6 @@ html {
 
   .md\:x-leading-\[34px\] {
     line-height: 34px !important;
-  }
-
-  .md\:x-leading-\[18px\] {
-    line-height: 18px !important;
   }
 }
 
