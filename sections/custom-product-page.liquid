@@ -2,39 +2,39 @@
 
 <section>
     <!-- Main image display (this will update based on the selected thumbnail) -->
-    <div class="main-carousel x-p-[16px] x-pb-[10px]">
+    <div class="main-carousel x-p-[16px] x-pb-[10px]" data-flickity='{ "fullscreen": true }'>
         <!-- Default main image; will be updated on thumbnail selection -->
         {% for variant in product.variants %}
-            {% if variant.selected %}
-                <div class="carousel-cell thumbnail">
-                    <img id="main-image" src="{{ variant.featured_image | image_url: width: '1000', height: '1000' }}"
-                        alt="Main Image" width="100%" height="100%">
-                </div>
-                {% for url in variant.metafields.custom.img_src.value %}
-                    <div class="carousel-cell">
-                        <img src="{{ url }}" alt="Main Image Variant" width="100%" height="100%">
-                    </div>
-                {% endfor %}
-            {% endif %}
+        {% if variant.selected %}
+        <div class="carousel-cell thumbnail">
+            <img id="main-image" src="{{ variant.featured_image | image_url: width: '1000', height: '1000' }}"
+                alt="Main Image" width="100%" height="100%">
+        </div>
+        {% for url in variant.metafields.custom.img_src.value %}
+        <div class="carousel-cell">
+            <img src="{{ url }}" alt="Main Image Variant" width="100%" height="100%">
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endfor %}
     </div>
 
     <!-- Thumbnails carousel -->
     <div class="thumbnail-carousel x-shadow-none x-ml-[16px]">
         {% for variant in product.variants %}
-            {% if variant.selected %}
-                <!-- First thumbnail (main image) -->
-                <div class="x-mr-[10px] thumbnail">
-                    <img src="{{ variant.featured_image | image_url: width: '1000', height: '1000' }}" alt="Thumbnail"
-                        width="75px" height="75px">
-                </div>
-                <!-- Additional thumbnails for the variant -->
-                {% for url in variant.metafields.custom.img_src.value %}
-                    <div class="x-mr-[10px] thumbnail">
-                        <img src="{{ url }}" alt="Thumbnail Image" width="75px" height="75px">
-                    </div>
-                {% endfor %}
-            {% endif %}
+        {% if variant.selected %}
+        <!-- First thumbnail (main image) -->
+        <div class="x-mr-[10px] thumbnail">
+            <img src="{{ variant.featured_image | image_url: width: '1000', height: '1000' }}" alt="Thumbnail"
+                width="75px" height="75px">
+        </div>
+        <!-- Additional thumbnails for the variant -->
+        {% for url in variant.metafields.custom.img_src.value %}
+        <div class="x-mr-[10px] thumbnail">
+            <img src="{{ url }}" alt="Thumbnail Image" width="75px" height="75px">
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endfor %}
     </div>
 
@@ -55,17 +55,17 @@
             <div>
                 <div id="variant-buttons" class="x-flex x-gap-4 x-justify-start">
                     {% for variant in product.variants %}
-                        <button
-                            class="variant-button {% if forloop.first %} active {% endif %} x-flex x-items-center x-justify-center x-rounded-full x-w-auto x-h-auto x-border-2"
-                            style="border-color: {{ variant.metafields.custom.color_hexcode }};" data-id="{{ variant.id }}"
-                            data-price="{{ variant.price | money }}"
-                            data-variant-desc="{{ variant.metafields.custom.variant_desc.value }}"
-                            data-thumbnails="{{ variant.metafields.custom.img_src.value | join: ', ' }}"
-                            data-url="{{ variant.featured_image | image_url: width: '1000', height: '1000' }}">
-                            <span class="inner-circle x-block x-rounded-full x-w-[32px] x-h-[32px]"
-                                style="background-color: {{ variant.metafields.custom.color_hexcode }};">
-                            </span>
-                        </button>
+                    <button
+                        class="variant-button {% if forloop.first %} active {% endif %} x-flex x-items-center x-justify-center x-rounded-full x-w-auto x-h-auto x-border-2"
+                        style="border-color: {{ variant.metafields.custom.color_hexcode }};" data-id="{{ variant.id }}"
+                        data-price="{{ variant.price | money }}"
+                        data-variant-desc="{{ variant.metafields.custom.variant_desc.value }}"
+                        data-thumbnails="{{ variant.metafields.custom.img_src.value | join: ', ' }}"
+                        data-url="{{ variant.featured_image | image_url: width: '1000', height: '1000' }}">
+                        <span class="inner-circle x-block x-rounded-full x-w-[32px] x-h-[32px]"
+                            style="background-color: {{ variant.metafields.custom.color_hexcode }};">
+                        </span>
+                    </button>
                     {% endfor %}
                 </div>
                 <!-- Quantity Selector -->
@@ -102,6 +102,12 @@
             let price = $button.data('price');
             let variantDesc = $button.data('variant-desc');
             let thumbnailUrls = $button.data('thumbnails').split(', ');
+            var $carousel = $('.main-carousel').flickity({
+                fullscreen: true,
+                pageDots: false,
+            });
+
+
 
             updateUrl(selection);
             changeThumbnail(imageUrl);
@@ -110,6 +116,9 @@
 
             $('#variant-description').text(variantDesc);
             $('#variant-price').text(price);
+            $('.carousel-cell').on('click', function () {
+                $carousel.flickity('viewFullscreen');
+            });
 
             $("#variant-buttons .variant-button").removeClass('active');
             $button.addClass('active');
@@ -173,7 +182,7 @@
             cellAlign: 'left',
             contain: true
         });
-        
+
         let allCurrentMainImages = $('.main-carousel .carousel-cell');
         let allCurrentThumbnails = $('.thumbnail');
 
@@ -232,6 +241,7 @@
     function initializeFlickity() {
         // Main image carousel
         let $mainCarousel = $(".main-carousel").flickity({
+            fullscreen: true,
             pageDots: false,
             prevNextButtons: false,
             fullscreen: true,
@@ -246,12 +256,13 @@
             prevNextButtons: false,
             asNavFor: '.main-carousel'
         });
+
+
     }
 
 </script>
-
 <style>
-    .main-carousel .carousel-cell  {
+    .main-carousel .carousel-cell {
         display: flex;
         align-items: end;
         width: 100%;
@@ -263,9 +274,46 @@
         display: none;
     }
 
-    .thumbnail.is-selected {
-
+    .carousel.is-fullscreen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
     }
+
+    /* mao ning pang pa center sa image sa fullscreen*/
+    .flickity-slider {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .carousel.is-fullscreen .carousel-cell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+    }
+
+    .flickity-fullscreen-button {
+        display: none;
+    }
+
+    .flickity-enabled.is-fullscreen .flickity-fullscreen-button-exit {
+        display: none;
+    }
+
+    /* ambot ngano need ni pero pag tanggalon nako mugawas */
+    .flickity-page-dots {
+        display: none;
+    }
+
+    .carousel.is-fullscreen img {
+        max-height: 425px !important;
+    }
+
+    .thumbnail.is-selected {}
 
     .variant-button {
         transition: all 0.3s ease;
