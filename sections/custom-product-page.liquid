@@ -120,6 +120,14 @@
                 $carousel.flickity('viewFullscreen');
             });
 
+            $('.main-carousel').on('click', function () {
+    var $carousel = $(this);
+    if ($carousel.data('flickity').isFullscreen) {
+        $carousel.flickity('exitFullscreen');
+    }
+});
+
+
             $("#variant-buttons .variant-button").removeClass('active');
             $button.addClass('active');
         });
