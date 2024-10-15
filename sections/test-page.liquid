@@ -1,0 +1,55 @@
+<h1>Flickity - fullscreen</h1>
+
+<!-- Flickity HTML init -->
+<div class="carousel" data-flickity='{ "fullscreen": true }'>
+  <div class="carousel-cell">
+  </div>
+  <div class="carousel-cell">
+  </div>
+  <div class="carousel-cell">
+  </div>
+  <div class="carousel-cell">
+  </div>
+  <div class="carousel-cell">
+  </div>
+</div>
+
+<style>
+    /* external css: flickity.css, fullscreen.css */
+
+* { box-sizing: border-box; }
+
+body { font-family: sans-serif; }
+
+.carousel {
+  background: #FAFAFA;
+}
+
+.carousel.is-fullscreen {
+    z-index: 1000;
+}
+
+.carousel-cell {
+  width: 66%;
+  height: 200px;
+  margin-right: 10px;
+  background: #8C8;
+  border-radius: 5px;
+  counter-increment: carousel-cell;
+}
+
+.carousel.is-fullscreen .carousel-cell {
+  height: 100%;
+}
+
+/* cell number */
+.carousel-cell:before {
+  display: block;
+  text-align: center;
+  content: counter(carousel-cell);
+  line-height: 200px;
+  font-size: 80px;
+  color: white;
+}
+
+</style>

@@ -10,7 +10,8 @@
 {
   "sections": {
     "main": {
-      "type": "custom-product-page",
+    //   "type": "custom-product-page",
+      "type": "test-page",
       "settings": {
       }
     },

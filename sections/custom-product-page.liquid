@@ -6,7 +6,7 @@
         <!-- Default main image; will be updated on thumbnail selection -->
         {% for variant in product.variants %}
             {% if variant.selected %}
-                <div class="carousel-cell">
+                <div class="carousel-cell thumbnail">
                     <img id="main-image" src="{{ variant.featured_image | image_url: width: '1000', height: '1000' }}"
                         alt="Main Image" width="100%" height="100%">
                 </div>
@@ -163,24 +163,40 @@
     }
 
     function setThumbnails(thumbnailUrls) {
-        let $carousel = $(".thumbnail-carousel").flickity({
+        let $mainCarousel = $(".main-carousel").flickity({
+            initialIndex: 0,
+            contain: true
+        });
+
+        let $thumbnailCarousel = $(".thumbnail-carousel").flickity({
             initialIndex: 0,
             cellAlign: 'left',
             contain: true
         });
+        
+        let allCurrentMainImages = $('.main-carousel .carousel-cell');
         let allCurrentThumbnails = $('.thumbnail');
-        $carousel.flickity('remove', allCurrentThumbnails);
-        thumbnailUrls.forEach(url => {
+
+        $mainCarousel.flickity('remove', allCurrentMainImages);
+        $thumbnailCarousel.flickity('remove', allCurrentThumbnails);
+
+        thumbnailUrls.forEach((url, index) => {
+            let $main = $('<div class="carousel-cell thumbnail"><img src="' + url + '" alt="" width="100%" height="100%"></div>');
             let $thumbnail = $('<div class="x-mr-[10px] thumbnail"><img src="' + url + '" alt="" width="75px" height="75px"></div>');
 
             //PARA MAG CHANGE ANG FREAKING MAIN IMAGE.
-            $thumbnail.on('click', function () {
-                changeThumbnail(url); // Update the main image when the thumbnail is clicked
-                $('.thumbnail-carousel').flickity('selectCell', index); // Sync thumbnail to the clicked one
-                $('#featured-image').flickity('select', index); // Sync main image carousel to the clicked thumbnail
-            });
-            $carousel.flickity('append', $thumbnail);
+            // $thumbnail.on('click', function () {
+            //     changeThumbnail(url); // Update the main image when the thumbnail is clicked
+            //     $('.thumbnail-carousel').flickity('selectCell', index); // Sync thumbnail to the clicked one
+            //     $('#featured-image').flickity('select', index); // Sync main image carousel to the clicked thumbnail
+            // });
+
+            $mainCarousel.flickity('append', $main);
+            $thumbnailCarousel.flickity('append', $thumbnail);
         });
+
+        $mainCarousel.flickity('select', 0);
+        $thumbnailCarousel.flickity('select', 0);
     }
 
     function changeMainImage(imgUrl) {
@@ -214,51 +230,41 @@
     }
 
     function initializeFlickity() {
+        // Main image carousel
+        let $mainCarousel = $(".main-carousel").flickity({
+            pageDots: false,
+            prevNextButtons: false,
+            fullscreen: true,
+            lazyLoad: 1
+        });
+
         // Thumbnail Carousel
         let $thumbnailCarousel = $(".thumbnail-carousel").flickity({
             cellAlign: 'left',
             contain: true,
             pageDots: false,
             prevNextButtons: false,
-            draggable: true,
-           // asNavFor: '.main-carousel'
-        });
-
-        // Main image carousel
-        let $mainCarousel = $(".main-carousel").flickity({
-            cellAlign: 'center',
-            contain: true,
-            pageDots: false,
-        //    wrapAround: true,
-            draggable: true,
-            prevNextButtons: true,
-             asNavFor: '.thumbnail-carousel'
-        });
-
-        // Main image swipe
-        $thumbnailCarousel.on('select.flickity', function (event, index) {
-            let flkty = $thumbnailCarousel.data('flickity');
-            let selectedThumbnail = flkty.selectedElement.querySelector('img').src;
-            changeMainImage(selectedThumbnail);
-        });
-
-        // Thumbnail Change
-        $('.thumbnail img').on('click', function () {
-            let imgSrc = $(this).attr('src');
-            changeMainImage(imgSrc);
+            asNavFor: '.main-carousel'
         });
     }
 
 </script>
 
 <style>
-    .carousel-cell {
+    .main-carousel .carousel-cell  {
+        display: flex;
+        align-items: end;
         width: 100%;
+        min-height: 425px !important;
     }
 
     .thumbnail-carousel>button,
     .thumbnail-carousel>.flickity-page-dots {
         display: none;
+    }
+
+    .thumbnail.is-selected {
+
     }
 
     .variant-button {
