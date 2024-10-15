@@ -1648,6 +1648,11 @@ html {
   padding-bottom: 80px !important;
 }
 
+.x-px-2 {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
 .x-pb-\[10px\] {
   padding-bottom: 10px !important;
 }
