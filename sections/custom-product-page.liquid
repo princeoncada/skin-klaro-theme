@@ -1,0 +1,58 @@
+<script src="{{ 'custom-product-page.js'| asset_url }}" defer></script>
+
+<section>
+    <div class="x-p-[16px] x-pb-[10px]">
+        <img src="{{ product.variants.first.featured_image | image_url: width: " 1000", height: "1000" }}" alt=""
+            width="100%" height="100%">
+    </div>
+
+    <div class="thumbnail-carousel x-shadow-none x-ml-[16px]">
+        <div class="x-mr-[10px]">
+            <img src="{{ product.variants.first.featured_image | image_url: width: " 1000", height: "1000" }}" alt="" width="75px" height="75px">
+        </div>
+        {% assign thumbnail_urls = product.variants.first.metafields.custom.img_src.value %}
+        {% for url in thumbnail_urls %}
+            <div class="x-mr-[10px]">
+                <img src="{{ url }}" alt="" width="75px" height="75px">
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="x-p-[16px]">
+
+        <div>
+            <div>
+                <div>product title</div>
+                <div>reviews</div>
+            </div>
+            <div>
+                <div>price</div>
+                <div>
+                    <div>some content</div>
+                    <div>product description</div>
+                    <div>variant description</div>
+                </div>
+            </div>
+            <div>
+                <div>variant choices</div>
+                <div>quantity choice</div>
+                <div>add to cart button</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        let thumbnail_flickity = new Flickity(".thumbnail-carousel", {
+            cellAlign: "left"
+        });
+    });
+</script>
+ 
+<style>
+    /* Styling to hide Flickity navigation and pagination */
+    .thumbnail-carousel > button, .thumbnail-carousel > .flickity-page-dots {
+        display: none;
+    }
+</style>

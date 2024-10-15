@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "a-skin-product-page",
+      "type": "custom-product-page",
       "settings": {
       }
     },
