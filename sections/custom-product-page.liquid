@@ -3,78 +3,155 @@
 <section>
     <div id="featured-image" class="x-p-[16px] x-pb-[10px]">
         {% for variant in product.variants %}
-            {% if variant.selected %}
-                <img src="{{ variant.featured_image | image_url: width: "1000", height: "1000" }}" alt=""
-                width="100%" height="100%">
-            {% endif %}
+        {% if variant.selected %}
+        <img src="{{ variant.featured_image | image_url: width: " 1000", height: "1000" }}" alt="" width="100%"
+            height="100%">
+        {% endif %}
         {% endfor %}
     </div>
 
     <div class="thumbnail-carousel x-shadow-none x-ml-[16px]">
         <div class="featured-image-thumbnail x-mr-[10px] thumbnail">
             {% for variant in product.variants %}
-                {% if variant.selected %}
-                    <img src="{{ variant.featured_image | image_url: width: "1000", height: "1000" }}" alt="" width="75px" height="75px">
-                {% endif %}
+            {% if variant.selected %}
+            <img src="{{ variant.featured_image | image_url: width: " 1000", height: "1000" }}" alt="" width="75px"
+                height="75px">
+            {% endif %}
             {% endfor %}
         </div>
         {% for variant in product.variants %}
-            {% if variant.selected %}
-                {% for url in variant.metafields.custom.img_src.value %}
-                    <div class="x-mr-[10px] thumbnail">
-                        <img src="{{ url }}" alt="" width="75px" height="75px">
-                    </div>
-                {% endfor %}
-            {% endif %}
+        {% if variant.selected %}
+        {% for url in variant.metafields.custom.img_src.value %}
+        <div class="x-mr-[10px] thumbnail">
+            <img src="{{ url }}" alt="" width="75px" height="75px">
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endfor %}
     </div>
 
     <div class="x-p-[16px]">
 
-        <div>
+        <div class="x-py-[25px]">
             <div>
-                <div>product title</div>
+                <div>{{ product.title }}</div>
                 <div>reviews</div>
             </div>
             <div>
-                <div>price</div>
+                <div id="variant-price"></div>
                 <div>
                     <div>some content</div>
-                    <div>product description</div>
-                    <div>variant description</div>
+                    <div class="">{{ product.description }}</div>
+                    <div id="variant-description"></div>
                 </div>
             </div>
             <div>
-                <div>
-                    <select id="variant-selection" class="x-bg-white" name="" id="">
-                        {% for variant in product.variants %}
-                            <option class="x-bg-white" value="{{ variant.id }}" data-thumbnails="{{ variant.metafields.custom.img_src.value |  join: ', '  }}" data-url="{{ variant.featured_image | image_url: width: "1000", height: "1000" }}">{{ variant.title }}</option>
-                        {% endfor %}
-                    </select>
+                <div id="variant-buttons" class="x-flex x-gap-4 x-justify-start">
+                    {% for variant in product.variants %}
+                    <button
+                        class="variant-button {% if forloop.first %} active {% endif %} x-flex x-items-center x-justify-center x-rounded-full x-w-auto x-h-auto x-border-2"
+                        style="border-color: {{ variant.metafields.custom.color_hexcode }};" data-id="{{ variant.id }}"
+                        data-price="{{ variant.price | money }}"
+                        data-variant-desc="{{ variant.metafields.custom.variant_desc.value }}"
+                        data-thumbnails="{{ variant.metafields.custom.img_src.value | join: ', ' }}"
+                        data-url="{{ variant.featured_image | image_url: width: '1000', height: '1000' }}">
+                        <span class="inner-circle x-block x-rounded-full x-w-[32px] x-h-[32px]"
+                            style="background-color: {{ variant.metafields.custom.color_hexcode }};">
+                        </span>
+                    </button>
+                    {% endfor %}
                 </div>
-                <div>quantity choice</div>
-                <div>add to cart button</div>
+                <!-- Quantity Selector -->
+                <div class="x-w-full x-mb-4 x-text-center">
+                    <button id="decreaseQty"
+                        class="x-text-xl x-font-bold x-px-4 x-py-2 x-bg-gray-300 x-rounded">-</button>
+                    <input id="quantityInput" type="number" value="1" min="1"
+                        class="x-w-12 x-text-center x-border-none x-bg-transparent x-outline-none x-text-black"
+                        readonly>
+                    <button id="increaseQty"
+                        class="x-text-xl x-font-bold x-px-4 x-py-2 x-bg-gray-300 x-rounded">+</button>
+                </div>
+                <div class="x-w-full x-mb-4 x-text-center">
+                    <button id="checkoutButton"
+                        class="x-text-xl x-font-bold x-py-2 x-px-4 x-text-black x-border x-border-black x-bg-transparent x-rounded-none">
+                        Checkout
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         initializeFlickity();
         setFirstOptionSelected();
 
-        $("#variant-selection").on('change', function () {
-            let selection = $(this).val();
-            let imageUrl = $(this).find(':selected').attr('data-url');
-            let thumbnailUrls = $(this).find(':selected').attr('data-thumbnails').split(', ');
-            
+        $("#variant-buttons .variant-button").on('click', function () {
+            let $button = $(this);
+            let selection = $button.data('id');
+            let imageUrl = $button.data('url');
+            let price = $button.data('price');
+            let variantDesc = $button.data('variant-desc');
+            let thumbnailUrls = $button.data('thumbnails').split(', ');
+
             updateUrl(selection);
             changeThumbnail(imageUrl);
             setThumbnails([imageUrl, ...thumbnailUrls]);
-        });
-    })
 
+            $('#variant-description').text(variantDesc);
+            $('#variant-price').text(price);
+
+            $("#variant-buttons .variant-button").removeClass('active');
+            $button.addClass('active');
+        });
+
+        $("#variant-buttons .variant-button.active").trigger('click');
+
+        $('#decreaseQty').click(function() {
+            let currentValue = parseInt($('#quantityInput').val());
+            if (currentValue > 1) {
+                $('#quantityInput').val(currentValue - 1);
+            }
+        });
+
+        $('#increaseQty').click(function() {
+            let currentValue = parseInt($('#quantityInput').val());
+            $('#quantityInput').val(currentValue + 1);
+        });
+
+        $('#checkoutButton').click(function () {
+        let productId = $("#variant-buttons .variant-button.active").data('id');
+        addToCart(productId);
+    });
+
+    });
+
+    function addToCart(productId) {
+    const checkoutButton = $('#checkoutButton');
+    const quantity = parseInt($('#quantityInput').val()); // Use the selected quantity
+    if (!checkoutButton.prop('disabled')) {
+        $.ajax({
+            url: '/cart/add.js',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ id: productId, quantity: quantity }), // Pass the selected quantity here
+            success: function (data) {
+                console.log('Product added to cart:', data);
+                resetQuantityCounter();
+            },
+            error: function (error) {
+                console.error('Error adding to cart:', error);
+            }
+        });
+    } else {
+        alert('The selected variant is out of stock.');
+    }
+}
+
+function resetQuantityCounter() {
+    $('#quantityInput').val(1);
+}
     function setThumbnails(thumbnailUrls) {
         let $carousel = $(".thumbnail-carousel").flickity({
             initialIndex: 1
@@ -93,14 +170,19 @@
     }
 
     function setFirstOptionSelected() {
-        let selector = $("#variant-selection");
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('variant')) {
-            selector.val(urlParams.get('variant'));
+            let variantId = urlParams.get('variant');
+            let $button = $("#variant-buttons .variant-button[data-id='" + variantId + "']");
+            if ($button.length) {
+                $button.addClass('active');
+            } else {
+                $("#variant-buttons .variant-button").first().addClass('active');
+            }
         } else {
             updateUrl({{ product.variants.first.id }});
-            selector.val({{ product.variants.first.id }});
-        }
+        $("#variant-buttons .variant-button").first().addClass('active');
+    }
     }
 
     function updateUrl(variantId) {
@@ -114,10 +196,24 @@
         });
     }
 </script>
- 
 <style>
     /* Styling to hide Flickity navigation and pagination */
-    .thumbnail-carousel > button, .thumbnail-carousel > .flickity-page-dots {
+    .thumbnail-carousel>button,
+    .thumbnail-carousel>.flickity-page-dots {
         display: none;
+    }
+
+    .variant-button {
+        transition: all 0.3s ease;
+    }
+
+
+    .inner-circle {
+        transition: all 0.3s ease;
+    }
+
+    .variant-button.active .inner-circle {
+        border: 2px solid white;
+        /* White border for the inner circle */
     }
 </style>
