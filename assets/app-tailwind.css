@@ -798,6 +798,15 @@ html {
   }
 }
 
+.x-carousel {
+  display: inline-flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @keyframes button-pop {
   0% {
     transform: scale(var(--btn-focus-scale, 0.98));
@@ -810,6 +819,10 @@ html {
   100% {
     transform: scale(1);
   }
+}
+
+.x-carousel::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes checkmark {
@@ -1043,6 +1056,10 @@ html {
 
 .x-mt-\[24px\] {
   margin-top: 24px !important;
+}
+
+.x-mt-\[16px\] {
+  margin-top: 16px !important;
 }
 
 .x-block {

@@ -127,6 +127,10 @@
     }
   });
 
+  function changeThumbnail(imgUrl) {
+        document.getElementById('mainImage').src = imgUrl;
+    }
+
   // Function to update the main image and variant images in Flickity
   function changeVariant(button) {
     const buttons = document.querySelectorAll('.variant-button');
