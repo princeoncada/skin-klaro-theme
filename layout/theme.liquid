@@ -9,6 +9,8 @@
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
 
 
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
@@ -259,7 +261,8 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'app-tailwind.css' | asset_url | stylesheet_tag }}
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
@@ -304,6 +307,10 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -378,53 +385,55 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-
     {% if template == 'index' %}
-        <style>
+      <style>
+        .scrolled {
+          background: white !important;
+        }
 
-            .scrolled {
-                background: white !important;
-            }
+        .header-wrapper {
+          position: absolute;
+          width: 100%;
+          background: transparent;
+          transition: all 0.3s;
+        }
 
-            .header-wrapper {
-                position: absolute;
-                width: 100%;
-                background: transparent;
-                transition: all 0.3s;
-            }
+        .header-wrapper .header {
+          margin-top: 20px;
+        }
 
-            .header-wrapper .header {
-                margin-top: 20px;
-            }
+        .header-wrapper--border-bottom {
+          border-bottom: none;
+        }
+      </style>
 
-            .header-wrapper--border-bottom {
-                border-bottom: none;
-            }
-        </style>
+      <script>
+        const header = document.querySelector('.header-wrapper');
+        const spans = document.querySelectorAll('.header span');
+        const cartBubbleSpan = document.querySelector('.cart-count-bubble span');
 
-        <script>
-            const header = document.querySelector('.header-wrapper');
-            const spans = document.querySelectorAll('.header span');
-            const cartBubbleSpan = document.querySelector('.cart-count-bubble span');
-
-            spans.forEach(span => {
-                span.style.color = 'white';
+        spans.forEach((span) => {
+          span.style.color = 'white';
+        });
+        window.onscroll = function () {
+          if (window.scrollY > 38) {
+            header.classList.add('scrolled');
+            spans.forEach((span) => {
+              span.style.color = 'black';
             });
-            window.onscroll = function() {
-                if (window.scrollY > 38) {
-                    header.classList.add('scrolled');
-                    spans.forEach(span => {
-                        span.style.color = 'black';
-                    });
-                } else {
-                    header.classList.remove('scrolled');
-                    spans.forEach(span => {
-                        span.style.color = 'white';
-                    });
-                }
-                cartBubbleSpan.style.color = 'white';
-            }
-        </script>
+          } else {
+            header.classList.remove('scrolled');
+            spans.forEach((span) => {
+              span.style.color = 'white';
+            });
+          }
+        //   cartBubbleSpan.style.color = 'white';
+        };
+      </script>
     {% endif %}
-  <div class="shopify-dynamic-checkout---buttons" style="display:none!important;">{{ content_for_additional_checkout_buttons }}</div></body>
+    <div class="shopify-dynamic-checkout---buttons" style="display:none!important;">
+      {{ content_for_additional_checkout_buttons }}
+    </div>
+
+  </body>
 </html>

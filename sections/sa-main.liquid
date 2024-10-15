@@ -1,0 +1,141 @@
+<div>
+    <div>
+        <div>
+            <div class="x-flex x-flex-col md:x-flex-row">
+                <div class="x-relative x-overflow-hidden x-h-[700px] x-w-full md:x-w-1/2">
+                    <div class="parallax-sa x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
+                        style="background-image: url({{ 'founder_pholder.png' | asset_url }});">
+                    </div>
+                </div>
+                <div class="md:x-w-1/2 x-flex x-items-center">
+                    <div class="x-py-[26px] x-px-[16px] md:x-px-[50px] x-flex x-flex-col x-gap-[10px] md:x-gap-[16px]">
+                        <div class="x-text-[16px] md:x-text-[14px]">Plant Extracts • Ayurvedic Herbs • Conscious
+                            Packaging</div>
+                        <div class="x-text-[24px] md:x-text-[24px] x-leading-[28px] md:x-leading-[34px]">Makeup
+                            that's good for your skin</div>
+                        <div class="x-text-[12px] md:x-text-[14px]">Refined beauty essentials formulated with
+                            botanical oils and Ayurvedic herbs that nourish and protect your skin while adding rich
+                            and long-wearing pigments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div
+                class="wrapper x-flex x-flex-col x-justify-center x-w-full x-max-w-full x-ms-auto x-me-auto x-relative x-h-[75px] x-overflow-hidden x-border-t-[1px] x-border-b-[1px] x-border-gray-200">
+                <div class="item item-1 x-text-black x-text-center x-w-[180px] x-absolute">
+                    INCLUSIVE SHADES
+                </div>
+                <div class="item item-2 x-text-black x-text-center x-w-[180px] x-absolute">
+                    PLANT BASED INGREDIENTS
+                </div>
+                <div class="item item-3 x-text-black x-text-center x-w-[180px] x-absolute">
+                    ADAPTOGEN POWERED
+                </div>
+                <div class="item item-4 x-text-black x-text-center x-w-[180px] x-absolute">
+                    HIGH PERFORMING
+                </div>
+                <div class="item item-5 x-text-black x-text-center x-w-[180px] x-absolute">
+                    CARBON NEUTRAL
+                </div>
+                <div class="item item-6 x-text-black x-text-center x-w-[180px] x-absolute">
+                    INFINITELY RECYCLABLE
+                </div>
+                <div class="item item-7 x-text-black x-text-center x-w-[180px] x-absolute">
+                    VEGAN
+                </div>
+                <div class="item item-8 x-text-black x-text-center x-w-[180px] x-absolute">
+                    CRUELTY FREE
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div
+                class="x-flex x-flex-col md:x-grid md:x-grid-cols-3">
+                {% for product in collections["all-products"].products %}
+                    {% render 'a-skin-product-card', product: product %}
+                {% endfor %}
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        applyParallax();
+    });
+
+    $(window).on('scroll', function () {
+        applyParallax();
+    });
+
+    function applyParallax() {
+        $('.parallax-sa').each(function () {
+            const speed = 0.3; // Adjust the speed for the desired parallax effect
+            const initialOffset = 0; // Offset to move the image down initially
+            const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
+            const scrollPosition = $(window).scrollTop();
+            const windowHeight = $(window).height();
+            const sectionHeight = $(this).parent().outerHeight();
+
+            // Check if the section is in the viewport
+            if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
+                $(this).css('transform', `translateY(${yPos}px)`);
+            }
+        });
+    }
+</script>
+
+<style>
+    @keyframes scrollleft {
+        to {
+            left: -180px;
+        }
+    }
+
+    .item {
+        left: max(calc(200px * 8), 100%);
+        animation-name: scrollleft;
+        animation-duration: 30s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+
+    .wrapper:hover .item {
+        animation-play-state: paused;
+    }
+
+    .item-1 {
+        animation-delay: calc(30s / 8 * (8 - 1) * -1);
+    }
+
+    .item-2 {
+        animation-delay: calc(30s / 8 * (8 - 2) * -1);
+    }
+
+    .item-3 {
+        animation-delay: calc(30s / 8 * (8 - 3) * -1);
+    }
+
+    .item-4 {
+        animation-delay: calc(30s / 8 * (8 - 4) * -1);
+    }
+
+    .item-5 {
+        animation-delay: calc(30s / 8 * (8 - 5) * -1);
+    }
+
+    .item-6 {
+        animation-delay: calc(30s / 8 * (8 - 6) * -1);
+    }
+
+    .item-7 {
+        animation-delay: calc(30s / 8 * (8 - 7) * -1);
+    }
+
+    .item-8 {
+        animation-delay: calc(30s / 8 * (8 - 8) * -1);
+    }
+</style>
