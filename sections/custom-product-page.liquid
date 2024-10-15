@@ -1,20 +1,31 @@
 <script src="{{ 'custom-product-page.js'| asset_url }}" defer></script>
 
 <section>
-    <div class="x-p-[16px] x-pb-[10px]">
-        <img src="{{ product.variants.first.featured_image | image_url: width: " 1000", height: "1000" }}" alt=""
-            width="100%" height="100%">
+    <div id="featured-image" class="x-p-[16px] x-pb-[10px]">
+        {% for variant in product.variants %}
+            {% if variant.selected %}
+                <img src="{{ variant.featured_image | image_url: width: "1000", height: "1000" }}" alt=""
+                width="100%" height="100%">
+            {% endif %}
+        {% endfor %}
     </div>
 
     <div class="thumbnail-carousel x-shadow-none x-ml-[16px]">
-        <div class="x-mr-[10px]">
-            <img src="{{ product.variants.first.featured_image | image_url: width: " 1000", height: "1000" }}" alt="" width="75px" height="75px">
+        <div class="featured-image-thumbnail x-mr-[10px] thumbnail">
+            {% for variant in product.variants %}
+                {% if variant.selected %}
+                    <img src="{{ variant.featured_image | image_url: width: "1000", height: "1000" }}" alt="" width="75px" height="75px">
+                {% endif %}
+            {% endfor %}
         </div>
-        {% assign thumbnail_urls = product.variants.first.metafields.custom.img_src.value %}
-        {% for url in thumbnail_urls %}
-            <div class="x-mr-[10px]">
-                <img src="{{ url }}" alt="" width="75px" height="75px">
-            </div>
+        {% for variant in product.variants %}
+            {% if variant.selected %}
+                {% for url in variant.metafields.custom.img_src.value %}
+                    <div class="x-mr-[10px] thumbnail">
+                        <img src="{{ url }}" alt="" width="75px" height="75px">
+                    </div>
+                {% endfor %}
+            {% endif %}
         {% endfor %}
     </div>
 
@@ -34,7 +45,13 @@
                 </div>
             </div>
             <div>
-                <div>variant choices</div>
+                <div>
+                    <select id="variant-selection" class="x-bg-white" name="" id="">
+                        {% for variant in product.variants %}
+                            <option class="x-bg-white" value="{{ variant.id }}" data-thumbnails="{{ variant.metafields.custom.img_src.value |  join: ', '  }}" data-url="{{ variant.featured_image | image_url: width: "1000", height: "1000" }}">{{ variant.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
                 <div>quantity choice</div>
                 <div>add to cart button</div>
             </div>
@@ -43,11 +60,59 @@
 </section>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
+        initializeFlickity();
+        setFirstOptionSelected();
+
+        $("#variant-selection").on('change', function () {
+            let selection = $(this).val();
+            let imageUrl = $(this).find(':selected').attr('data-url');
+            let thumbnailUrls = $(this).find(':selected').attr('data-thumbnails').split(', ');
+            
+            updateUrl(selection);
+            changeThumbnail(imageUrl);
+            setThumbnails([imageUrl, ...thumbnailUrls]);
+        });
+    })
+
+    function setThumbnails(thumbnailUrls) {
+        let $carousel = $(".thumbnail-carousel").flickity({
+            initialIndex: 1
+        });
+        let allCurrentThumbnails = $('.thumbnail');
+        $carousel.flickity('remove', allCurrentThumbnails);
+        thumbnailUrls.forEach(url => {
+            let $thumbnail = $('<div class="x-mr-[10px] thumbnail"><img src="' + url + '" alt="" width="75px" height="75px"></div>');
+            $carousel.flickity('append', $thumbnail);
+        });
+    }
+
+    function changeThumbnail(imgUrl) {
+        $("#featured-image img").attr('src', imgUrl);
+        $(".featured-image-thumbnail img").attr('src', imgUrl);
+    }
+
+    function setFirstOptionSelected() {
+        let selector = $("#variant-selection");
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('variant')) {
+            selector.val(urlParams.get('variant'));
+        } else {
+            updateUrl({{ product.variants.first.id }});
+            selector.val({{ product.variants.first.id }});
+        }
+    }
+
+    function updateUrl(variantId) {
+        let newUrl = window.location.href.split('?')[0] + '?variant=' + variantId;
+        window.history.pushState({ path: newUrl }, '', newUrl);
+    }
+
+    function initializeFlickity() {
         let thumbnail_flickity = new Flickity(".thumbnail-carousel", {
             cellAlign: "left"
         });
-    });
+    }
 </script>
  
 <style>
