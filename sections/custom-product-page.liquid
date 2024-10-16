@@ -3,7 +3,7 @@
 <section>
     <!-- Main image display (this will update based on the selected thumbnail) -->
     <div class="main-carousel x-p-[16px] x-pb-[10px]" data-flickity='{ "fullscreen": true }'>
-        {% if product.variants.size > 1 %}
+        {% if product.variants.size > 1  %}
                 <!-- Loop over variants if product has multiple variants -->
                 {% for variant in product.variants %}
                     {% if variant.selected %}
@@ -76,6 +76,7 @@
                 </div>
             </div>
             <div>
+                <div>{{ product.options[0] }}: </div>
                 <div id="variant-buttons" class="x-flex x-gap-4 x-justify-start">
                     {% if product.variants.size > 1 %}
                         {% for variant in product.variants %}
@@ -149,8 +150,26 @@
 
             addToCart(productId);
         });
-
+        checkThumbnailVisibility();
+        bindFullscreenToMainImage();
     });
+
+function bindFullscreenToMainImage() {
+    $(".main-carousel .carousel-cell").off("click").on("click", function () {
+        $(".main-carousel").flickity('viewFullscreen');
+        $(".main-carousel").flickity('options', { prevNextButtons: false });
+    });
+}
+
+
+    function checkThumbnailVisibility() {
+    let thumbnailCount = $(".thumbnail-carousel .thumbnail").length;
+    if (thumbnailCount <= 1) {
+        $(".thumbnail-carousel").hide();
+    } else {
+        $(".thumbnail-carousel").show();
+    }
+}
 
     function bindVariantButtonClick() {
         $("#variant-buttons .variant-button").on('click', function () {
@@ -162,6 +181,7 @@
             let thumbnailUrls = $button.data('thumbnails').split(', ');
 
             handleVariantSelection($button, selection, imageUrl, price, variantDesc, thumbnailUrls);
+            checkThumbnailVisibility();
         });
     }
 
@@ -181,11 +201,15 @@
     }
 
     function initializeMainCarousel() {
-        return $('.main-carousel').flickity({
-            fullscreen: true,
-            pageDots: false,
-        });
-    }
+    return $('.main-carousel').flickity({
+        fullscreen: true,
+        pageDots: false,
+        prevNextButtons: false, 
+        lazyLoad: 1
+    });
+}
+
+
 
     function updateVariantDetails(variantDesc, price) {
         $('#variant-description').text(variantDesc);
@@ -232,7 +256,7 @@
     function setThumbnails(thumbnailUrls) {
         let $mainCarousel = $(".main-carousel").flickity({
             initialIndex: 0,
-            contain: true
+            contain: true,
         });
 
         let $thumbnailCarousel = $(".thumbnail-carousel").flickity({
@@ -257,6 +281,8 @@
 
         $mainCarousel.flickity('select', 0);
         $thumbnailCarousel.flickity('select', 0);
+
+        checkThumbnailVisibility();
     }
 
     function changeMainImage(imgUrl) {
@@ -295,7 +321,7 @@
         let $mainCarousel = $(".main-carousel").flickity({
             fullscreen: true,
             pageDots: false,
-            prevNextButtons: false,
+            prevNextButtons: true,
             fullscreen: true,
             lazyLoad: 1
         });
@@ -324,6 +350,11 @@
     .thumbnail-carousel>.flickity-page-dots {
         display: none;
     }
+
+
+.flickity-button:disabled {
+  display: none;
+}
 
     .main-carousel>.flickity-button.flickity-fullscreen-button.flickity-fullscreen-button-view {
         display: none;

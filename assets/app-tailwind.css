@@ -1558,6 +1558,11 @@ html {
   padding-right: 4rem !important;
 }
 
+.x-px-2 {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
 .x-px-32 {
   padding-left: 8rem !important;
   padding-right: 8rem !important;
@@ -1646,11 +1651,6 @@ html {
 .x-py-\[80px\] {
   padding-top: 80px !important;
   padding-bottom: 80px !important;
-}
-
-.x-px-2 {
-  padding-left: 0.5rem !important;
-  padding-right: 0.5rem !important;
 }
 
 .x-pb-\[10px\] {
