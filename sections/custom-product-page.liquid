@@ -319,7 +319,8 @@
             pageDots: false,
             prevNextButtons: true,
             fullscreen: true,
-            lazyLoad: 1
+            lazyLoad: 1,
+            adaptiveHeight: true
         });
 
         // Thumbnail Carousel
@@ -337,9 +338,9 @@
 <style>
     .main-carousel .carousel-cell {
         display: flex;
-        align-items: end;
+        align-items: center;
         width: 100%;
-        min-height: 425px !important;
+        min-height: 425px !important; */
     }
 
     .thumbnail-carousel>button,
@@ -366,6 +367,10 @@
 
     .flickity-button:disabled {
         display: none;
+    }
+    
+    .main-carousel .flickity-viewport {
+        transition: height 0.3s ease;
     }
 
     .main-carousel>.flickity-button.flickity-fullscreen-button.flickity-fullscreen-button-view {
