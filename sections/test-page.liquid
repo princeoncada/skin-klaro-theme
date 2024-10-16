@@ -1,75 +1,130 @@
-<h1>Flickity - fullscreen</h1>
-
-<!-- Flickity HTML init -->
-<div class="carousel" data-flickity='{ "fullscreen": true }'>
-  <div class="carousel-cell">
-  </div>
-  <div class="carousel-cell">
-  </div>
-  <div class="carousel-cell">
-  </div>
-  <div class="carousel-cell">
-  </div>
-  <div class="carousel-cell">
-  </div>
+<div class="container">
+    <h1>Ah oten</h1>
+    
+    <div class="row">
+      <div class="left">
+        <!-- Thumbnails that are not carousels -->
+        <div class="carousel-nav">
+          <div class="carousel-cell" data-index="0">Thumb 1</div>
+          <div class="carousel-cell" data-index="1">Thumb 2</div>
+          <div class="carousel-cell" data-index="2">Thumb 3</div>
+          <div class="carousel-cell" data-index="3">Thumb 4</div>
+          <div class="carousel-cell" data-index="4">Thumb 5</div>
+          <div class="carousel-cell" data-index="5">Thumb 6</div>
+        </div>
+      </div>
+      <div class="right">
+        <!-- Main carousel -->
+        <div class="carousel carousel-main" data-flickity='{ "prevNextButtons": true }'>
+          <div class="carousel-cell">Image 1</div>
+          <div class="carousel-cell">Image 2</div>
+          <div class="carousel-cell">Image 3</div>
+          <div class="carousel-cell">Image 4</div>
+          <div class="carousel-cell">Image 5</div>
+          <div class="carousel-cell">Image 6</div>
+        </div>
+      </div>
+    </div>
 </div>
 
 <script>
   $(document).ready(function () {
-    var $carousel = $('.carousel').flickity({
-      fullscreen: true
+    // Initialize main carousel
+    var $mainCarousel = $('.carousel-main').flickity({
     });
 
-    $('.carousel-cell').on('click', function () {
-      $carousel.flickity('viewFullscreen'); 
+    // on load
+    $('.carousel-nav .carousel-cell[data-index="0"]').addClass('is-nav-selected');
+
+    $mainCarousel.on('change.flickity', function(event, index) {
+        // Remove 'is-nav-selected' from all thumbnails
+        $('.carousel-nav .carousel-cell').removeClass('is-nav-selected');
+        // Add 'is-nav-selected' to the current thumbnail
+        $('.carousel-nav .carousel-cell[data-index="' + index + '"]').addClass('is-nav-selected');
+        console.log(index); // For debugging
+    });
+
+    // Thumbnail click event to change the main carousel
+    $('.carousel-nav .carousel-cell').on('click', function () {
+      var index = $(this).data('index');
+      $mainCarousel.flickity('select', index);
     });
   });
 </script>
 
 
 <style>
-    /* external css: flickity.css, fullscreen.css */
-
 * { box-sizing: border-box; }
 
 body { font-family: sans-serif; }
 
-.carousel {
-  background: #FAFAFA;
-}
-
-.carousel.is-fullscreen {
-    z-index: 1000;
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .carousel-cell {
-  width: 66%;
-  height: 200px;
-  margin-right: 10px;
-  background: #8C8;
-  border-radius: 5px;
+  background: #8c8;
   counter-increment: carousel-cell;
+  color: white;
+  width: 100%;
 }
 
-.carousel.is-fullscreen .carousel-cell {
-  height: 100%;
-}
-
-/* cell number */
 .carousel-cell:before {
   display: block;
   text-align: center;
   content: counter(carousel-cell);
-  line-height: 200px;
+  height: 100%;
+  width: 100%;
   font-size: 80px;
   color: white;
 }
-.flickity-fullscreen-button{
-    display: none;
+
+.carousel-main .carousel-cell {
+  width: 100%;
+  font-size: 5rem;
+  padding-bottom: 56.25%;
 }
 
-.flickity-enabled.is-fullscreen .flickity-fullscreen-button-exit{
-    display: none;
+.carousel-main .carousel-cell:before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-nav {
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+}
+
+.carousel-nav .carousel-cell {
+  margin-bottom: 10px;
+  height: 80px;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+.carousel-nav .carousel-cell.is-nav-selected {
+  background: rgb(255, 0, 191);
+}
+
+.row .left {
+  max-width: 80px;
+  margin-right: 2%;
+  flex: 1 1 100%;
+}
+.row .right {
+  flex: 1 1 0;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 </style>
