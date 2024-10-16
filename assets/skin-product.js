@@ -12,21 +12,31 @@ let flickityInstance;
         freeScroll: false,
         cellAlign: 'left',
       });
-      
-  document.addEventListener('DOMContentLoaded', function () {
-    // Initialize Flickity for the main carousel
-    flickityInstance = new Flickity('#mainCarousel', {
-      wrapAround: true,
-      pageDots: false,
-      prevNextButtons: false,
-      draggable: true,
+
+    $(document).ready(function () {
+        variantSelector();
+        disableCheckoutButton();
     });
 
-    const firstVariantButton = document.querySelector('.variant-button.active');
+  function variantSelector(){
+        // Initialize Flickity for the main carousel
+        flickityInstance = new Flickity('#mainCarousel', {
+            wrapAround: true,
+            pageDots: false,
+            prevNextButtons: false,
+            draggable: true,
+          });
+    var firstVariantButton = document.querySelectorAll(".variant-button.active");
     if (firstVariantButton) {
-      changeVariant(firstVariantButton);
+        changeVariant(firstVariantButton);
+      }
+  }
+  function disableCheckoutButton() {
+    const checkoutButton = document.querySelectorAll('checkoutButton');
+    if (checkoutButton.disabled) {
+      checkoutButton.classList.add('x-opacity-50', 'x-cursor-not-allowed');
     }
-  });
+  }
 
   // Function to update the main image and variant images in Flickity
   function changeVariant(button) {
@@ -99,13 +109,7 @@ let flickityInstance;
     thumbnailFlickityInstance.select(0); // Highlight the first thumbnail
   }
 
-  // Example styles to visually disable the checkout button
-  document.addEventListener('DOMContentLoaded', function () {
-    const checkoutButton = document.getElementById('checkoutButton');
-    if (checkoutButton.disabled) {
-      checkoutButton.classList.add('x-opacity-50', 'x-cursor-not-allowed');
-    }
-  });
+
   // Main image update
   function changeImage(imageUrl) {
     const mainImage = document.getElementById('mainImage');
