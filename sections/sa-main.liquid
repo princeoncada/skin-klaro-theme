@@ -86,6 +86,146 @@
             }
         });
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.add-to-cart-btn, .plus-btn').forEach((button) => {
+                button.addEventListener('click', function () {
+                    const productId = this.getAttribute('data-product-id');
+                    const productCard = this.closest('.product-card');
+                    const variantsContainer = productCard.querySelector('.product-variants');
+                    const isPlusButton = this.classList.contains('plus-btn');
+                    const plusButtonText = isPlusButton ? this.querySelector('i') : null;
+                    const buttonText = this.classList.contains('add-to-cart-btn') ? this.querySelector('.button-text') : null;
+
+                    // Handle variant selection first for both Add to Cart and Plus button
+                    if (variantsContainer && variantsContainer.children.length > 2) {
+                        this.classList.add('x-hidden'); // Hide the button (Add to Cart or Plus)
+                        variantsContainer.style.transform = 'translateY(-68px)'; // Show the variant options
+
+                        document.querySelectorAll('.variant-btn').forEach((variantBtn) => {
+                            variantBtn.removeEventListener('click', variantSelectHandler); // Ensure no duplicate handlers
+                            variantBtn.addEventListener('click', variantSelectHandler);
+
+                            function variantSelectHandler() {
+                                const selectedVariantId = this.getAttribute('data-variant-id');
+
+                                // Hide variant options
+                                variantsContainer.style.transform = 'translateY(0px)';
+
+                                // Now show the button again and proceed with loading-check-AJAX flow
+                                if (isPlusButton) {
+                                    button.classList.remove('x-hidden');
+                                    plusButtonText.classList.remove('bx-plus');
+                                    plusButtonText.classList.add('bx-loader', 'bx-spin'); // Show loading spinner for plus button
+                                } else if (buttonText) {
+                                    buttonText.innerHTML = '<i class="bx bx-loader bx-spin"></i>'; // Show loading spinner for Add to Cart button
+                                }
+
+                                // Simulate loading, then change to checkmark
+                                setTimeout(function () {
+                                    if (isPlusButton) {
+                                        plusButtonText.classList.remove('bx-loader', 'bx-spin');
+                                        plusButtonText.classList.add('bx-check'); // Show checkmark for plus button
+                                    } else if (buttonText) {
+                                        buttonText.innerHTML = '✔ ADDED TO CART'; // Show checkmark for Add to Cart button
+                                    }
+
+                                    // Perform AJAX after checkmark, then reset the button
+                                    setTimeout(function () {
+                                        addToCart(selectedVariantId);
+                                        resetButton(isPlusButton, plusButtonText, buttonText);
+                                    }, 500); // AJAX delay
+                                }, 1000); // Loading simulation delay
+                            }
+                        });
+                    } else {
+                        // Directly add to cart if no variants (for non-variant products)
+                        if (isPlusButton) {
+                            plusButtonText.classList.remove('bx-plus');
+                            plusButtonText.classList.add('bx-loader', 'bx-spin');
+                        } else if (buttonText) {
+                            buttonText.innerHTML = '<i class="bx bx-loader bx-spin"></i>';
+                        }
+
+                        setTimeout(function () {
+                            if (isPlusButton) {
+                                plusButtonText.classList.remove('bx-loader', 'bx-spin');
+                                plusButtonText.classList.add('bx-check');
+                            } else if (buttonText) {
+                                buttonText.innerHTML = '✔ ADDED TO CART';
+                            }
+
+                            // Perform AJAX for non-variant products
+                            setTimeout(function () {
+                                addToCart(productId);
+                                resetButton(isPlusButton, plusButtonText, buttonText);
+                            }, 500); // AJAX delay
+                        }, 1000); // Loading simulation delay
+                    }
+                });
+            });
+        });
+
+        document.querySelectorAll('.back-btn').forEach((button) => {
+            button.addEventListener('click', function () {
+                const productCard = this.closest('.product-card');
+                const addToCartButton = productCard.querySelector('.add-to-cart-btn');
+                const plusButton = productCard.querySelector('.plus-btn');
+                const variantsContainer = productCard.querySelector('.product-variants');
+
+                // Hide the variants and show the add-to-cart button again
+                variantsContainer.style.transform = 'translateY(0px)';
+                addToCartButton.classList.remove('x-hidden');
+                plusButton.classList.remove('x-hidden');
+            });
+        });
+
+        document.querySelectorAll('.variant-btn').forEach(button => {
+            button.addEventListener('mouseover', function () {
+                const variantId = this.getAttribute('data-variant-id');
+                const imageUrl = this.getAttribute('data-image');
+                const productCard = this.closest('.product-card');
+                const productImage = productCard.querySelector('.product-image .holder');
+
+                productImage.style.backgroundImage = `url(${imageUrl})`;
+            });
+        });
+
+        function addToCart(productId) {
+            // Ensure quantity is always set to 1
+            fetch('/cart/add.js', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: productId, quantity: 1 }), // Ensure quantity is set to 1
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log('Product added to cart:', data);
+                })
+                .catch((error) => {
+                    console.error('Error adding to cart:', error);
+                });
+        }
+
+        function resetButton(isPlusButton, plusButtonText, buttonText) {
+            setTimeout(() => {
+                if (isPlusButton) {
+                    plusButtonText.classList.remove('bx-check');
+                    plusButtonText.classList.add('bx-plus'); // Reset to plus icon
+                    document.querySelectorAll('.plus-btn').forEach((button) => {
+                        button.classList.remove('x-hidden'); // Show the plus button again
+                    });
+                } else if (buttonText) {
+                    buttonText.innerHTML = 'ADD TO CART'; // Reset Add to Cart text
+                    document.querySelectorAll('.add-to-cart-btn').forEach((button) => {
+                        button.classList.remove('x-hidden'); // Show the Add to Cart button again
+                    });
+                }
+            }, 1500); // Delay before resetting the text
+        }
+        
 </script>
 
 <style>

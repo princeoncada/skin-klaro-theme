@@ -1,154 +1,222 @@
-<!-- BG Senior Dev Request of colors -->
-<section class="x-py-12 ">
-  <!-- First Section: Image on the Left, Text on the Right -->
-  <div class="x-container x-mx-auto x-grid x-grid-cols-1 lg:x-grid-cols-2 x-gap-8 x-mb-12 lg:x-px-10 x-px-6">
-    <!-- Image on the left -->
-    <div class="x-flex x-justify-center x-items-center">
-      <img
-        src="{{ 'pillow.jpg' | asset_img_url: '400x600' }}"
-        srcset="{{ 'pillow.jpg' | asset_img_url: '400x600' }} 400w, {{ 'pillow.jpg' | asset_img_url: '600x400' }} 600w"
-        sizes="(max-width: 1024px) 400px, 600px"
-        alt="Image 1"
-        class="x-w-[400px] x-h-[600px] lg:x-w-[600px] lg:x-h-[400px]"
-        width="400"
-        height="600"
-      >
-    </div>
-    <!-- Text on the right -->
-        <div class="x-border-[1px] x-border-[#bcb2a8] x-p-[16px] x-py-[26px] x-pt-[32px]">
-            <div class="x-flex x-flex-col x-gap-[10px]">
-                <div class="x-text-[14px]">Makeup that's good for your skin and planet</div>
-                <div class="x-text-[26px]">OUR SUSTAINABILITY EFFORTS</div>
-                <div class="x-text-[14px]"><span class="x-italic">It's all about the small actions.</span> From our formulas to our packaging, sustainability is part of
-                    every decision
-                    we make. Our goal is to thoughtfully create high performing beauty essentials that are kind to our skin and
-                    the
-                    planet.
+<section class="x-p-[16px] md:x-p-[50px] x-bg-[#F9F8F5]">
+    <div class="x-flex x-flex-col md:x-flex-row x-gap-[16px] md:x-gap-[50px]">
+        <div class="md:x-w-1/2 x-relative x-overflow-hidden x-h-[630px] x-w-full x-border-[1px]">
+            <div class="parallax-s x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
+                style="background-image: url({{ 'founder_pholder.png' | asset_url }});">
+            </div>
+        </div>
+        <div
+            class="md:x-w-1/2 x-border-[1px] x-p-[16px] x-py-[26px] x-pt-[32px] md:x-p-[50px] md:x-flex md:x-items-center">
+            <div class="x-flex x-flex-col x-gap-[8px] md:x-gap-[16px] x-text-[14px] md:x-text-[16px]">
+                <div>Makeup that's good for your skin and planet</div>
+                <div class="x-text-[26px] x-leading-[28px] md:x-text-[30px]">OUR SUSTAINABILITY EFFORTS
+                </div>
+                <div><span class="x-italic">It's all about the small actions.</span> From our formulas to our packaging,
+                    sustainability is part of every decision we make. Our goal is
+                    to thoughtfully create high performing beauty essentials that are kind to our skin and the planet.
                 </div>
             </div>
         </div>
-  </div>
-
-  <!-- Bar Section with Text -->
-  <div class="x-mx-auto x-px-[16px] x-mb-12">
-    <!-- Adding margin auto for centering and padding for space on sides -->
-    <div class="x-w-full x-bg-white x-flex x-flex-col x-justify-center x-items-center x-py-8">
-      <h2 class="x-text-xl x-font-semibold x-text-center">1. Formulation & Ingredient Sourcing</h2>
-
-      <!-- Flickity carousel section -->
-      <div class="flickity-container x-w-full x-max-w-full x-overflow-hidden x-mt-4 ">
-        <div class="carousel x-flex x-overflow-x-auto x-scroll-snap-x x-scroll-snap-mandatory x-justify-start lg:x-justify-center">
-          <!-- First instance -->
-          <div class="carousel-cell x-flex-shrink-0 x-w-[300px] x-h-[180px] x-bg-white x-px-4 x-py-4 x-mr-4 x-text-center">
-            <h3 class="x-text-lg x-font-bold">Multi Tasking Products</h3>
-            <p>
-              Our products are designed to be multi-tasking and multi-use, to reduce the number of products in your
-              beauty routine, minimizing packaging waste ending in landfills.
-            </p>
-          </div>
-
-          <!-- Second instance -->
-          <div class="carousel-cell x-flex-shrink-0 x-w-[300px] x-h-[180px] x-bg-white x-px-4 x-py-4 x-mr-4 x-text-center">
-            <h3 class="x-text-lg x-font-bold">Long Lasting Formulation</h3>
-            <p>
-              Our formulas are rich in pigmentation and designed to last long, reducing the need for frequent
-              repurchases, minimizing waste.
-            </p>
-          </div>
-
-          <!-- Third instance -->
-          <div class="carousel-cell x-flex-shrink-0 x-w-[300px] x-h-[180px] x-bg-white x-px-4 x-py-4 x-text-center">
-            <h3 class="x-text-lg x-font-bold">Conscious Ingredients</h3>
-            <p>
-              Our products are made without petrochemicals and other harmful chemicals, making them kind to the planet
-              and your skin.
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-
-  <!-- Flickity styles -->
-  <style>
-    .carousel {
-      display: flex;
-    }
-
-    .carousel-cell {
-      width: 300px;
-      height: 180px;
-      margin-right: 16px;
-      border-radius: 4px;
-    }
-
-    .flickity-page-dots {
-      display: none;
-    }
-
-    .flickity-button {
-      display: none;
-    }
-
-    .flickity-prev-next-button {
-      width: 50px;
-      height: 50px;
-    }
-
-    .flickity-prev-next-button .flickity-button-icon {
-      fill: #333;
-    }
-  </style>
-
-  <!-- Second Section: Image on the Left, Text on the Right -->
-  <div class="x-container x-mx-auto x-grid x-grid-cols-1 lg:x-grid-cols-2 x-gap-8 x-mb-12 lg:x-px-10">
-    <!-- Image on the left -->
-    <div class="x-flex x-justify-center x-items-center">
-      <img
-        src="{{ 'pillow.jpg' | asset_img_url: '400x600' }}"
-        srcset="{{ 'pillow.jpg' | asset_img_url: '400x600' }} 400w, {{ 'pillow.jpg' | asset_img_url: '600x400' }} 600w"
-        sizes="(max-width: 1024px) 400px, 600px"
-        alt="Image 1"
-        class="x-w-[400px] x-h-[600px] lg:x-w-[600px] lg:x-h-[400px]"
-        width="400"
-        height="600"
-      >
-    </div>
-    <!-- Text on the right -->
-    <div class="x-flex x-flex-col x-justify-center x-px-4 x-py-6">
-      <p class="x-text-sm x-text-gray-600 x-mb-2">Makeup that's good for your skin and planet</p>
-      <h1 class="x-text-4xl x-font-semibold x-mb-4">OUR SUSTAINABILITY EFFORTS</h1>
-      <p class="x-text-base x-text-gray-700">
-        It's all about the small actions. From our formulas to our packaging, sustainability is part of every decision
-        we make. Our goal is to thoughtfully create high performing beauty essentials that are kind to our skin and the
-        planet.
-      </p>
-    </div>
-  </div>
-
-  <!-- Third Section: Text on the Left, Image on the Right (Reverse Order on lg screens) -->
-  <div class="x-container x-mx-auto x-grid x-grid-cols-1 lg:x-grid-cols-2 x-gap-8 lg:x-px-10">
-    <!-- Image on the right -->
-    <div class="x-flex x-justify-center x-items-center lg:x-order-2">
-      <img
-        src="{{ 'pillow.jpg' | asset_img_url: '400x600' }}"
-        srcset="{{ 'pillow.jpg' | asset_img_url: '400x600' }} 400w, {{ 'pillow.jpg' | asset_img_url: '600x400' }} 600w"
-        sizes="(max-width: 1024px) 400px, 600px"
-        alt="Image 1"
-        class="x-w-[400px] x-h-[600px] lg:x-w-[600px] lg:x-h-[400px]"
-        width="400"
-        height="600"
-      >
-    </div>
-    <!-- Text on the left -->
-    <div class="x-flex x-flex-col x-justify-center x-px-4 x-py-6 lg:x-order-1">
-      <p class="x-text-sm x-text-gray-600 x-mb-2">Makeup that's good for your skin and planet</p>
-      <h1 class="x-text-4xl x-font-semibold x-mb-4">OUR SUSTAINABILITY EFFORTS</h1>
-      <p class="x-text-base x-text-gray-700">
-        It's all about the small actions. From our formulas to our packaging, sustainability is part of every decision
-        we make. Our goal is to thoughtfully create high performing beauty essentials that are kind to our skin and the
-        planet.
-      </p>
-    </div>
-  </div>
 </section>
+
+<section class="x-py-[32px] md:x-py-[40px] md:x-px-[50px]">
+    <div>
+        <div class="x-py-[16px] md:x-py-[32px] x-text-center x-text-[20px] md:x-text-[24px]">1. Formulation & Ingredient
+            Sourcing</div>
+        <div>
+            <div class="x-hidden md:x-flex x-flex-row">
+                <div class="x-w-full x-px-[16px] md:x-px-[20px]">
+                    <div class="x-py-[16px] md:x-py-[20px] x-flex x-flex-col x-gap-[10px]">
+                        <div class="x-text-[16px] md:x-text-[18px]">Multi tasking products</div>
+                        <div class="x-text-[12px]">Our products are designed to be multi-tasking and multi-use, to
+                            reduce the number of
+                            products in your beauty routine, therefore, minimizing packaging waste ending in landfills.
+                        </div>
+                    </div>
+                </div>
+                <div class="x-w-full x-px-[16px] md:x-px-[20px]">
+                    <div class="x-py-[16px] md:x-py-[20px] x-flex x-flex-col x-gap-[10px]">
+                        <div class="x-text-[16px] md:x-text-[18px]">Long lasting formulation</div>
+                        <div class="x-text-[12px]">Our formulas are concentrated and rich in pigmentation, and are
+                            designed to last long, increasing the time between repurchases.
+                        </div>
+                    </div>
+                </div>
+                <div class="x-w-full x-px-[16px] md:x-px-[20px]">
+                    <div class="x-py-[16px] md:x-py-[20px] x-flex x-flex-col x-gap-[10px]">
+                        <div class="x-text-[16px] md:x-text-[18px]">Conscious Ingredients</div>
+                        <div class="x-text-[12px]">Our products are water-free, and made without petrochemicals and
+                            petroleum by-products.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="first-s-content-carousel x-block md:x-hidden">
+                <div class="x-w-full x-px-[16px] md:x-px-[20px]">
+                    <div class="x-py-[16px] md:x-py-[20px] x-flex x-flex-col x-gap-[10px]">
+                        <div class="x-text-[16px]">Multi tasking products</div>
+                        <div class="x-text-[12px]">Our products are designed to be multi-tasking and multi-use, to
+                            reduce the number of
+                            products in your beauty routine, therefore, minimizing packaging waste ending in landfills.
+                        </div>
+                    </div>
+                </div>
+                <div class="x-w-full x-px-[16px] md:x-px-[20px]">
+                    <div class="x-py-[16px] md:x-py-[20px] x-flex x-flex-col x-gap-[10px]">
+                        <div class="x-text-[16px]">Long lasting formulation</div>
+                        <div class="x-text-[12px]">Our formulas are concentrated and rich in pigmentation, and are
+                            designed to last long, increasing the time between repurchases.
+                        </div>
+                    </div>
+                </div>
+                <div class="x-w-full x-px-[16px] md:x-px-[20px]">
+                    <div class="x-py-[16px] md:x-py-[20px] x-flex x-flex-col x-gap-[10px]">
+                        <div class="x-text-[16px]">Conscious Ingredients</div>
+                        <div class="x-text-[12px]">Our products are water-free, and made without petrochemicals and
+                            petroleum by-products.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="x-p-[16px] md:x-p-[50px] x-bg-[#F9F8F5]">
+    <div class="x-flex x-flex-col x-gap-[16px] md:x-gap-[50px]">
+        <div class="x-flex x-flex-col md:x-flex-row x-gap-[16px] md:x-gap-[50px]">
+            <div class="md:x-w-1/2 x-relative x-overflow-hidden x-h-[630px] x-w-full">
+                <div class="parallax-s x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
+                    style="background-image: url({{ 'founder_pholder.png' | asset_url }});">
+                </div>
+            </div>
+            <div
+                class="md:x-w-1/2 x-p-[16px] x-py-[26px] x-pt-[32px] md:x-p-[50px] md:x-flex md:x-items-center x-bg-white">
+                <div class="x-flex x-flex-col x-gap-[8px] md:x-gap-[16px] x-text-[14px]">
+                    <div>The Miracle Green Metal</div>
+                    <div class="x-text-[26px] x-leading-[28px] md:x-text-[30px]">2. Primary Packaging
+                    </div>
+                    <div>Most of our packaging is made from aluminum, one of the most sustainable building materials in
+                        the world, due to its ability to be recycled and reused infinitely without losing its
+                        properties. In fact, about 75% of all aluminum ever produced in the world is still in use today,
+                        therefore, reducing packaging waste in landfills. Our plastic product packaging is made with 50%
+                        PCR, recycled plastic, helping to decrease waste
+                        in landfills.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="x-flex x-flex-col md:x-flex-row-reverse x-gap-[16px] md:x-gap-[50px]">
+            <div class="md:x-w-1/2 x-relative x-overflow-hidden x-h-[630px] x-w-full">
+                <div class="parallax-s x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
+                    style="background-image: url({{ 'founder_pholder.png' | asset_url }});">
+                </div>
+            </div>
+            <div
+                class="md:x-w-1/2 x-p-[16px] x-py-[26px] x-pt-[32px] md:x-p-[50px] md:x-flex md:x-items-center x-bg-white">
+                <div class="x-flex x-flex-col x-gap-[8px] md:x-gap-[16px] x-text-[14px]">
+                    <div>Reduce • Reuse • Recycle</div>
+                    <div class="x-text-[26px] x-leading-[28px] md:x-text-[30px]">3. Minimal, upcycled packaging
+                    </div>
+                    <div>We minimize and reduce excess packaging whenever possible. Our product cartons, shipping boxes,
+                        and filler material are recyclable and biodegradable.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="x-flex x-flex-col md:x-flex-row x-gap-[16px] md:x-gap-[50px]">
+            <div class="md:x-w-1/2 x-relative x-overflow-hidden x-h-[630px] x-w-full">
+                <div class="parallax-s x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
+                    style="background-image: url({{ 'founder_pholder.png' | asset_url }});">
+                </div>
+            </div>
+            <div
+                class="md:x-w-1/2 x-p-[16px] x-py-[26px] x-pt-[32px] md:x-p-[50px] md:x-flex md:x-items-center x-bg-white">
+                <div class="x-flex x-flex-col x-gap-[8px] md:x-gap-[16px] x-text-[14px]">
+                    <div class="x-text-[26px] x-leading-[28px] md:x-text-[30px]">4. Carbon Neutral Certified
+                    </div>
+                    <div>We measured and offset all our carbon emissions by funding reforestation, farm power, and
+                        landfill gas capture to remove carbon from the environment. We will continue this mission every
+                        year.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div>
+        <div class="x-relative x-overflow-hidden x-h-[472px] x-w-full x-flex x-justify-center">
+            <div class="parallax-s x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center x-flex"
+                style="background-image: url({{ 'founder_pholder.png' | asset_url }});">
+            </div>
+            <div class="x-w-full x-h-full x-relative x-flex x-items-center x-justify-center">
+                <div class="x-text-[32px] md:x-text-[36px] x-leading-[36px] x-text-white x-text-center x-font-medium">
+                    OUR COMMITMENT TO A<br class="lg:x-hidden"> GREENER PLANET
+                </div>
+            </div>
+        </div>
+        <div
+            class="x-flex x-flex-row x-gap-[16px] md:x-gap-[32px] x-py-[72px] x-px-[16px] md:x-px-[50px] md:x-text-[20px]">
+            <div>We will continue to consciously develop products that genuinely add value to your beauty routine,
+                without comprimising on performance, people, or the planet. </div>
+            <div>We will continue to evaluate, research, and improve sustainable practices in all business areas to
+                minimize waste and footprint to leave a cleaner, greener planet for our future generation. </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="x-bg-[#4D4032] x-py-[50px] x-px-[16px]">
+        <div class="x-text-center x-text-white x-text-[12px] md:x-text-[14px] md:x-leading-[18px] md:x-w-[570px] md:x-mx-auto">
+            We understand we are not perfect, but we are always researching and exploring for better solutions. If you have
+            any suggestions for cleaner designs, please let us know at <a href="#" class="x-underline">info@officialchloee.com</a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .first-s-content-carousel>.flickity-page-dots .dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .first-s-content-carousel>.flickity-prev-next-button {
+        display: none;
+    }
+</style>
+
+<script>
+    let flkty = new Flickity(".first-s-content-carousel", {});
+</script>
+
+<script>
+    $(document).ready(function () {
+        applyParallax();
+    });
+
+    $(window).on('scroll', function () {
+        applyParallax();
+    });
+
+    function applyParallax() {
+        $('.parallax-s').each(function () {
+            const speed = 0.15; // Adjust the speed for the desired parallax effect
+            const initialOffset = 0; // Offset to move the image down initially
+            const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
+            const scrollPosition = $(window).scrollTop();
+            const windowHeight = $(window).height();
+            const sectionHeight = $(this).parent().outerHeight();
+
+            // Check if the section is in the viewport
+            if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
+                $(this).css('transform', `translateY(${yPos}px)`);
+            }
+        });
+    }
+</script>

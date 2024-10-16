@@ -940,6 +940,10 @@ html {
   right: 1rem !important;
 }
 
+.x-top-1 {
+  top: 0.25rem !important;
+}
+
 .x-z-0 {
   z-index: 0 !important;
 }
@@ -1138,8 +1142,16 @@ html {
   height: 425px !important;
 }
 
+.x-h-\[472px\] {
+  height: 472px !important;
+}
+
 .x-h-\[600px\] {
   height: 600px !important;
+}
+
+.x-h-\[630px\] {
+  height: 630px !important;
 }
 
 .x-h-\[700px\] {
@@ -1186,16 +1198,16 @@ html {
   width: 1px !important;
 }
 
+.x-w-\[20px\] {
+  width: 20px !important;
+}
+
 .x-w-\[300px\] {
   width: 300px !important;
 }
 
 .x-w-\[30px\] {
   width: 30px !important;
-}
-
-.x-w-\[32px\] {
-  width: 32px !important;
 }
 
 .x-w-\[400px\] {
@@ -1336,6 +1348,10 @@ html {
   gap: 10px !important;
 }
 
+.x-gap-\[12px\] {
+  gap: 12px !important;
+}
+
 .x-gap-\[16px\] {
   gap: 16px !important;
 }
@@ -1344,8 +1360,16 @@ html {
   gap: 40px !important;
 }
 
+.x-gap-\[54px\] {
+  gap: 54px !important;
+}
+
 .x-gap-\[80px\] {
   gap: 80px !important;
+}
+
+.x-gap-\[8px\] {
+  gap: 8px !important;
 }
 
 .x-gap-x-\[5\%\] {
@@ -1422,11 +1446,6 @@ html {
   border-color: rgb(77 64 50 / var(--tw-border-opacity)) !important;
 }
 
-.x-border-\[\#bcb2a8\] {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(188 178 168 / var(--tw-border-opacity)) !important;
-}
-
 .x-border-black {
   --tw-border-opacity: 1 !important;
   border-color: rgb(0 0 0 / var(--tw-border-opacity)) !important;
@@ -1470,6 +1489,11 @@ html {
 .x-bg-\[\#F2E8DA\] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(242 232 218 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#F9F8F5\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(249 248 245 / var(--tw-bg-opacity)) !important;
 }
 
 .x-bg-\[\#FFE4D9\] {
@@ -1628,6 +1652,11 @@ html {
   padding-bottom: 2rem !important;
 }
 
+.x-py-\[16px\] {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+}
+
 .x-py-\[24px\] {
   padding-top: 24px !important;
   padding-bottom: 24px !important;
@@ -1646,6 +1675,26 @@ html {
 .x-py-\[30px\] {
   padding-top: 30px !important;
   padding-bottom: 30px !important;
+}
+
+.x-py-\[32px\] {
+  padding-top: 32px !important;
+  padding-bottom: 32px !important;
+}
+
+.x-py-\[36px\] {
+  padding-top: 36px !important;
+  padding-bottom: 36px !important;
+}
+
+.x-py-\[50px\] {
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+
+.x-py-\[72px\] {
+  padding-top: 72px !important;
+  padding-bottom: 72px !important;
 }
 
 .x-py-\[80px\] {
@@ -1773,6 +1822,10 @@ html {
   line-height: 1.75rem !important;
 }
 
+.x-text-\[18px\] {
+  font-size: 18px !important;
+}
+
 .x-font-bold {
   font-weight: 700 !important;
 }
@@ -1809,6 +1862,10 @@ html {
   line-height: 28px !important;
 }
 
+.x-leading-\[36px\] {
+  line-height: 36px !important;
+}
+
 .x-text-black {
   --tw-text-opacity: 1 !important;
   color: rgb(0 0 0 / var(--tw-text-opacity)) !important;
@@ -1827,6 +1884,14 @@ html {
 .x-text-white {
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+}
+
+.x-text-\[\] {
+  color:  !important;
+}
+
+.x-underline {
+  text-decoration-line: underline !important;
 }
 
 .x-opacity-50 {
@@ -1988,12 +2053,20 @@ html {
     width: 50% !important;
   }
 
+  .md\:x-w-\[570px\] {
+    width: 570px !important;
+  }
+
   .md\:x-w-\[95\%\] {
     width: 95% !important;
   }
 
   .md\:x-min-w-full {
     min-width: 100% !important;
+  }
+
+  .md\:x-flex-1 {
+    flex: 1 1 0% !important;
   }
 
   .md\:x-grid-cols-3 {
@@ -2040,6 +2113,10 @@ html {
     gap: 20px !important;
   }
 
+  .md\:x-gap-\[32px\] {
+    gap: 32px !important;
+  }
+
   .md\:x-gap-\[50px\] {
     gap: 50px !important;
   }
@@ -2062,6 +2139,11 @@ html {
     padding-right: 0px !important;
   }
 
+  .md\:x-px-\[20px\] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
   .md\:x-px-\[24px\] {
     padding-left: 24px !important;
     padding-right: 24px !important;
@@ -2077,9 +2159,28 @@ html {
     padding-bottom: 1.5rem !important;
   }
 
+  .md\:x-py-\[20px\] {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .md\:x-py-\[32px\] {
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+
   .md\:x-py-\[40px\] {
     padding-top: 40px !important;
     padding-bottom: 40px !important;
+  }
+
+  .md\:x-py-\[75px\] {
+    padding-top: 75px !important;
+    padding-bottom: 75px !important;
+  }
+
+  .md\:x-pt-\[75px\] {
+    padding-top: 75px !important;
   }
 
   .md\:x-text-\[14px\] {
@@ -2090,6 +2191,14 @@ html {
     font-size: 16px !important;
   }
 
+  .md\:x-text-\[18px\] {
+    font-size: 18px !important;
+  }
+
+  .md\:x-text-\[20px\] {
+    font-size: 20px !important;
+  }
+
   .md\:x-text-\[24px\] {
     font-size: 24px !important;
   }
@@ -2098,8 +2207,20 @@ html {
     font-size: 26px !important;
   }
 
+  .md\:x-text-\[30px\] {
+    font-size: 30px !important;
+  }
+
+  .md\:x-text-\[36px\] {
+    font-size: 36px !important;
+  }
+
   .md\:x-text-\[56px\] {
     font-size: 56px !important;
+  }
+
+  .md\:x-leading-\[18px\] {
+    line-height: 18px !important;
   }
 
   .md\:x-leading-\[20px\] {
@@ -2116,14 +2237,6 @@ html {
 }
 
 @media (min-width: 1280px) {
-  .lg\:x-order-1 {
-    order: 1 !important;
-  }
-
-  .lg\:x-order-2 {
-    order: 2 !important;
-  }
-
   .lg\:x-mx-auto {
     margin-left: auto !important;
     margin-right: auto !important;
@@ -2138,16 +2251,8 @@ html {
     display: none !important;
   }
 
-  .lg\:x-h-\[400px\] {
-    height: 400px !important;
-  }
-
   .lg\:x-h-\[600px\] {
     height: 600px !important;
-  }
-
-  .lg\:x-w-\[600px\] {
-    width: 600px !important;
   }
 
   .lg\:x-w-\[90\%\] {
@@ -2162,16 +2267,8 @@ html {
     max-width: 1280px !important;
   }
 
-  .lg\:x-grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-
   .lg\:x-grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-  }
-
-  .lg\:x-justify-center {
-    justify-content: center !important;
   }
 
   .lg\:x-gap-\[80px\] {
@@ -2180,11 +2277,6 @@ html {
 
   .lg\:x-p-\[0px\] {
     padding: 0px !important;
-  }
-
-  .lg\:x-px-10 {
-    padding-left: 2.5rem !important;
-    padding-right: 2.5rem !important;
   }
 
   .lg\:x-text-\[48px\] {
