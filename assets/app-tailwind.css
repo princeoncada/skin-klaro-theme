@@ -1122,6 +1122,10 @@ html {
   height: 200px !important;
 }
 
+.x-h-\[20px\] {
+  height: 20px !important;
+}
+
 .x-h-\[30px\] {
   height: 30px !important;
 }
@@ -1202,16 +1206,12 @@ html {
   width: 20px !important;
 }
 
-.x-w-\[300px\] {
-  width: 300px !important;
-}
-
 .x-w-\[30px\] {
   width: 30px !important;
 }
 
-.x-w-\[400px\] {
-  width: 400px !important;
+.x-w-\[32px\] {
+  width: 32px !important;
 }
 
 .x-w-\[40px\] {
@@ -1346,10 +1346,6 @@ html {
 
 .x-gap-\[10px\] {
   gap: 10px !important;
-}
-
-.x-gap-\[12px\] {
-  gap: 12px !important;
 }
 
 .x-gap-\[16px\] {
@@ -1822,10 +1818,6 @@ html {
   line-height: 1.75rem !important;
 }
 
-.x-text-\[18px\] {
-  font-size: 18px !important;
-}
-
 .x-font-bold {
   font-weight: 700 !important;
 }
@@ -1884,10 +1876,6 @@ html {
 .x-text-white {
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
-}
-
-.x-text-\[\] {
-  color:  !important;
 }
 
 .x-underline {
@@ -2177,10 +2165,6 @@ html {
   .md\:x-py-\[75px\] {
     padding-top: 75px !important;
     padding-bottom: 75px !important;
-  }
-
-  .md\:x-pt-\[75px\] {
-    padding-top: 75px !important;
   }
 
   .md\:x-text-\[14px\] {
