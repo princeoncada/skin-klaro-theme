@@ -1,114 +1,54 @@
+{%  assign product = all_products['test-product'] %}
+
 <section class="md:x-py-[30px] md:x-pt-[90px]">
     <div class="x-flex x-flex-col md:x-flex-row md:x-px-[50px] md:x-gap-[50px] x-h-auto md:x-h-[540px] lg:x-h-full lg:x-max-w-[1440px] lg:x-mx-auto">
         <div class="md:x-w-1/2 lg:x-w-2/3">
             <div class="x-flex x-flex-col md:x-flex-row-reverse x-justify-end md:x-gap-[20px]">
                 <div class="md:x-flex-1">
-                    <div class="carousel-main x-p-[16px] x-pb-[10px] md:x-p-[0px] md:x-w-[100%] x-h-auto x-shadow-none"
+                    <div class="carousel-main x-p-[16px] x-pb-[10px] md:x-p-[0px] md:x-w-[100%] md:x-aspect-square x-shadow-none"
                         data-flickity='{ "fade": true }'>
-                        <div class="carousel-cell">
-                            highlight image 1
-                        </div>
-                        <div class="carousel-cell">
-                            highlight image 2
-                        </div>
-                        <div class="carousel-cell">
-                            highlight image 3
-                        </div>
-                        <div class="carousel-cell">
-                            highlight image 4
-                        </div>
-                        <div class="carousel-cell">
-                            highlight image 5
-                        </div>
-                        <div class="carousel-cell">
-                            highlight image 6
-                        </div>
-                        <div class="carousel-cell">
-                            highlight image 7
-                        </div>
-                        <div class="carousel-cell">
-                            highlight image 8
-                        </div>
+
+                        <div class="carousel-cell" style="background-image: url({{ product.variants.first.featured_image | image_url: width: 1000 }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+
+                        {% for image_url in product.variants.first.metafields.custom.img_src.value %}
+                            <div class="carousel-cell" style="background-image: url({{ image_url }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+                        {% endfor %}
+
                     </div>
                 </div>
                 <div
                     class="carousel-nav x-hidden md:x-flex x-flex-col x-gap-[10px] md:x-gap-[20px] x-overflow-y-scroll x-px-[16px] md:x-p-[0px] no-scrollbar x-snap-y x-snap-mandatory md:x-h-[540px]">
+                    
                     <div class="thumbnail">
-                        <div class="image">thumbnail 1</div>
-                        <div class="highlight">
-                        </div>
+                        <div class="image" style="background-image: url({{ product.variants.first.featured_image | image_url: width: 1000 }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+                        <div class="highlight">&nbsp;</div>
                     </div>
-                    <div class="thumbnail">
-                        <div class="image">thumbnail 2</div>
-                        <div class="highlight">
+
+                    {% for image_url in product.variants.first.metafields.custom.img_src.value %}
+                        <div class="thumbnail">
+                            <div class="image" style="background-image: url({{ image_url }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+                            <div class="highlight">&nbsp;</div>
                         </div>
-                    </div>
-                    <div class="thumbnail">
-                        <div class="image">thumbnail 3</div>
-                        <div class="highlight">
-                        </div>
-                    </div>
-                    <div class="thumbnail">
-                        <div class="image">thumbnail 4</div>
-                        <div class="highlight">
-                        </div>
-                    </div>
-                    <div class="thumbnail">
-                        <div class="image">thumbnail 5</div>
-                        <div class="highlight">
-                        </div>
-                    </div>
-                    <div class="thumbnail">
-                        <div class="image">thumbnail 6</div>
-                        <div class="highlight">
-                        </div>
-                    </div>
-                    <div class="thumbnail">
-                        <div class="image">thumbnail 7</div>
-                        <div class="highlight">
-                        </div>
-                    </div>
-                    <div class="thumbnail">
-                        <div class="image">thumbnail 8</div>
-                        <div class="highlight">
-                        </div>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
 
             <div class="md:x-hidden x-block">
-                <div
-                    class="carousel-nav x-flex x-flex-row x-gap-[10px] x-overflow-x-scroll x-px-[16px] no-scrollbar x-snap-x x-snap-mandatory x-scroll-pl-[16px]">
+                <div class="carousel-nav x-flex x-flex-row x-gap-[10px] x-overflow-x-scroll x-px-[16px] no-scrollbar x-snap-x x-snap-mandatory x-scroll-pl-[16px]">
+
                     <div class="thumbnail">
-                        <div class="image">thumbnail 1</div>
-                        <div class="highlight">
-                        </div>
+                        <div class="image" style="background-image: url({{ product.variants.first.featured_image | image_url: width: 1000 }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+                        <div class="highlight">&nbsp;</div>
                     </div>
-                    <div class="thumbnail">
-                        <div class="image">thumbnail 2</div>
-                        <div class="highlight">
+
+                    {% for image_url in product.variants.first.metafields.custom.img_src.value %}
+                        <div class="thumbnail">
+                            <div class="image" style="background-image: url({{ image_url }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+                            <div class="highlight">&nbsp;</div>
                         </div>
-                    </div>
-                    <div class="thumbnail">
-                        <div class="image">thumbnail 3</div>
-                        <div class="highlight">
-                        </div>
-                    </div>
-                    <div class="thumbnail">
-                        <div class="image">thumbnail 4</div>
-                        <div class="highlight">
-                        </div>
-                    </div>
-                    <div class="thumbnail">
-                        <div class="image">thumbnail 5</div>
-                        <div class="highlight">
-                        </div>
-                    </div>
-                    <div class="thumbnail">
-                        <div class="image">thumbnail 6</div>
-                        <div class="highlight">
-                        </div>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
         </div>
@@ -137,6 +77,7 @@
                 </div>
                 <div class="x-flex x-flex-col x-gap-[20px]">
                     <div class="x-flex x-flex-row x-gap-[16px]">
+                        
                         <label>
                             <input type="radio" name="square-color" class="swatch-input__hidden" checked />
                             <div class="swatch-variant" style="background-color: #2A2A2A;">
@@ -193,8 +134,12 @@
         // Initialize main carousel
         var $mainCarousel = $('.carousel-main').flickity({});
 
-        // on load
-        $('.carousel-nav .thumbnail')[0].classList.add('is-nav-selected')
+        let firstIndex = 0;
+        let secondIndex = $('.carousel-nav .thumbnail').length / 2;
+
+        $('.carousel-nav .thumbnail')[firstIndex].classList.add('is-nav-selected')
+        $('.carousel-nav .thumbnail')[secondIndex].classList.add('is-nav-selected')
+        console.log($('.carousel-nav .thumbnail')[0]); 
 
         $mainCarousel.on('change.flickity', function (event, index) {
 
@@ -203,7 +148,7 @@
 
             // Add 'is-nav-selected' to the current thumbnail
             $('.carousel-nav .thumbnail')[index].classList.add('is-nav-selected');
-            console.log(index); // For debugging
+            $('.carousel-nav .thumbnail')[index + secondIndex].classList.add('is-nav-selected');
         });
 
         // Thumbnail click event to change the main carousel
@@ -216,7 +161,6 @@
 
 <style>
     .carousel-cell {
-        background: #8c8;
         color: white;
         width: 100%;
         height: 425px;
@@ -254,7 +198,7 @@
         opacity: 0;
         transition: opacity 0.3s ease;
     }
-    
+
     .carousel-main .flickity-page-dots {
         display: none;
     }
