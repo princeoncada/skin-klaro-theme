@@ -1,138 +1,42 @@
-<script src="{{ 'skin-product.js' | asset_url }}" defer></script>
-
-<div class="container p-4">
-  <!-- Flickity Carousel for Main and Variant Images -->
-  <div id="mainCarousel" class="carousel x-h-[425px]">
-    <div class="carousel-cell">
-      <img
-        id="mainImage"
-        src="{{ product.media.first.preview_image | image_url: width: 1000, height: 800 }}"
-        alt="{{ product.title }}"
-        class="x-w-full"
-        width="1000"
-        height="800"
-      >
-    </div>
-  </div>
-  <!-- Thumbnails -->
-  <div id="thumbnailCarousel" class="carousel-thumbnails x-px-[16px]">
-    <div class="carousel-cell">
-      <img
-        src="{{ product.media.first.preview_image | image_url: width: 1000, height: 1000 }}"
-        alt="Main Product Image"
-        class="x-cursor-pointer x-object-cover x-w-full x-h-full"
-        width="1000"
-        height="800"
-        onclick="changeImage('{{ product.media.first.preview_image | image_url: width: 1000, height: 1000 }}')"
-      >
-    </div>
-  </div>
-  
-</div>
-<div class="x-px-[16px]">
-  <!-- Product Title -->
-  <div class="x-w-full x-text-start">
-    <div class="x-text-[25px]">{{ product.title }}</div>
-  </div>
-
-  <!-- Variant Price -->
-  <div class="x-w-full x-mb-7 x-text-start">
-    <div id="variant-price" class="x-text-[22px]">$0.00</div>
-  </div>
-
-  <!-- Product Description -->
-  <div class="x-w-full x-mb-4 x-text-justify">
-    <h2 class="x-text-3xl">{{ product.description }}</h2>
-  </div>
-
-  <!-- Variant Selector -->
-  <div class="x-w-full x-mb-4 x-mt-6">
-    <div class="x-flex x-gap-4 x-justify-start">
-      {% for variant in product.variants %}
-        <button
-          class="variant-button {% if forloop.first %} active {% endif %} x-flex x-items-center x-justify-center x-rounded-full x-w-auto x-h-auto x-border-2"
-          style="border-color: {{ variant.metafields.custom.color_hexcode }};"
-          data-variant-id="{{ variant.id }}"
-          data-main-img="{{ variant.image | image_url: width: 1000 }}"
-          data-img-src="{{ variant.metafields.custom.img_src | replace: '[', '' | replace: ']', '' | replace: '"', '' }}"
-          data-price="{{ variant.price | money }}"
-          data-availability="{{ variant.available }}"
-          onclick="changeVariant(this)"
-        >
-          <span
-            class="inner-circle x-block x-rounded-full x-w-[32px] x-h-[32px]"
-            style="background-color: {{ variant.metafields.custom.color_hexcode }};"
-          ></span>
-        </button>
-      {% endfor %}
-    </div>
-  </div>
-
-  <!-- Variant Availability -->
-  <div class="x-w-full x-mb-4 x-text-center"><p id="variant-availability" class="x-text-md">Available</p></div>
-
-  <!-- Quantity Selector -->
-  <div class="x-w-full x-mb-4 x-text-center">
-    <button id="decreaseQty" class="x-text-xl x-font-bold x-px-4 x-py-2 x-bg-gray-300 x-rounded">-</button>
-    <input
-      id="quantityInput"
-      type="number"
-      value="1"
-      min="1"
-      class="x-w-12 x-text-center x-border-none x-bg-transparent x-outline-none x-text-black"
-      readonly
-    >
-    <button id="increaseQty" class="x-text-xl x-font-bold x-px-4 x-py-2 x-bg-gray-300 x-rounded">+</button>
-  </div>
-
-  <!-- Checkout Button -->
-  <div class="x-w-full x-mb-4 x-text-center">
-    <button
-      id="checkoutButton"
-      class="x-text-xl x-font-bold x-py-2 x-px-4 x-text-black x-border x-border-black x-bg-transparent x-rounded-none"
-    >
-      Checkout
-    </button>
-  </div>
-</div>
-
-<<<<<<< HEAD
-=======
-<!-- JavaScript for Carousel and Checkout Functionality -->
-<script>
-  let flickityInstance;
+let flickityInstance;
   let thumbnailFlickityInstance;
   let selectedVariantId = null;
+  
+      // Initialize Flickity for the thumbnail carousel
+      thumbnailFlickityInstance = new Flickity('#thumbnailCarousel', {
+        asNavFor: '#mainCarousel',
+        contain: true,
+        pageDots: false,
+        prevNextButtons: false,
+        draggable: true,
+        freeScroll: false,
+        cellAlign: 'left',
+      });
 
-  document.addEventListener('DOMContentLoaded', function () {
-    // Initialize Flickity for the main carousel
-    flickityInstance = new Flickity('#mainCarousel', {
-      wrapAround: true,
-      pageDots: false,
-      prevNextButtons: false,
-      draggable: true,
+    $(document).ready(function () {
+        variantSelector();
+        disableCheckoutButton();
     });
 
-    // Initialize Flickity for the thumbnail carousel
-    thumbnailFlickityInstance = new Flickity('#thumbnailCarousel', {
-      asNavFor: '#mainCarousel',
-      contain: true,
-      pageDots: false,
-      prevNextButtons: false,
-      draggable: true,
-      freeScroll: false,
-      cellAlign: 'left',
-    });
-
-    const firstVariantButton = document.querySelector('.variant-button.active');
+  function variantSelector(){
+        // Initialize Flickity for the main carousel
+        flickityInstance = new Flickity('#mainCarousel', {
+            wrapAround: true,
+            pageDots: false,
+            prevNextButtons: false,
+            draggable: true,
+          });
+    var firstVariantButton = document.querySelectorAll(".variant-button.active");
     if (firstVariantButton) {
-      changeVariant(firstVariantButton);
+        changeVariant(firstVariantButton);
+      }
+  }
+  function disableCheckoutButton() {
+    const checkoutButton = document.querySelectorAll('checkoutButton');
+    if (checkoutButton.disabled) {
+      checkoutButton.classList.add('x-opacity-50', 'x-cursor-not-allowed');
     }
-  });
-
-  function changeThumbnail(imgUrl) {
-        document.getElementById('mainImage').src = imgUrl;
-    }
+  }
 
   // Function to update the main image and variant images in Flickity
   function changeVariant(button) {
@@ -205,13 +109,7 @@
     thumbnailFlickityInstance.select(0); // Highlight the first thumbnail
   }
 
-  // Example styles to visually disable the checkout button
-  document.addEventListener('DOMContentLoaded', function () {
-    const checkoutButton = document.getElementById('checkoutButton');
-    if (checkoutButton.disabled) {
-      checkoutButton.classList.add('x-opacity-50', 'x-cursor-not-allowed');
-    }
-  });
+
   // Main image update
   function changeImage(imageUrl) {
     const mainImage = document.getElementById('mainImage');
@@ -331,100 +229,3 @@
         console.error('Error fetching cart data:', error);
       });
   }
-</script>
-
->>>>>>> 6178dd67b15bf9179df4f9971b8b6cf4c5bd9095
-<!-- Styles -->
-<style>
-  input[type='number']::-webkit-outer-spin-button,
-  input[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  input[type='number'] {
-    -moz-appearance: textfield;
-  }
-
-  .variant-button {
-    transition: all 0.3s ease;
-  }
-
-  .variant-button.active {
-    border-color: white;
-    /* White border for the outer circle when selected */
-  }
-
-  .inner-circle {
-    transition: all 0.3s ease;
-  }
-
-  .variant-button.active .inner-circle {
-    border: 2px solid white;
-    /* White border for the inner circle */
-  }
-
-  .carousel-cell {
-    width: 100%;
-    margin-right: 10px;
-    background: none;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-
-  .carousel-cell img {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    object-fit: cover;
-    margin: 0 auto;
-    padding: 10px;
-  }
-
-  .carousel-thumbnails .carousel-cell {
-    width: 100px;
-    height: 100px;
-    background: none;
-    object-fit: cover;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .carousel-thumbnails .carousel-cell img {
-    cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.3s;
-    background: none;
-  }
-
-  .carousel-thumbnails .carousel-cell.is-selected::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: black;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    opacity: 1;
-  }
-
-  .carousel-thumbnails .carousel-cell.is-selected img {
-    opacity: 1;
-    background-color: transparent;
-  }
-
-  .flickity-viewport {
-    overflow: hidden;
-  }
-
-  .flickity-page-dots {
-    display: none;
-  }
-
-  /* Ensure smooth transitions for all state changes */
-  .x-transition-all {
-    transition: all 0.3s ease;
-  }
-</style>
