@@ -1,117 +1,148 @@
-{%  assign product = all_products['test-product'] %}
+{% comment %} {% assign product = all_products['test-product-2'] %} {% endcomment %}
+
+{% if product.has_only_default_variant %}
+{% for url in product.images %}
+{% comment %} {{ url | image_url: width: 1000 }} {% endcomment %}
+{% endfor %}
+{% else %}
+{% for variant in product.variants %}
+{% comment %} {{ variant.metafields.custom.color_hexcode }} {% endcomment %}
+{% comment %} {% assign main_image = variant.featured_image | image_url: width: '1000', height: '1000' | append: ", " %}
+{% assign thumbnails = variant.metafields.custom.img_src.value | join: ", " %}
+{{ main_image | append: thumbnails }} {% endcomment %}
+{% endfor %}
+{% endif %}
+
+
 
 <section class="md:x-py-[30px] md:x-pt-[90px]">
-    <div class="x-flex x-flex-col md:x-flex-row md:x-px-[50px] md:x-gap-[50px] x-h-auto md:x-h-[540px] lg:x-h-full lg:x-max-w-[1440px] lg:x-mx-auto">
+    <div
+        class="x-flex x-flex-col md:x-flex-row md:x-px-[50px] md:x-gap-[50px] x-h-auto md:x-h-[540px] lg:x-h-full lg:x-max-w-[1440px] lg:x-mx-auto">
         <div class="md:x-w-1/2 lg:x-w-2/3">
             <div class="x-flex x-flex-col md:x-flex-row-reverse x-justify-end md:x-gap-[20px]">
                 <div class="md:x-flex-1">
-                    <div class="carousel-main x-p-[16px] x-pb-[10px] md:x-p-[0px] md:x-w-[100%] md:x-aspect-square x-shadow-none"
-                        data-flickity='{ "fade": true }'>
+                    <div class="carousel-main x-p-[16px] x-pb-[10px] x-flex x-items-center x-w-full md:x-p-[0px] md:x-w-[100%] x-shadow-none" data-flickity='{ "fullscreen": true }'>
 
-                        <div class="carousel-cell" style="background-image: url({{ product.variants.first.featured_image | image_url: width: 1000 }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
-
-                        {% for image_url in product.variants.first.metafields.custom.img_src.value %}
-                            <div class="carousel-cell" style="background-image: url({{ image_url }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
-                        {% endfor %}
+                        {% if product.has_only_default_variant %}
+                            {% for url in product.images %}
+                                <div class="carousel-cell" style="background-image: url({{ url | image_url: width: 1000 }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="carousel-cell" style="background-image: url({{ product.selected_or_first_available_variant.featured_image | image_url: width: 1000 }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+                            {% for image_url in product.selected_or_first_available_variant.metafields.custom.img_src.value %}
+                                <div class="carousel-cell" style="background-image: url({{ image_url }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+                            {% endfor %}
+                        {% endif %}
 
                     </div>
                 </div>
                 <div
-                    class="carousel-nav x-hidden md:x-flex x-flex-col x-gap-[10px] md:x-gap-[20px] x-overflow-y-scroll x-px-[16px] md:x-p-[0px] no-scrollbar x-snap-y x-snap-mandatory md:x-h-[540px]">
-                    
-                    <div class="thumbnail">
-                        <div class="image" style="background-image: url({{ product.variants.first.featured_image | image_url: width: 1000 }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
-                        <div class="highlight">&nbsp;</div>
-                    </div>
+                    class="carousel-nav desktab x-hidden md:x-flex x-flex-col x-gap-[10px] md:x-gap-[20px] x-overflow-y-scroll x-px-[16px] md:x-p-[0px] no-scrollbar x-snap-y x-snap-mandatory md:x-h-[540px]">
 
-                    {% for image_url in product.variants.first.metafields.custom.img_src.value %}
+                    {% if product.has_only_default_variant %}
+                        {% for url in product.images %}
+                            <div class="thumbnail">
+                                <div class="image" style="background-image: url({{ url | image_url: width: 1000 }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+                                <div class="highlight">&nbsp;</div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
                         <div class="thumbnail">
-                            <div class="image" style="background-image: url({{ image_url }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+                            <div class="image" style="background-image: url({{ product.selected_or_first_available_variant.featured_image | image_url: width: 1000 }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
                             <div class="highlight">&nbsp;</div>
                         </div>
-                    {% endfor %}
+
+                        {% for url in product.selected_or_first_available_variant.metafields.custom.img_src.value %}
+                            <div class="thumbnail">
+                                <div class="image" style="background-image: url({{ url }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+                                <div class="highlight">&nbsp;</div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 
                 </div>
             </div>
 
             <div class="md:x-hidden x-block">
-                <div class="carousel-nav x-flex x-flex-row x-gap-[10px] x-overflow-x-scroll x-px-[16px] no-scrollbar x-snap-x x-snap-mandatory x-scroll-pl-[16px]">
+                <div
+                    class="carousel-nav mobile x-overflow-y-hidden x-flex x-flex-row x-gap-[10px] x-overflow-x-scroll x-px-[16px] no-scrollbar x-snap-x x-snap-mandatory x-scroll-pl-[16px]">
 
-                    <div class="thumbnail">
-                        <div class="image" style="background-image: url({{ product.variants.first.featured_image | image_url: width: 1000 }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
-                        <div class="highlight">&nbsp;</div>
-                    </div>
-
-                    {% for image_url in product.variants.first.metafields.custom.img_src.value %}
+                    {% if product.has_only_default_variant %}
+                        {% for url in product.images %}
+                            <div class="thumbnail">
+                                <div class="image"
+                                    style="background-image: url({{ url | image_url: width: 1000 }}); background-size: cover; background-position: 50% 50%;">
+                                    &nbsp;</div>
+                                <div class="highlight">&nbsp;</div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
                         <div class="thumbnail">
-                            <div class="image" style="background-image: url({{ image_url }}); background-size: cover; background-position: 50% 50%;">&nbsp;</div>
+                            <div class="image"
+                                style="background-image: url({{ product.selected_or_first_available_variant.featured_image | image_url: width: 1000 }}); background-size: cover; background-position: 50% 50%;">
+                                &nbsp;</div>
                             <div class="highlight">&nbsp;</div>
                         </div>
-                    {% endfor %}
+
+                        {% for url in product.selected_or_first_available_variant.metafields.custom.img_src.value %}
+                            <div class="thumbnail">
+                                <div class="image"
+                                    style="background-image: url({{ url }}); background-size: cover; background-position: 50% 50%;">
+                                    &nbsp;</div>
+                                <div class="highlight">&nbsp;</div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 
                 </div>
             </div>
         </div>
 
-        <div class="x-px-[16px] x-py-[36px] md:x-p-[0px] md:x-flex md:x-justify-center md:x-items-start md:x-w-1/2 lg:x-w-1/3">
+        <div
+            class="x-px-[16px] x-py-[36px] md:x-p-[0px] md:x-flex md:x-justify-center md:x-items-start md:x-w-1/2 lg:x-w-1/3">
             <div class="x-flex x-flex-col x-gap-[32px] md:x-w-[420px] md:x-sticky md:x-top-[120px]">
                 <div class="x-flex x-flex-col x-gap-[20px]">
                     <div class="x-flex x-flex-col x-gap-[6px]">
-                        <div class="x-text-[24px] x-uppercase">product title</div>
+                        <div class="x-text-[24px] x-uppercase">{{ product.title }}</div>
                         <div>reviews</div>
                     </div>
                     <div class="x-flex x-flex-col x-gap-[6px]">
-                        <div class="x-text-[20px]">$27</div>
+                        <div class="x-text-[20px]">{{ product.price | money }}</div>
                         <div class="x-text-[16px] x-uppercase">Lorem ipsum dolor</div>
                     </div>
                 </div>
                 <div>
-                    <div class="x-text-[14px] x-leading-[20px]">Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit.
-                        Optio, sed sint animi excepturi illum molestias autem omnis eum, distinctio, voluptatum
-                        praesentium.
-                        Reiciendis harum repudiandae rem officia optio magni voluptates fugit!</div>
+                    <div class="x-text-[14px] x-leading-[20px]">{{ product.content }}</div>
                 </div>
                 <div>
                     <div class="x-text-[14px]">Lorem, ipsum dolor.</div>
                 </div>
                 <div class="x-flex x-flex-col x-gap-[20px]">
-                    <div class="x-flex x-flex-row x-gap-[16px]">
-                        
-                        <label>
-                            <input type="radio" name="square-color" class="swatch-input__hidden" checked />
-                            <div class="swatch-variant" style="background-color: #2A2A2A;">
-                            </div>
-                        </label>
-                        <label>
-                            <input type="radio" name="square-color" class="swatch-input__hidden" />
-                            <div class="swatch-variant" style="background-color: #7C7C7C;">
-                            </div>
-                        </label>
-                        <label>
-                            <input type="radio" name="square-color" class="swatch-input__hidden" />
-                            <div class="swatch-variant" style="background-color: #C6C6C6;">
-                            </div>
-                        </label>
-                        <label>
-                            <input type="radio" name="square-color" class="swatch-input__hidden" />
-                            <div class="swatch-variant" style="background-color: #C1AC88;">
-                            </div>
-                        </label>
-                        <label>
-                            <input type="radio" name="square-color" class="swatch-input__hidden" />
-                            <div class="swatch-variant" style="background-color: #B1795D;">
-                            </div>
-                        </label>
 
-                    </div>
+                    {% if product.has_only_default_variant == false %}
+                        <div class="x-flex x-flex-row x-gap-[16px]">
+                            {% for variant in product.variants %}
+                                {% assign main_image = variant.featured_image | image_url: width: '1000', height: '1000' | append: ", " %}
+                                {% assign thumbnails = variant.metafields.custom.img_src.value | join: ", " %}
+                                <label>
+                                    <input type="radio" name="square-color" class="swatch-input__hidden"
+                                        data-available="{{ variant.available }}"
+                                        data-thumbnails="{{ main_image | append: thumbnails }}" value="{{ variant.id }}" {% if
+                                        product.selected_or_first_available_variant.id == variant.id %} checked {% endif %} />
+                                    <div class="swatch-variant"
+                                        style="background-color: {{ variant.metafields.custom.color_hexcode }}">&nbsp;</div>
+                                </label>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
                     <div>
                         <div class="x-inline-block">
                             <div
                                 class="quantity-picker x-flex x-border-[1px] x-border-gray-300 x-gap-[12px] x-items-center x-justify-between">
                                 <button
-                                    class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px] x-pointer-events-none"
-                                    id="decrease"><i class='bx bx-minus' disabled="true"></i></button>
+                                    class="x-text-gray-500 x-text-[18px] x-flex x-items-center x-justify-center x-p-[16px]"
+                                    id="decrease"><i class='bx bx-minus'></i></button>
                                 <input type="text" disabled="true" id="quantity" value="1" readonly
                                     class="x-text-center x-w-[30px] x-bg-transparent x-border-none x-outline-none" />
                                 <button
@@ -121,7 +152,8 @@
                         </div>
                     </div>
                     <button
-                        class="x-w-full x-h-[55px] x-uppercase x-text-[10px] x-text-center x-text-white x-bg-green-950">Add
+                        id="add-to-cart"
+                        class="x-w-full x-h-[55px] x-uppercase x-text-[10px] x-text-center x-text-white x-bg-green-800 disabled:x-bg-green-950 x-transition-colors x-duration-300 x-ease-in-out">Add
                         to Cart</button>
                 </div>
             </div>
@@ -131,43 +163,204 @@
 
 <script>
     $(document).ready(function () {
-        // Initialize main carousel
-        var $mainCarousel = $('.carousel-main').flickity({});
+        initializeFlickity();
+        handleVariantSelection();
+        setVariantIdInUrl();
+        handleQuantity();
+        handleAddToCart();
+        setAvailability()
+    });
 
-        let firstIndex = 0;
-        let secondIndex = $('.carousel-nav .thumbnail').length / 2;
+    function handleAddToCart() {
+        $('#add-to-cart').click(function () {
+            let variantId = $('input[name="square-color"]:checked').val();
+            let quantity = $('#quantity').val();
 
-        $('.carousel-nav .thumbnail')[firstIndex].classList.add('is-nav-selected')
-        $('.carousel-nav .thumbnail')[secondIndex].classList.add('is-nav-selected')
-        console.log($('.carousel-nav .thumbnail')[0]); 
+            $('#add-to-cart').html('<i class="bx bx-loader-alt bx-spin"></i>');
+            $('#add-to-cart').attr('disabled', true);
+
+            console.log(quantity);
+            
+            $.ajax({
+                url: '/cart/add.js',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ 
+                    id: variantId, 
+                    quantity: quantity 
+                }),
+                success: function (success) {
+                    console.log(success);
+                    $('#add-to-cart').html('Added to Cart!');
+                    reenableButton()
+                },
+                error: function (error) {
+                    let response = JSON.parse(error.responseText);
+                    console.log(response.status);
+
+                    if (response.status == 422 && response.message.includes("You can't add more")) {
+                        $('#add-to-cart').html('Exceeded Stock Limit');
+                        reenableButton();
+                        return;
+                    }
+
+                    $('#add-to-cart').html('An Error Occured. Try again later.');
+                    reenableButton();
+                }
+            });
+        });
+
+        function reenableButton() {
+            setTimeout(() => {
+                $('#add-to-cart').html('Add to Cart');
+                $('#add-to-cart').removeAttr('disabled');
+                $('#quantity').val(1);
+            }, 3000);
+        }
+    }
+
+    function handleQuantity() {
+        $('#increase').click(function () {
+            let quantity = parseInt($('#quantity').val());
+            $('#quantity').val(quantity + 1);
+            $('#decrease').find('i').removeAttr('disabled');
+        });
+
+        $('#decrease').click(function () {
+            let quantity = parseInt($('#quantity').val());
+            if (quantity > 1) {
+                $('#quantity').val(quantity - 1);
+            }
+
+            if (quantity == 2) {
+                $('#decrease').find('i').attr('disabled', true);
+            }
+        });
+    }
+
+    function setVariantIdInUrl() {
+        let variantId = $('input[name="square-color"]:checked').val();
+        let url = new URL(window.location.href);
+        let searchParams = new URLSearchParams(url.search);
+        searchParams.set('variant', variantId);
+        url.search = searchParams.toString();
+        window.history.replaceState({}, '', url);
+    }
+     
+    function setAvailability() {
+        let available = $('input[name="square-color"]:checked').data('available');
+        if (available == false) {
+            $('#add-to-cart').attr('disabled', true);
+            $('#add-to-cart').html('Out of Stock');
+        } else {
+            $('#add-to-cart').removeAttr('disabled');
+            $('#add-to-cart').html('Add to Cart');
+        }
+    }
+
+    function handleVariantSelection() {
+        $('input[name="square-color"]').change(function () {
+            let urls = $(this).data('thumbnails').split(', ');
+
+            $('.carousel-main').flickity('remove', $('.carousel-cell'));
+            $('.carousel-nav.desktab').empty();
+            $('.carousel-nav.mobile').empty();
+
+            urls.forEach(url => {
+                try {
+                    let $main = $('<div class="carousel-cell" style="background-image: url(' + url + '); background-size: cover; background-position: 50% 50%;">&nbsp;</div>');
+                    $('.carousel-main').flickity('append', $main);
+                    $('.carousel-nav.desktab').append(`<div class="thumbnail"><div class="image" style="background-image: url(${url}); background-size: cover; background-position: 50% 50%;">&nbsp;</div><div class="highlight">&nbsp;</div></div>`);
+                    $('.carousel-nav.mobile').append(`<div class="thumbnail"><div class="image" style="background-image: url(${url}); background-size: cover; background-position: 50% 50%;">&nbsp;</div><div class="highlight">&nbsp;</div></div>`);
+                } catch (error) {
+                    console.log(error);
+                }
+            });
+
+            $('.carousel-main').flickity('select', 0);
+            initializeFlickity();
+            setVariantIdInUrl();
+            setAvailability()
+        })
+    }
+
+    function initializeFlickity() {
+        var $mainCarousel = $('.carousel-main').flickity({
+            fullscreen: true,
+        });
+
+        $('.carousel-nav.desktab .thumbnail')[0].classList.add('is-nav-selected')
+        $('.carousel-nav.mobile .thumbnail')[0].classList.add('is-nav-selected')
 
         $mainCarousel.on('change.flickity', function (event, index) {
 
-            // Remove 'is-nav-selected' from all thumbnails
-            $('.carousel-nav .thumbnail').removeClass('is-nav-selected');
+            $('.carousel-nav.desktab .thumbnail').removeClass('is-nav-selected');
+            $('.carousel-nav.mobile .thumbnail').removeClass('is-nav-selected');
 
-            // Add 'is-nav-selected' to the current thumbnail
-            $('.carousel-nav .thumbnail')[index].classList.add('is-nav-selected');
-            $('.carousel-nav .thumbnail')[index + secondIndex].classList.add('is-nav-selected');
+            $('.carousel-nav.desktab .thumbnail')[index].classList.add('is-nav-selected');
+            $('.carousel-nav.mobile .thumbnail')[index].classList.add('is-nav-selected');
         });
 
-        // Thumbnail click event to change the main carousel
-        $('.carousel-nav .thumbnail').on('click', function () {
+        $('.carousel-nav.desktab .thumbnail').on('click', function () {
             let index = $(this).index();
             $mainCarousel.flickity('select', index);
         });
-    });
+
+        $('.carousel-nav.mobile .thumbnail').on('click', function () {
+            let index = $(this).index();
+            $mainCarousel.flickity('select', index);
+        });
+    }
 </script>
 
 <style>
-    .carousel-cell {
-        color: white;
+    .carousel-main.is-fullscreen .flickity-prev-next-button, .carousel-main .flickity-page-dots {
+        display: block;
+    }
+
+    .carousel-main.is-fullscreen .flickity-slider {
+        display: flex;
+        align-items: center;
+    }
+
+    .carousel-main {
+        height: 480px;
+    }
+
+    .carousel-main.is-fullscreen {
+        aspect-ratio: auto !important;
+        z-index: 50;
+        height: 100%;
+    }
+
+    .carousel-main.is-fullscreen .carousel-cell {
+        height: 425px !important;
+        width: 100%;
+    }
+
+    .carousel-main .carousel-cell {
         width: 100%;
         height: 425px;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.5s ease;
+        color: #fff;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    .carousel-main:not(.is-fullscreen) .carousel-cell {
+        transform: translateX(0) !important;
+    }
+
+    .carousel-main:not(.is-fullscreen) .flickity-slider {
+        transform: none !important;
+    }
+
+    .carousel-cell.is-selected {
+        opacity: 1;
+        z-index: 0;
     }
 
     .carousel-nav .thumbnail.is-nav-selected>.highlight {
@@ -179,11 +372,10 @@
         display: flex;
         flex-direction: column;
         scroll-snap-align: start;
-        cursor: grab;
+        cursor: pointer;
     }
 
     .thumbnail>.image {
-        background: #8c8;
         color: white;
         max-width: 75px;
         min-width: 75px;
@@ -196,14 +388,18 @@
         height: 2px;
         width: 100%;
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.5s ease;
     }
 
     .carousel-main .flickity-page-dots {
         display: none;
     }
 
-    .carousel-main .flickity-button {
+    .carousel-main .flickity-viewport {
+        width: 100% !important;
+    }
+
+    .carousel-main .flickity-prev-next-button {
         display: none;
     }
 
@@ -217,6 +413,7 @@
         border-radius: 100%;
         border: 2px solid white;
         transition: box-shadow 0.2s;
+        cursor: pointer;
     }
 
     input:checked+.swatch-variant {
@@ -224,12 +421,24 @@
     }
 
     @media (min-width: 990px) {
-        .carousel-main {
-            width: 100%;
-            aspect-ratio: 1;
+        .carousel-main.is-fullscreen .carousel-cell {
+            background-size: contain !important;
+            background-repeat: no-repeat;
+            height: 50% !important;
+            width: 50%;
         }
 
-        .carousel-cell {
+        .carousel-main .flickity-viewport {
+            height: 100% !important;
+        }
+    
+        .carousel-main {
+            height: auto;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+        }
+
+        .carousel-main .carousel-cell {
             height: 100%;
             width: 100%;
         }
