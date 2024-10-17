@@ -1,0 +1,20 @@
+{% if shop.privacy_policy %}
+    <div class="x-flex x-justify-center x-items-start x-mx-auto x-py-12">
+        <div class="x-flex x-w-full x-max-w-[1200px] x-mx-4 md:x-mx-12">
+            <div class="x-hidden md:x-block md:x-w-1/6">&nbsp;</div>
+            
+            <div class="x-w-full md:x-w-2/3 x-px-[20px]">
+                <h1 class="x-text-[40px] x-font-semibold x-mb-6 x-text-center">Privacy Policy</h1>
+                <div class="x-text-[15px] x-leading-relaxed x-mb-6">
+                    {{ shop.privacy_policy.body }}
+                </div>
+            </div>
+
+            <div class="x-hidden md:x-block md:x-w-1/6">&nbsp;</div>
+        </div>
+    </div>
+{% else %}
+    <div class="x-text-center x-my-12">
+        <p class="x-text-lg x-font-medium x-text-gray-600">Privacy policy is not available.</p>
+    </div>
+{% endif %}
