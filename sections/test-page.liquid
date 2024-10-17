@@ -62,7 +62,6 @@
           {% for variant in product.variants %}
             {% if variant.selected %}
               {% assign variantImages = variant.metafields.custom.img_src.value %}
-
               <div class="x-mr-[10px] thumbnail">
                 <img
                   src="{{ variant.featured_image | image_url: width: '1000', height: '1000' }}"
@@ -71,7 +70,6 @@
                   height="75px"
                 >
               </div>
-              <!-- Add additional variant image URLs -->
               {% if variantImages %}
                 {% for url in variantImages %}
                   <div class="x-mr-[10px] thumbnail">
