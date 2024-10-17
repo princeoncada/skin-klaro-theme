@@ -1270,6 +1270,10 @@ html {
   border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y) !important;
 }
 
+.x-transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+}
+
 .x-cursor-not-allowed {
   cursor: not-allowed !important;
 }
@@ -1364,10 +1368,6 @@ html {
 
 .x-gap-\[16px\] {
   gap: 16px !important;
-}
-
-.x-gap-\[40px\] {
-  gap: 40px !important;
 }
 
 .x-gap-\[54px\] {
@@ -1806,6 +1806,10 @@ html {
   font-size: 14px !important;
 }
 
+.x-text-\[15px\] {
+  font-size: 15px !important;
+}
+
 .x-text-\[16px\] {
   font-size: 16px !important;
 }
@@ -1838,6 +1842,10 @@ html {
   font-size: 36px !important;
 }
 
+.x-text-\[40px\] {
+  font-size: 40px !important;
+}
+
 .x-text-base {
   font-size: 1rem !important;
   line-height: 1.5rem !important;
@@ -1856,14 +1864,6 @@ html {
 .x-text-xl {
   font-size: 1.25rem !important;
   line-height: 1.75rem !important;
-}
-
-.x-text-\[40px\] {
-  font-size: 40px !important;
-}
-
-.x-text-\[15px\] {
-  font-size: 15px !important;
 }
 
 .x-font-bold {

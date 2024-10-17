@@ -1,0 +1,76 @@
+<div
+class="collapse x-py-[30px] x-px-[16px] md:x-px-[50px] x-mb-[16px] md:x-mb-[0px] lg:x-max-w-[1024px] lg:x-mx-auto">
+<input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
+<div class="x-border-t-[1px] x-border-b-[1px]">
+    <div class="x-flex x-flex-row x-justify-between x-py-[24px] x-items-center">
+        <div class="x-text-[16px]">LIST OF OUR ADAPTOGENS</div>
+        <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
+            <div
+                class="x-absolute x-bg-black x-h-[16px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out">
+            </div>
+            <div class="x-absolute x-bg-black x-w-[16px] x-h-[1px]">
+            </div>
+        </div>
+    </div>
+        <div class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
+            style="height: 0px; margin: 0px 0px; ">
+            <!-- Content for large screens -->
+            <div class="x-hidden md:x-grid x-grid-cols-2 x-gap-x-[5%] x-gap-y-[32px]">
+                <div>Lorem ipsum dolor sit amet consectetur...</div>
+                <div>Lorem ipsum dolor sit amet consectetur...</div>
+                <div>Lorem ipsum dolor sit amet consectetur...</div>
+                <div>Lorem ipsum dolor sit amet consectetur...</div>
+                <div>Lorem ipsum dolor sit amet consectetur...</div>
+                <div>Lorem ipsum dolor sit amet consectetur...</div> 
+            </div>
+            <!-- Flickity Carousel for mobile screens -->
+            <div class="first-i-content-carousel md:x-hidden">
+                <div class="x-min-w-full x-snap-start">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+                </div>
+                <div class="x-min-w-full x-snap-start">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+                </div>
+                <div class="x-min-w-full x-snap-start">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+ $(document).ready(function () {
+    applyCollapse();
+    initializeFlickity();
+});
+
+function applyCollapse() {
+    $('.collapse').on('click', function () {
+        // Find the nearest input checkbox
+        const checkbox = $(this).find('input[type="checkbox"]');
+        // Toggle the checkbox
+        checkbox.prop('checked', !checkbox.prop('checked'));
+
+        // Find the nearest collapse content
+        const content = $(this).find('.collapse-content');
+
+        // Find the nearest collapse sign and get the first child
+        const sign = $(this).find('.collapse-sign').children().first();
+
+        sign.css('transform', checkbox.prop('checked') ? 'rotate(90deg)' : 'rotate(0deg)');
+        content.css('height', checkbox.prop('checked') ? content.prop('scrollHeight') + 'px' : '0px');
+        content.css('margin', checkbox.prop('checked') ? '16px 0px' : '0px 0px');
+    });
+}
+function initializeFlickity(){
+    let flkty = new Flickity('.first-i-content-carousel', {
+        cellAlign: 'left',
+        contain: true,
+        pageDots: true,
+        prevNextButtons: false
+    });
+    }
+
+</script>
+
+

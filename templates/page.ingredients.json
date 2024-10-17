@@ -11,6 +11,7 @@
   "sections": {
     "main": {
       "type": "i-main",
+      // "type": "test-i",
       "settings": {
       }
     }
