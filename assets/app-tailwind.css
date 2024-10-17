@@ -1094,6 +1094,14 @@ html {
   display: none !important;
 }
 
+.x-aspect-auto {
+  aspect-ratio: auto !important;
+}
+
+.x-aspect-square {
+  aspect-ratio: 1 / 1 !important;
+}
+
 .x-h-0 {
   height: 0px !important;
 }
@@ -1581,6 +1589,11 @@ html {
   background-color: rgb(22 163 74 / var(--tw-bg-opacity)) !important;
 }
 
+.x-bg-green-800 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(22 101 52 / var(--tw-bg-opacity)) !important;
+}
+
 .x-bg-green-950 {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(5 46 22 / var(--tw-bg-opacity)) !important;
@@ -2018,6 +2031,14 @@ html {
   --tw-ring-color: rgb(156 163 175 / var(--tw-ring-opacity)) !important;
 }
 
+.x-transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter !important;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 150ms !important;
+}
+
 .x-transition-all {
   transition-property: all !important;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -2099,6 +2120,11 @@ html {
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
 }
 
+.disabled\:x-bg-green-950:disabled {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(5 46 22 / var(--tw-bg-opacity)) !important;
+}
+
 .x-group:hover .group-hover\:x-h-16 {
   height: 4rem !important;
 }
@@ -2147,8 +2173,8 @@ html {
     display: none !important;
   }
 
-  .md\:x-h-\[540px\] {
-    height: 540px !important;
+  .md\:x-h-\[60\%\] {
+    height: 60% !important;
   }
 
   .md\:x-h-\[600px\] {
