@@ -4,11 +4,11 @@
     <div class="carousel-cell">
       <img
         id="mainImage"
-        src="{{ product.media.first.preview_image | image_url: width: 1000, height: 1000 }}"
+        src="{{ product.media.first.preview_image | image_url: width: 1000, height: 800 }}"
         alt="{{ product.title }}"
         class="x-w-full"
         width="1000"
-        height="1000"
+        height="800"
       >
     </div>
   </div>
@@ -21,76 +21,77 @@
         alt="Main Product Image"
         class="x-cursor-pointer x-object-cover x-w-full x-h-full"
         width="1000"
-        height="1000"
+        height="800"
         onclick="changeImage('{{ product.media.first.preview_image | image_url: width: 1000, height: 1000 }}')"
       >
     </div>
   </div>
 </div>
-
-<!-- Variant Selector -->
-<div class="x-w-full x-mb-4 x-mt-6">
-  <div class="x-flex x-gap-4 x-px-[20px] x-justify-start">
-    {% for variant in product.variants %}
-      <button
-        class="variant-button {% if forloop.first %} active {% endif %} x-flex x-items-center x-justify-center x-rounded-full x-w-auto x-h-auto x-border-2"
-        style="border-color: {{ variant.metafields.custom.color_hexcode }};"
-        data-variant-id="{{ variant.id }}"
-        data-main-img="{{ variant.image | image_url: width: 1000 }}"
-        data-img-src="{{ variant.metafields.custom.img_src | replace: '[', '' | replace: ']', '' | replace: '"', '' }}"
-        data-price="{{ variant.price | money }}"
-        data-availability="{{ variant.available }}"
-        onclick="changeVariant(this)"
-      >
-        <span
-          class="inner-circle x-block x-rounded-full x-w-[20px] x-h-[20px]"
-          style="background-color: {{ variant.metafields.custom.color_hexcode }};"
-        ></span>
-      </button>
-    {% endfor %}
+<div class="x-px-[16px]">
+  <!-- Product Title -->
+  <div class="x-w-full x-text-start">
+    <div class="x-text-[25px]">{{ product.title }}</div>
   </div>
-</div>
 
-<!-- Product Title -->
-<div class="x-w-full x-mb-2 x-px-[16px] x-text-start">
-  <h2 class="x-text-5xl x-font-bold">{{ product.title }}</h2>
-</div>
+  <!-- Variant Price -->
+  <div class="x-w-full x-mb-7 x-text-start">
+    <div id="variant-price" class="x-text-[22px]">$0.00</div>
+  </div>
 
-<!-- Variant Price -->
-<div class="x-w-full x-mb-7 x-px-[25px] x-text-start">
-  <p id="variant-price" class="x-text-2xl">$0.00</p>
-</div>
+  <!-- Product Description -->
+  <div class="x-w-full x-mb-4 x-text-justify">
+    <h2 class="x-text-3xl">{{ product.description }}</h2>
+  </div>
 
-<!-- Product Description -->
-<div class="x-w-full x-mb-4 x-px-[16px] x-text-justify">
-  <h2 class="x-text-3xl">{{ product.description }}</h2>
-</div>
+  <!-- Variant Selector -->
+  <div class="x-w-full x-mb-4 x-mt-6">
+    <div class="x-flex x-gap-4 x-justify-start">
+      {% for variant in product.variants %}
+        <button
+          class="variant-button {% if forloop.first %} active {% endif %} x-flex x-items-center x-justify-center x-rounded-full x-w-auto x-h-auto x-border-2"
+          style="border-color: {{ variant.metafields.custom.color_hexcode }};"
+          data-variant-id="{{ variant.id }}"
+          data-main-img="{{ variant.image | image_url: width: 1000 }}"
+          data-img-src="{{ variant.metafields.custom.img_src | replace: '[', '' | replace: ']', '' | replace: '"', '' }}"
+          data-price="{{ variant.price | money }}"
+          data-availability="{{ variant.available }}"
+          onclick="changeVariant(this)"
+        >
+          <span
+            class="inner-circle x-block x-rounded-full x-w-[32px] x-h-[32px]"
+            style="background-color: {{ variant.metafields.custom.color_hexcode }};"
+          ></span>
+        </button>
+      {% endfor %}
+    </div>
+  </div>
 
-<!-- Variant Availability -->
-<div class="x-w-full x-mb-4 x-text-center"><p id="variant-availability" class="x-text-md">Available</p></div>
+  <!-- Variant Availability -->
+  <div class="x-w-full x-mb-4 x-text-center"><p id="variant-availability" class="x-text-md">Available</p></div>
 
-<!-- Quantity Selector -->
-<div class="x-w-full x-mb-4 x-text-center">
-  <button id="decreaseQty" class="x-text-xl x-font-bold x-px-4 x-py-2 x-bg-gray-300 x-rounded">-</button>
-  <input
-    id="quantityInput"
-    type="number"
-    value="1"
-    min="1"
-    class="x-w-12 x-text-center x-border-none x-bg-transparent x-outline-none x-text-black"
-    readonly
-  >
-  <button id="increaseQty" class="x-text-xl x-font-bold x-px-4 x-py-2 x-bg-gray-300 x-rounded">+</button>
-</div>
+  <!-- Quantity Selector -->
+  <div class="x-w-full x-mb-4 x-text-center">
+    <button id="decreaseQty" class="x-text-xl x-font-bold x-px-4 x-py-2 x-bg-gray-300 x-rounded">-</button>
+    <input
+      id="quantityInput"
+      type="number"
+      value="1"
+      min="1"
+      class="x-w-12 x-text-center x-border-none x-bg-transparent x-outline-none x-text-black"
+      readonly
+    >
+    <button id="increaseQty" class="x-text-xl x-font-bold x-px-4 x-py-2 x-bg-gray-300 x-rounded">+</button>
+  </div>
 
-<!-- Checkout Button -->
-<div class="x-w-full x-mb-4 x-text-center">
-  <button
-    id="checkoutButton"
-    class="x-text-xl x-font-bold x-py-2 x-px-4 x-text-black x-border x-border-black x-bg-transparent x-rounded-none"
-  >
-    Checkout
-  </button>
+  <!-- Checkout Button -->
+  <div class="x-w-full x-mb-4 x-text-center">
+    <button
+      id="checkoutButton"
+      class="x-text-xl x-font-bold x-py-2 x-px-4 x-text-black x-border x-border-black x-bg-transparent x-rounded-none"
+    >
+      Checkout
+    </button>
+  </div>
 </div>
 
 <!-- JavaScript for Carousel and Checkout Functionality -->
