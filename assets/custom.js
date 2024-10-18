@@ -35,11 +35,11 @@ fetch('https://aea1f9-3f.myshopify.com/api/2024-10/graphql.json', {
       const productTitle = data.data.product.title;
       const variants = data.data.product.variants.edges;
   
-      console.log(`The product is ${productTitle}, understood?`);
-      console.log(`${productTitle} has variants namely:`);
+    //   console.log(`The product is ${productTitle}, understood?`);
+    //   console.log(`${productTitle} has variants namely:`);
   
       variants.forEach(variant => {
-        console.log(variant.node.title);
+        // console.log(variant.node.title);
   
         const highlightContent = variant.node.metafield ? variant.node.metafield.value : null;
         if (highlightContent) {
@@ -92,7 +92,7 @@ fetch('https://aea1f9-3f.myshopify.com/api/2024-10/graphql.json', {
             }
           });
         } else {
-          console.log(`\nNo highlight content found for variant ${variant.node.title}`);
+          // console.log(`\nNo highlight content found for variant ${variant.node.title}`);
         }
       });
     })

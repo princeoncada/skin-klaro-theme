@@ -1065,6 +1065,10 @@ html {
   margin-bottom: 16px !important;
 }
 
+.x-mb-\[20px\] {
+  margin-bottom: 20px !important;
+}
+
 .x-me-auto {
   margin-inline-end: auto !important;
 }
@@ -1171,10 +1175,6 @@ html {
 
 .x-h-\[0px\] {
   height: 0px !important;
-}
-
-.x-h-\[1000px\] {
-  height: 1000px !important;
 }
 
 .x-h-\[110\%\] {
@@ -1299,6 +1299,10 @@ html {
 
 .x-w-\[1px\] {
   width: 1px !important;
+}
+
+.x-w-\[200px\] {
+  width: 200px !important;
 }
 
 .x-w-\[20px\] {
@@ -1448,6 +1452,10 @@ html {
   flex-wrap: wrap !important;
 }
 
+.x-content-center {
+  align-content: center !important;
+}
+
 .x-items-start {
   align-items: flex-start !important;
 }
@@ -1555,6 +1563,10 @@ html {
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse)) !important;
 }
 
+.x-overflow-auto {
+  overflow: auto !important;
+}
+
 .x-overflow-hidden {
   overflow: hidden !important;
 }
@@ -1573,6 +1585,10 @@ html {
 
 .x-overflow-y-scroll {
   overflow-y: scroll !important;
+}
+
+.x-whitespace-nowrap {
+  white-space: nowrap !important;
 }
 
 .x-rounded {
@@ -2369,6 +2385,10 @@ html {
 
   .md\:x-hidden {
     display: none !important;
+  }
+
+  .md\:x-h-\[300px\] {
+    height: 300px !important;
   }
 
   .md\:x-h-\[600px\] {
