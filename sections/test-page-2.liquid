@@ -1,0 +1,21 @@
+{% assign featured_product = all_products['test-product'] %}
+{% assign featured_product_2 = all_products['test-product-2'] %}
+{% assign featured_product_3 = all_products['test-product-3'] %}
+
+<div class="x-w-full x-h-[1000px] x-flex x-justify-center x-items-center">
+    <div class="resizable">
+        <div class="x-grid x-grid-cols-1 md:x-grid-cols-3 x-row-span-auto x-h-full">
+            {% render 'custom-product-card', product: featured_product %}
+            {% render 'custom-product-card', product: featured_product_2 %}
+            {% render 'custom-product-card', product: featured_product_3 %}
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .resizable {
+        aspect-ratio: 6 / 2;
+        width: 100%;
+    }
+</style>

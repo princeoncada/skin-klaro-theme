@@ -11,7 +11,8 @@
   "sections": {
     "main": {
       // "type": "custom-product-page",
-      "type": "test-page",
+    //   "type": "test-page",
+      "type": "test-page-2",
       "settings": {
       }
     },

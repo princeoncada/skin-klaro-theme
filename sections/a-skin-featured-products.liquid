@@ -19,11 +19,16 @@
         {% assign featured_product_2 = all_products['test-product-2'] %}
         {% assign featured_product_3 = all_products['test-product-3'] %}
         <!-- Include the product-card snippet, passing the featured product -->
-        <div
-            class="x-w-full x-max-w-full md:x-grid x-flex md:x-grid-cols-3 lg:x-grid-cols-5 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
-            {% render 'a-skin-product-card', product: featured_product %}
-            {% render 'a-skin-product-card', product: featured_product_2 %}
-            {% render 'a-skin-product-card', product: featured_product_3 %}
+        <div class="x-w-full md:x-grid x-flex md:x-grid-cols-3 lg:x-grid-cols-5 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
+            <div class="x-w-full x-aspect-square">
+                {% render 'custom-product-card', product: featured_product %}
+            </div>
+            <div class="x-w-full x-aspect-square">
+                {% render 'custom-product-card', product: featured_product_2 %}
+            </div>
+            <div class="x-w-full x-aspect-square">
+                {% render 'custom-product-card', product: featured_product_3 %}
+            </div>
         </div>
     </div>
 </div>
