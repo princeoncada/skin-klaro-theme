@@ -1285,6 +1285,10 @@ html {
   width: 0.5rem !important;
 }
 
+.x-w-\[1440px\] {
+  width: 1440px !important;
+}
+
 .x-w-\[16px\] {
   width: 16px !important;
 }
