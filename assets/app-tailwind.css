@@ -1436,12 +1436,12 @@ html {
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
 }
 
-.x-grid-cols-5 {
-  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-}
-
 .x-grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+.x-grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
 }
 
 .x-grid-rows-3 {
@@ -2462,6 +2462,10 @@ html {
 
   .md\:x-grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+
+  .md\:x-grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
   }
 
   .md\:x-flex-row {

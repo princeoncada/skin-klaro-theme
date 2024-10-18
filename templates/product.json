@@ -10,15 +10,11 @@
 {
   "sections": {
     "main": {
-      "type": "custom-main-product",
-      "settings": {
-      }
+      "type": "custom-main-product"
     },
     "related-products": {
-      // "type": "custom-related-products",
-      "type": "cr-prod",
-      "settings": {
-      }
+      "type": "custom-related-products",
+    //   "type": "cr-prod"
     }
   },
   "order": [
