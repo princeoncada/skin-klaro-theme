@@ -2,8 +2,8 @@
     <div class="product-image x-relative x-h-full x-bg-cover x-bg-center" style="background-image: url({{ product.featured_image | image_url: width: 1000  }});">
         {% if product.has_only_default_variant == false %}
             <div class="variants x-flex x-flex-row x-absolute x-bottom-0 x-w-full x-overflow-y-hidden x-items-center">
-                <button class="back-button x-absolute x-left-[8px] x-text-[24px] x-text-gray-300 hover:x-text-gray-600 x-transition-colors x-duration-300">
-                    <i class='bx bx-x-circle'></i>
+                <button class="back-button x-absolute x-left-[12px] x-text-[24px] x-text-gray-400 hover:x-text-gray-800 x-transition-colors x-duration-300 x-flex x-items-center">
+                    <i class='bx bx-x-circle x-leading-[0px]'></i>
                 </button>
                 <div class="x-flex x-justify-center x-items-center x-w-full" data-flickity='{ "freeScroll": true, "cellAlign": "left" }'>
                     {% for option in product.options %}
@@ -36,7 +36,7 @@
             <i class='bx bx-plus x-text-[24px] x-leading-[0px]'></i>
         </button>
     </div>
-    <a href="#" class="product-details x-flex x-flex-col x-justify-center x-p-[16px] x-border-t-[1px]">
+    <a href="{{ product.url }}" class="product-details x-flex x-flex-col x-justify-center x-p-[16px] x-border-t-[1px]">
         <div>{{ product.title }}</div>
         <div>{{ product.price | money }}</div>
     </a>
@@ -152,7 +152,22 @@
                     }, 2000);
                 },
                 error: function (error) {
-                    console.log(error);
+                    if (error.status === 422) {
+                        let errorMessage = JSON.parse(error.responseText).message;
+                        if (errorMessage.includes("sold out")) {
+                            addButton.html("Sold out!");
+                        }
+
+                        if (errorMessage.includes("You can't add more")) {
+                            addButton.html("Maximum quantity reached!");
+                        }
+                    } else {
+                        addButton.html("Something went wrong...");
+                    }
+
+                    setTimeout(() => {
+                        addButton.removeClass("loading").css("height", "0px").html("Add to cart");
+                    }, 3000);
                 }
             });
         }
@@ -168,14 +183,29 @@
                     quantity: 1 
                 }),
                 success: function (success) {
-                    addButton.html("<i class='bx bx-check x-text-[24px] x-leading-[0px]'></i>");
+                    addButton.html("<i class='bx bx-check x-text-[24px] x-leading-[0px]' style='color:#0e9f0a'></i>");
 
                     setTimeout(() => {
                         addButton.removeClass("loading").html("<i class='bx bx-plus x-text-[24px] x-leading-[0px]'></i>");
                     }, 2000);
                 },
                 error: function (error) {
-                    console.log(error);
+                    if (error.status === 422) {
+                        let errorMessage = JSON.parse(error.responseText).message;
+                        if (errorMessage.includes("sold out")) {
+                            addButton.html("<i class='bx bx-shopping-bag bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909'></i>");
+                        }
+
+                        if (errorMessage.includes("You can't add more")) {
+                            addButton.html("<i class='bx bx-shopping-bag bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909'></i>");
+                        }
+                    } else {
+                        addButton.html("<i class='bx bx-error bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909' ></i>");
+                    }
+
+                    setTimeout(() => {
+                        addButton.removeClass("loading").html("<i class='bx bx-plus x-text-[24px] x-leading-[0px]'></i>");
+                    }, 3000);
                 }
             });
         }

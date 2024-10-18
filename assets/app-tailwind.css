@@ -968,6 +968,10 @@ html {
   top: 0.25rem !important;
 }
 
+.x-left-\[12px\] {
+  left: 12px !important;
+}
+
 .x-z-0 {
   z-index: 0 !important;
 }
@@ -2150,6 +2154,11 @@ html {
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
 }
 
+.x-text-gray-400 {
+  --tw-text-opacity: 1 !important;
+  color: rgb(156 163 175 / var(--tw-text-opacity)) !important;
+}
+
 .x-underline {
   text-decoration-line: underline !important;
 }
@@ -2289,6 +2298,11 @@ html {
 .hover\:x-text-white:hover {
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+}
+
+.hover\:x-text-gray-800:hover {
+  --tw-text-opacity: 1 !important;
+  color: rgb(31 41 55 / var(--tw-text-opacity)) !important;
 }
 
 .disabled\:x-bg-green-950:disabled {
