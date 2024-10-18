@@ -13,8 +13,6 @@
       // "type": "test-page-2",
     //   "type": "test-page",
       "type": "custom-main-product",
-      "settings": {
-      }
     },
     "related-products": {
       "type": "custom-related-products",

@@ -1,0 +1,302 @@
+<div class="product-card x-border-[1px] x-flex x-flex-col x-aspect-square x-min-w-[380px] md:x-w-auto md:x-min-w-fit">
+    <div class="product-image x-relative x-h-full x-bg-cover x-bg-center" style="background-image: url({{ product.featured_image | image_url: width: 1000  }});">
+        {% if product.has_only_default_variant == false %}
+            <div class="variants x-flex x-flex-row x-absolute x-bottom-0 x-w-full x-overflow-y-hidden x-items-center">
+                <button class="back-button x-absolute x-left-[12px] x-text-[24px] x-text-gray-400 hover:x-text-gray-800 x-transition-colors x-duration-300 x-flex x-items-center">
+                    <i class='bx bx-x-circle x-leading-[0px]'></i>
+                </button>
+                <div class="x-flex x-justify-center x-items-center x-w-full" data-flickity='{ "freeScroll": true, "cellAlign": "left" }'>
+                    {% for option in product.options %}
+                        {% case option %}
+                            {% when 'Color' %}
+                                {% for variant in product.variants %}
+                                    <button class="variant-choice color" data-variant-image="{{ variant.featured_image | image_url: width: 1000 }}" data-id="{{ variant.id }}">
+                                        <div style="background-color: {{ variant.metafields.custom.color_hexcode }};">&nbsp;</div>
+                                    </button>
+                                {% endfor %}
+                            {% else %}
+                                {% for variant in product.variants %}
+                                    <button class="variant-choice" data-variant-image="{{ variant.featured_image | image_url: width: 1000 }}" data-id="{{ variant.id }}">{{ variant.title }}</button>
+                                {% endfor %}
+                        {% endcase %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        {% assign only_variant = "none" %}
+        {% if product.has_only_default_variant %} 
+            {% assign only_variant = product.first_available_variant.id %}
+        {% endif %}
+
+        <button class="add-button desktop x-bg-white x-absolute x-bottom-0 x-w-full x-overflow-y-hidden x-hidden md:x-flex x-items-center x-justify-center" data-id="{{ only_variant }}">
+            Add to cart
+        </button>
+        <button class="add-button mobile x-bg-white x-absolute x-bottom-[32px] x-right-[32px] x-w-[48px] x-h-[48px] x-rounded-full x-flex md:x-hidden x-items-center x-justify-center" data-id="{{ only_variant }}">
+            <i class='bx bx-plus x-text-[24px] x-leading-[0px]'></i>
+        </button>
+    </div>
+    <a href="{{ product.url }}" class="product-details x-flex x-flex-col x-justify-center x-p-[16px] x-border-t-[1px]">
+        <div>{{ product.title }}</div>
+        <div>{{ product.price | money }}</div>
+    </a>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        handleAddButtonActions();
+        handleVariantSelection();
+    });
+
+    function handleVariantSelection() {
+        $(".variant-choice").on("mouseenter", function () {
+            const variantImage = $(this).data("variant-image");
+            $(this).closest(".product-image").css("background-image", `url(${variantImage})`);
+        });
+
+        $(".variant-choice").on("click", function () {
+            const variants = $(this).closest(".variants");
+            const addButton = variants.siblings(".add-button.variant-active");
+
+            variants.css("height", "0px");
+            addButton.removeClass("variant-active");
+
+            if (addButton.hasClass("desktop")) {
+                addButton.css("height", "48px");
+            }
+
+            if (addButton.hasClass("mobile")) {
+                addButton.css("opacity", "1").css("z-index", "1");
+            }
+
+            let id = $(this).data("id")
+            handleAddToCart(addButton, id);
+        });
+
+        $(".back-button").on("click", function () {
+            const variants = $(this).parent();
+            const addButton = variants.siblings(".add-button.variant-active");
+
+            variants.css("height", "0px");
+            addButton.removeClass("variant-active");
+
+            if (addButton.hasClass("desktop")) {
+                addButton.css("height", "0px");
+            }
+
+            if (addButton.hasClass("mobile")) {
+                addButton.css("opacity", "1").css("z-index", "1");
+            }
+        });
+    }
+    
+    function handleAddButtonActions() {
+        $(".product-image").on("mouseenter", function () {
+            const addButton = $(this).find(".add-button.desktop");
+
+            if (!addButton.hasClass("variant-active")) {
+                addButton.css("height", "48px");
+            }
+        });
+
+        $(".product-image").on("mouseleave", function () {
+            const addButton = $(this).find(".add-button.desktop");
+
+            if (!addButton.hasClass("loading")) {
+                addButton.css("height", "0px");
+            }
+        });
+
+        $(".add-button.desktop, .add-button.mobile").on("click", function () {
+            const addButton = $(this);
+            const variants = addButton.siblings(".variants");
+
+            // Show variants if they exist, otherwise proceed to add to cart
+            if (variants.length && !addButton.hasClass("loading")) {
+                if (addButton.hasClass("desktop")) {
+                    addButton.addClass("variant-active").css("height", "0px");
+                }
+
+                if (addButton.hasClass("mobile")) {
+                    addButton.addClass("variant-active").css("opacity", "0");
+                    setTimeout(() => {
+                        addButton.css("z-index", "-1");
+                    }, 300);
+                }
+
+                variants.css("height", "64px");
+                return;
+            }
+
+            if (!addButton.hasClass("loading")) {
+                let id = $(this).data("id")
+                handleAddToCart(addButton, id);
+            }
+        });
+    }
+
+    function handleAddToCart(addButton, dataId) {
+        addButton.addClass("loading")
+
+        if (addButton.hasClass("desktop")) {
+            addButton.css("height", "48px").html("<i class='bx bx-loader-alt bx-spin bx-rotate-270'></i>");
+        } 
+
+        if (addButton.hasClass("mobile")) {
+            addButton.html("<i class='bx bx-loader-alt bx-spin bx-rotate-270 x-text-[24px] x-leading-[0px]'></i>");
+        }
+
+        $.ajax({
+            url: '/cart/add.js',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ 
+                id: dataId, 
+                quantity: 1 
+            }),
+            success: function (success) {
+                if (addButton.hasClass("desktop")) {
+                    addButton.html("Added to cart!");
+                }
+
+                if (addButton.hasClass("mobile")) {
+                    addButton.html("<i class='bx bx-check x-text-[24px] x-leading-[0px]' style='color:#0e9f0a'></i>");
+                }
+                setTimeout(() => {
+                    if (addButton.hasClass("desktop")) {
+                        addButton.removeClass("loading").css("height", "0px").html("Add to cart");
+                    }
+
+                    if (addButton.hasClass("mobile")) {
+                        addButton.removeClass("loading").html("<i class='bx bx-plus x-text-[24px] x-leading-[0px]'></i>");
+                    }
+                }, 2000);
+            },
+            error: function (error) {
+                if (error.status === 422) {
+                    let errorMessage = JSON.parse(error.responseText).message;
+                    if (errorMessage.includes("sold out")) {
+                        if (addButton.hasClass("desktop")) {
+                            addButton.html("Sold out!");
+                        }
+
+                        if (addButton.hasClass("mobile")) {
+                            addButton.html("<i class='bx bx-shopping-bag bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909'></i>");
+                        }
+                    if (errorMessage.includes("You can't add more")) {
+                        if (addButton.hasClass("desktop")) {
+                            addButton.html("Maximum quantity reached!");
+                        }
+
+                        if (addButton.hasClass("mobile")) {
+                            addButton.html("<i class='bx bx-shopping-bag bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909'></i>");
+                        }
+                    }
+                    } else {
+                        if (addButton.hasClass("desktop")) {
+                            addButton.html("Something went wrong...");
+                        }
+
+                        if (addButton.hasClass("mobile")) {
+                            addButton.html("<i class='bx bx-error bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909' ></i>");
+                        }
+                    }
+
+                    setTimeout(() => {
+                        if (addButton.hasClass("desktop")) {
+                            addButton.removeClass("loading").css("height", "0px").html("Add to cart");
+                        }
+                        if (addButton.hasClass("mobile")) {
+                            addButton.removeClass("loading").html("<i class='bx bx-plus x-text-[24px] x-leading-[0px]'></i>");
+                        }
+                    }, 3000);
+                }
+            }
+        });
+    }
+</script>
+
+<style>
+    .flickity-viewport {
+        width: 60%;
+    }
+
+    .flickity-prev-next-button {
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+    }
+
+    .flickity-page-dots {
+        display: none;
+    }
+
+    .flickity-prev-next-button.previous {
+        left: 45px;
+    }
+
+    .flickity-prev-next-button.next {
+        right: 45px;
+    }
+
+    .back-button {
+        z-index: 1;
+    }
+    
+    .variant-choice.color div {
+        min-width: 32px;
+        min-height: 32px;
+        border-radius: 50%;
+        opacity: 1 !important;
+        border: 1.5px solid transparent; /* Transparent border */
+    }
+
+    .variant-choice.color {
+        min-width: 38px;
+        min-height: 38px;
+        background-color: transparent;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1.5px solid;
+        border-color: transparent;
+        margin-right: 16px;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    .variant-choice.color:hover {
+        border-color: rgb(59, 59, 59);
+    }
+
+    .variant-choice:not(.color) {
+        border: rgb(43, 65, 25) 0.5px solid;
+        color: rgb(43, 65, 25);
+        padding: 8px 16px;
+        margin-right: 16px;
+        transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+
+    .variant-choice:not(.color):hover {
+        background-color: rgb(43, 65, 25);
+        color: white;
+    }
+
+    .add-button.desktop {
+        height: 0px;
+        transition: height 0.5s ease-in-out;
+        opacity: 0.8;
+    }
+
+    .add-button.mobile {
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .variants {
+        height: 0px;
+        transition: height 0.5s;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+</style>

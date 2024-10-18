@@ -777,8 +777,28 @@
     }
 
     .carousel-main .carousel-cell {
-      height: 100%;
-      width: 100%;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease;
+        color: #fff;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    .carousel-main:not(.is-fullscreen) .carousel-cell {
+        transform: translateX(0) !important;
+    }
+
+    .carousel-main:not(.is-fullscreen) .flickity-slider {
+        transform: none !important;
+    }
+
+    .carousel-cell.is-selected {
+        opacity: 1;
+        z-index: 0;
     }
 
     .thumbnail > .highlight {
@@ -789,9 +809,111 @@
     }
 
     .thumbnail {
-      display: flex;
-      flex-direction: row-reverse;
-      align-items: center;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        scroll-snap-align: start;
+        cursor: pointer;
+    }
+
+    .thumbnail>.image {
+        color: white;
+        max-width: 75px;
+        min-width: 75px;
+        min-height: 75px;
+    }
+
+    .thumbnail>.highlight {
+        background: rgb(63, 63, 63);
+        margin-top: 10px;
+        height: 2px;
+        width: 100%;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .carousel-main .flickity-page-dots {
+        display: none;
+    }
+
+    .carousel-main .flickity-viewport {
+        height: 100% !important;
+        width: 100% !important;
+    }
+
+    .carousel-main .flickity-prev-next-button {
+        display: none;
+    }
+
+    .swatch-input__hidden {
+        display: none;
+    }
+
+    .swatch-variant {
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+        border: 2px solid white;
+        transition: box-shadow 0.2s;
+        cursor: pointer;
+    }
+
+    .text-variant {
+        /* display: inline-block; */
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        color: #333;
+        font-size: 14px;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    input:checked+.text-variant {
+        background-color: #000;
+        color: #fff;
+    }
+
+    input:checked+.swatch-variant {
+        box-shadow: 0 0 0 1px gray;
+    }
+
+    @media (min-width: 990px) {
+        .carousel-main.is-fullscreen .carousel-cell {
+            background-size: contain !important;
+            background-repeat: no-repeat;
+            height: 50% !important;
+            width: 50%;
+        }
+
+        .carousel-main .flickity-viewport {
+            height: 100% !important;
+        }
+    
+        .carousel-main {
+            height: auto;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+        }
+
+        .carousel-main .carousel-cell {
+            height: 100%;
+            width: 100%;
+        }
+
+        .thumbnail>.highlight {
+            margin-top: 0px;
+            margin-right: 10px;
+            height: 50%;
+            width: 2px;
+        }
+
+        .thumbnail {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+        }
     }
   }
 </style>
