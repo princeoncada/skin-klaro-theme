@@ -1049,6 +1049,10 @@ html {
   margin-bottom: 16px !important;
 }
 
+.x-mb-\[20px\] {
+  margin-bottom: 20px !important;
+}
+
 .x-me-auto {
   margin-inline-end: auto !important;
 }
@@ -1109,10 +1113,6 @@ html {
   margin-top: 24px !important;
 }
 
-.x-mb-\[20px\] {
-  margin-bottom: 20px !important;
-}
-
 .x-block {
   display: block !important;
 }
@@ -1159,6 +1159,10 @@ html {
 
 .x-h-\[0px\] {
   height: 0px !important;
+}
+
+.x-h-\[100px\] {
+  height: 100px !important;
 }
 
 .x-h-\[110\%\] {
@@ -1293,6 +1297,10 @@ html {
   width: 96% !important;
 }
 
+.x-w-\[calc\(50\%-16px\)\] {
+  width: calc(50% - 16px) !important;
+}
+
 .x-w-auto {
   width: auto !important;
 }
@@ -1301,8 +1309,16 @@ html {
   width: 100% !important;
 }
 
-.x-w-\[calc\(50\%-16px\)\] {
-  width: calc(50% - 16px) !important;
+.x-w-\[100px\] {
+  width: 100px !important;
+}
+
+.x-w-\[\[calc\(50\%-16px\)\]\] {
+  width: [calc(50% - 16px)] !important;
+}
+
+.x-w-\[200px\] {
+  width: 200px !important;
 }
 
 .x-min-w-\[400px\] {
@@ -1520,6 +1536,10 @@ html {
   --tw-space-y-reverse: 0 !important;
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse))) !important;
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse)) !important;
+}
+
+.x-overflow-auto {
+  overflow: auto !important;
 }
 
 .x-overflow-hidden {
@@ -2311,6 +2331,10 @@ html {
 
   .md\:x-hidden {
     display: none !important;
+  }
+
+  .md\:x-h-\[300px\] {
+    height: 300px !important;
   }
 
   .md\:x-h-\[600px\] {
