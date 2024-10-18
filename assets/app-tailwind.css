@@ -1304,6 +1304,15 @@ html {
 .x-min-w-full {
   min-width: 100% !important;
 }
+
+.x-max-w-\[1200px\] {
+  max-width: 1200px !important;
+}
+
+.x-max-w-\[1440px\] {
+  max-width: 1440px !important;
+}
+
 .x-max-w-full {
   max-width: 100% !important;
 }
@@ -1354,6 +1363,9 @@ html {
   scroll-snap-align: start !important;
 }
 
+.x-scroll-pl-\[16px\] {
+  scroll-padding-left: 16px !important;
+}
 
 .x-grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
@@ -1427,8 +1439,24 @@ html {
   gap: 10px !important;
 }
 
+.x-gap-\[12px\] {
+  gap: 12px !important;
+}
+
 .x-gap-\[16px\] {
   gap: 16px !important;
+}
+
+.x-gap-\[20px\] {
+  gap: 20px !important;
+}
+
+.x-gap-\[24px\] {
+  gap: 24px !important;
+}
+
+.x-gap-\[32px\] {
+  gap: 32px !important;
 }
 
 .x-gap-\[54px\] {
@@ -1742,6 +1770,16 @@ html {
   padding-right: 16px !important;
 }
 
+.x-px-\[20px\] {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.x-px-\[40px\] {
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+}
+
 .x-py-12 {
   padding-top: 3rem !important;
   padding-bottom: 3rem !important;
@@ -2028,6 +2066,16 @@ html {
   color: rgb(37 99 235 / var(--tw-text-opacity)) !important;
 }
 
+.x-text-gray-500 {
+  --tw-text-opacity: 1 !important;
+  color: rgb(107 114 128 / var(--tw-text-opacity)) !important;
+}
+
+.x-text-gray-600 {
+  --tw-text-opacity: 1 !important;
+  color: rgb(75 85 99 / var(--tw-text-opacity)) !important;
+}
+
 .x-text-gray-700 {
   --tw-text-opacity: 1 !important;
   color: rgb(55 65 81 / var(--tw-text-opacity)) !important;
@@ -2055,6 +2103,17 @@ html {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color) !important;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+}
+
+.x-shadow-none {
+  --tw-shadow: 0 0 #0000 !important;
+  --tw-shadow-colored: 0 0 #0000 !important;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+}
+
+.x-outline-none {
+  outline: 2px solid transparent !important;
+  outline-offset: 2px !important;
 }
 
 .x-ring-1 {
@@ -2242,6 +2301,22 @@ html {
     width: 50% !important;
   }
 
+  .md\:x-w-1\/6 {
+    width: 16.666667% !important;
+  }
+
+  .md\:x-w-2\/3 {
+    width: 66.666667% !important;
+  }
+
+  .md\:x-w-\[100\%\] {
+    width: 100% !important;
+  }
+
+  .md\:x-w-\[420px\] {
+    width: 420px !important;
+  }
+
   .md\:x-w-\[570px\] {
     width: 570px !important;
   }
@@ -2377,6 +2452,14 @@ html {
     padding-bottom: 75px !important;
   }
 
+  .md\:x-pt-\[90px\] {
+    padding-top: 90px !important;
+  }
+
+  .md\:x-text-\[14px\] {
+    font-size: 14px !important;
+  }
+
   .md\:x-text-\[16px\] {
     font-size: 16px !important;
   }
@@ -2477,12 +2560,12 @@ html {
     grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
   }
 
-  .lg\:x-gap-\[80px\] {
-    gap: 80px !important;
-  }
-
   .lg\:x-gap-\[32px\] {
     gap: 32px !important;
+  }
+
+  .lg\:x-gap-\[80px\] {
+    gap: 80px !important;
   }
 
   .lg\:x-p-\[0px\] {
