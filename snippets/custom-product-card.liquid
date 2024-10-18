@@ -43,172 +43,177 @@
 </div>
 
 <script>
-    $(".variant-choice").on("mouseenter", function () {
-        const variantImage = $(this).data("variant-image");
-        $(this).closest(".product-image").css("background-image", `url(${variantImage})`);
+
+    $(document).ready(function () {
+        handleAddButtonActions();
+        handleVariantSelection();
     });
 
-    // Handle mouse events on product images
-    $(".product-image").on("mouseenter", function () {
-        const addButton = $(this).find(".add-button.desktop");
+    function handleVariantSelection() {
+        $(".variant-choice").on("mouseenter", function () {
+            const variantImage = $(this).data("variant-image");
+            $(this).closest(".product-image").css("background-image", `url(${variantImage})`);
+        });
 
-        if (!addButton.hasClass("variant-active")) {
-            addButton.css("height", "48px");
-        }
-    });
+        $(".variant-choice").on("click", function () {
+            const variants = $(this).closest(".variants");
+            const addButton = variants.siblings(".add-button.variant-active");
 
-    $(".product-image").on("mouseleave", function () {
-        const addButton = $(this).find(".add-button.desktop");
+            variants.css("height", "0px");
+            addButton.removeClass("variant-active");
 
-        if (!addButton.hasClass("loading")) {
-            addButton.css("height", "0px");
-        }
-    });
-
-    // Handle add button click
-    $(".add-button.desktop, .add-button.mobile").on("click", function () {
-        const addButton = $(this);
-        const variants = addButton.siblings(".variants");
-
-        // Show variants if they exist, otherwise proceed to add to cart
-        if (variants.length && !addButton.hasClass("loading")) {
             if (addButton.hasClass("desktop")) {
-                addButton.addClass("variant-active").css("height", "0px");
+                addButton.css("height", "48px");
             }
 
             if (addButton.hasClass("mobile")) {
-                addButton.addClass("variant-active").css("opacity", "0");
-                setTimeout(() => {
-                    addButton.css("z-index", "-1");
-                }, 300);
-
+                addButton.css("opacity", "1").css("z-index", "1");
             }
 
-            variants.css("height", "64px");
-            return;
-        }
-
-        if (!addButton.hasClass("loading")) {
             let id = $(this).data("id")
             handleAddToCart(addButton, id);
-        }
-    });
+        });
 
-    // Handle back button click
-    $(".back-button").on("click", function () {
-        const variants = $(this).parent();
-        const addButton = variants.siblings(".add-button.variant-active");
+        $(".back-button").on("click", function () {
+            const variants = $(this).parent();
+            const addButton = variants.siblings(".add-button.variant-active");
 
-        variants.css("height", "0px");
-        addButton.removeClass("variant-active");
+            variants.css("height", "0px");
+            addButton.removeClass("variant-active");
 
-        if (addButton.hasClass("desktop")) {
-            addButton.css("height", "0px");
-        }
+            if (addButton.hasClass("desktop")) {
+                addButton.css("height", "0px");
+            }
 
-        if (addButton.hasClass("mobile")) {
-            addButton.css("opacity", "1").css("z-index", "1");
-        }
-    });
+            if (addButton.hasClass("mobile")) {
+                addButton.css("opacity", "1").css("z-index", "1");
+            }
+        });
+    }
+    
+    function handleAddButtonActions() {
+        $(".product-image").on("mouseenter", function () {
+            const addButton = $(this).find(".add-button.desktop");
 
-    // Handle variant choice click
-    $(".variant-choice").on("click", function () {
-        const variants = $(this).closest(".variants");
-        const addButton = variants.siblings(".add-button.variant-active");
+            if (!addButton.hasClass("variant-active")) {
+                addButton.css("height", "48px");
+            }
+        });
 
-        variants.css("height", "0px");
-        addButton.removeClass("variant-active");
+        $(".product-image").on("mouseleave", function () {
+            const addButton = $(this).find(".add-button.desktop");
 
-        if (addButton.hasClass("desktop")) {
-            addButton.css("height", "48px");
-        }
+            if (!addButton.hasClass("loading")) {
+                addButton.css("height", "0px");
+            }
+        });
 
-        if (addButton.hasClass("mobile")) {
-            addButton.css("opacity", "1").css("z-index", "1");
-        }
+        $(".add-button.desktop, .add-button.mobile").on("click", function () {
+            const addButton = $(this);
+            const variants = addButton.siblings(".variants");
 
-        let id = $(this).data("id")
-        handleAddToCart(addButton, id);
-    });
+            // Show variants if they exist, otherwise proceed to add to cart
+            if (variants.length && !addButton.hasClass("loading")) {
+                if (addButton.hasClass("desktop")) {
+                    addButton.addClass("variant-active").css("height", "0px");
+                }
 
-    // Function to handle add to cart logic
+                if (addButton.hasClass("mobile")) {
+                    addButton.addClass("variant-active").css("opacity", "0");
+                    setTimeout(() => {
+                        addButton.css("z-index", "-1");
+                    }, 300);
+                }
+
+                variants.css("height", "64px");
+                return;
+            }
+
+            if (!addButton.hasClass("loading")) {
+                let id = $(this).data("id")
+                handleAddToCart(addButton, id);
+            }
+        });
+    }
+
     function handleAddToCart(addButton, dataId) {
         addButton.addClass("loading")
+
         if (addButton.hasClass("desktop")) {
             addButton.css("height", "48px").html("<i class='bx bx-loader-alt bx-spin bx-rotate-270'></i>");
-            $.ajax({
-                url: '/cart/add.js',
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ 
-                    id: dataId, 
-                    quantity: 1 
-                }),
-                success: function (success) {
-                    addButton.html("Added to cart!");
-
-                    setTimeout(() => {
-                        addButton.removeClass("loading").css("height", "0px").html("Add to cart");
-                    }, 2000);
-                },
-                error: function (error) {
-                    if (error.status === 422) {
-                        let errorMessage = JSON.parse(error.responseText).message;
-                        if (errorMessage.includes("sold out")) {
-                            addButton.html("Sold out!");
-                        }
-
-                        if (errorMessage.includes("You can't add more")) {
-                            addButton.html("Maximum quantity reached!");
-                        }
-                    } else {
-                        addButton.html("Something went wrong...");
-                    }
-
-                    setTimeout(() => {
-                        addButton.removeClass("loading").css("height", "0px").html("Add to cart");
-                    }, 3000);
-                }
-            });
-        }
+        } 
 
         if (addButton.hasClass("mobile")) {
             addButton.html("<i class='bx bx-loader-alt bx-spin bx-rotate-270 x-text-[24px] x-leading-[0px]'></i>");
-            $.ajax({
-                url: '/cart/add.js',
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ 
-                    id: dataId, 
-                    quantity: 1 
-                }),
-                success: function (success) {
+        }
+
+        $.ajax({
+            url: '/cart/add.js',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ 
+                id: dataId, 
+                quantity: 1 
+            }),
+            success: function (success) {
+                if (addButton.hasClass("desktop")) {
+                    addButton.html("Added to cart!");
+                }
+
+                if (addButton.hasClass("mobile")) {
                     addButton.html("<i class='bx bx-check x-text-[24px] x-leading-[0px]' style='color:#0e9f0a'></i>");
+                }
+                setTimeout(() => {
+                    if (addButton.hasClass("desktop")) {
+                        addButton.removeClass("loading").css("height", "0px").html("Add to cart");
+                    }
 
-                    setTimeout(() => {
+                    if (addButton.hasClass("mobile")) {
                         addButton.removeClass("loading").html("<i class='bx bx-plus x-text-[24px] x-leading-[0px]'></i>");
-                    }, 2000);
-                },
-                error: function (error) {
-                    if (error.status === 422) {
-                        let errorMessage = JSON.parse(error.responseText).message;
-                        if (errorMessage.includes("sold out")) {
-                            addButton.html("<i class='bx bx-shopping-bag bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909'></i>");
+                    }
+                }, 2000);
+            },
+            error: function (error) {
+                if (error.status === 422) {
+                    let errorMessage = JSON.parse(error.responseText).message;
+                    if (errorMessage.includes("sold out")) {
+                        if (addButton.hasClass("desktop")) {
+                            addButton.html("Sold out!");
                         }
 
-                        if (errorMessage.includes("You can't add more")) {
+                        if (addButton.hasClass("mobile")) {
                             addButton.html("<i class='bx bx-shopping-bag bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909'></i>");
                         }
+                    if (errorMessage.includes("You can't add more")) {
+                        if (addButton.hasClass("desktop")) {
+                            addButton.html("Maximum quantity reached!");
+                        }
+
+                        if (addButton.hasClass("mobile")) {
+                            addButton.html("<i class='bx bx-shopping-bag bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909'></i>");
+                        }
+                    }
                     } else {
-                        addButton.html("<i class='bx bx-error bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909' ></i>");
+                        if (addButton.hasClass("desktop")) {
+                            addButton.html("Something went wrong...");
+                        }
+
+                        if (addButton.hasClass("mobile")) {
+                            addButton.html("<i class='bx bx-error bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909' ></i>");
+                        }
                     }
 
                     setTimeout(() => {
-                        addButton.removeClass("loading").html("<i class='bx bx-plus x-text-[24px] x-leading-[0px]'></i>");
+                        if (addButton.hasClass("desktop")) {
+                            addButton.removeClass("loading").css("height", "0px").html("Add to cart");
+                        }
+                        if (addButton.hasClass("mobile")) {
+                            addButton.removeClass("loading").html("<i class='bx bx-plus x-text-[24px] x-leading-[0px]'></i>");
+                        }
                     }, 3000);
                 }
-            });
-        }
+            }
+        });
     }
 </script>
 

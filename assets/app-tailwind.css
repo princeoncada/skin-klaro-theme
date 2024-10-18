@@ -948,6 +948,10 @@ html {
   left: 1rem !important;
 }
 
+.x-left-\[12px\] {
+  left: 12px !important;
+}
+
 .x-left-\[8px\] {
   left: 8px !important;
 }
@@ -966,10 +970,6 @@ html {
 
 .x-top-1 {
   top: 0.25rem !important;
-}
-
-.x-left-\[12px\] {
-  left: 12px !important;
 }
 
 .x-z-0 {
@@ -2129,6 +2129,11 @@ html {
   color: rgb(209 213 219 / var(--tw-text-opacity)) !important;
 }
 
+.x-text-gray-400 {
+  --tw-text-opacity: 1 !important;
+  color: rgb(156 163 175 / var(--tw-text-opacity)) !important;
+}
+
 .x-text-gray-500 {
   --tw-text-opacity: 1 !important;
   color: rgb(107 114 128 / var(--tw-text-opacity)) !important;
@@ -2152,11 +2157,6 @@ html {
 .x-text-white {
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
-}
-
-.x-text-gray-400 {
-  --tw-text-opacity: 1 !important;
-  color: rgb(156 163 175 / var(--tw-text-opacity)) !important;
 }
 
 .x-underline {
@@ -2295,14 +2295,14 @@ html {
   color: rgb(75 85 99 / var(--tw-text-opacity)) !important;
 }
 
-.hover\:x-text-white:hover {
-  --tw-text-opacity: 1 !important;
-  color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
-}
-
 .hover\:x-text-gray-800:hover {
   --tw-text-opacity: 1 !important;
   color: rgb(31 41 55 / var(--tw-text-opacity)) !important;
+}
+
+.hover\:x-text-white:hover {
+  --tw-text-opacity: 1 !important;
+  color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
 }
 
 .disabled\:x-bg-green-950:disabled {
