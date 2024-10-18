@@ -10,18 +10,14 @@
 {
   "sections": {
     "main": {
-      "type": "custom-main-product",
+      "type": "main-page",
       "settings": {
-      }
-    },
-    "related-products": {
-      "type": "custom-related-products",
-      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
       }
     }
   },
   "order": [
-    "main",
-    "related-products"
+    "main"
   ]
 }
