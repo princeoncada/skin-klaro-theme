@@ -92,7 +92,7 @@ fetch('https://aea1f9-3f.myshopify.com/api/2024-10/graphql.json', {
             }
           });
         } else {
-          console.log(`\nNo highlight content found for variant ${variant.node.title}`);
+          // console.log(`\nNo highlight content found for variant ${variant.node.title}`);
         }
       });
     })
