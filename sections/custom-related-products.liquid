@@ -35,7 +35,7 @@
         let productHandles = getRecentlyViewedProducts();
         if (productHandles.length === 0) return;
         productHandles.slice(0, 4).forEach(productHandle => {
-            appendRecentProduct(productHandle);
+            retrieveAndAppendRecentProduct(productHandle);
         });
     }
 
@@ -313,5 +313,13 @@
     .tab-button.current {
         border-color: #757575;
         color: inherit;
+    }
+
+    .product-recommendations {
+        height: auto;
+    }
+
+    .product-recents {
+        height: 0px;
     }
 </style>
