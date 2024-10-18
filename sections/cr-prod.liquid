@@ -1,4 +1,4 @@
-<div class="test" id="dynamic-product-section"></div>
+<div class="test" id="dynamic-product-section">.</div>
 <section class="tabs-section x-py-[32px] md:x-py-[40px]">
   <div class="x-max-w-[1440px] x-mx-auto md:x-px-[50px]">
     <!-- Tab Headers -->
@@ -31,17 +31,14 @@
     handleTabSwitch();
     addRecentlyViewedProduct('{{ product.handle }}');
     loadShopifyRecommendations();
-    // Example usage
-    console.log(loadSnippet('test-product'));
+    loadProductSnippet('{{ product.handle }}');
   });
 
-  function loadSnippet(productHandle) {
-    // Fetch the rendered snippet using the product handle
-    console.log('Loading snippet for product handle:', productHandle);
-    fetch(`/pages/load-snippet?product_handle=${productHandle}`)
+  function loadProductSnippet(productHandle) {
+    console.log('Loading snippet for product:', productHandle);
+    fetch(`/pages/load-snippet?product_handle=${encodeURIComponent(productHandle)}`)
       .then((response) => response.text())
       .then((html) => {
-        // Insert the rendered HTML into your desired section
         document.getElementById('dynamic-product-section').innerHTML = html;
       })
       .catch((error) => console.error('Error loading snippet:', error));

@@ -1,10 +1,16 @@
+<!-- templates/page.load-snippet.liquid -->
 {% assign product_handle = request.query.product_handle %}
-<p>Loading snippet for product handle: {{ product_handle }}</p>
 {% assign product = all_products[product_handle] %}
 
 {% if product %}
-  <p>Product found: {{ product.title }}</p>
+  <!-- Testing basic output to check if product is resolving correctly -->
+  <div>
+    <p>Product found: {{ product.title }}</p>
+    <p>Price: {{ product.price | money }}</p>
+  </div>
+
+  <!-- Use the same card snippet with careful checks -->
   {% render 'custom-product-card', product: product %}
 {% else %}
-  <p>Product not found. Check the product handle or if the product exists in your store.</p>
+  <p>Product not found</p>
 {% endif %}
