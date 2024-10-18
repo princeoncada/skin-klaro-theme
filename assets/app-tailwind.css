@@ -1363,9 +1363,6 @@ html {
   scroll-snap-align: start !important;
 }
 
-.x-scroll-pl-\[16px\] {
-  scroll-padding-left: 16px !important;
-}
 
 .x-grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
@@ -1397,6 +1394,10 @@ html {
 
 .x-flex-col {
   flex-direction: column !important;
+}
+
+.x-flex-wrap {
+  flex-wrap: wrap !important;
 }
 
 .x-items-start {

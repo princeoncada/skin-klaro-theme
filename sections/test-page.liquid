@@ -120,9 +120,8 @@
                     </div>
                 </div>
                 <div class="x-flex x-flex-col x-gap-[20px]">
-
                     {% if product.has_only_default_variant == false %}
-                        <div class="x-flex x-flex-row x-gap-[16px]">
+                        <div class="x-flex x-flex-row x-flex-wrap x-gap-[16px]">
                             {% for variant in product.variants %}
                                 {% assign main_image = variant.featured_image | image_url: width: '1000', height: '1000' | append: ", " %}
                                 {% assign thumbnails = variant.metafields.custom.img_src.value | join: ", " %}
@@ -132,8 +131,12 @@
                                         data-available="{{ variant.available }}"
                                         data-thumbnails="{{ main_image | append: thumbnails }}" value="{{ variant.id }}" {% if
                                         product.selected_or_first_available_variant.id == variant.id %} checked {% endif %} />
+                                    {% if variant.metafields.custom.color_hexcode %}
                                     <div class="swatch-variant"
                                         style="background-color: {{ variant.metafields.custom.color_hexcode }}">&nbsp;</div>
+                                        {% else %}
+                                        <span class="text-variant x-text-[10px] x-uppercase">{{ variant.title }}</span>
+                                    {% endif %}
                                 </label>
                             {% endfor %}
                         </div>
@@ -512,6 +515,7 @@
 
             let description = $(this).data('description');
             handleVariantDescription(description);
+            console.log('description:',description);
         })
     }
 
@@ -659,6 +663,23 @@
         border: 2px solid white;
         transition: box-shadow 0.2s;
         cursor: pointer;
+    }
+
+    .text-variant {
+        /* display: inline-block; */
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        color: #333;
+        font-size: 14px;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    input:checked+.text-variant {
+        background-color: #000;
+        color: #fff;
     }
 
     input:checked+.swatch-variant {
