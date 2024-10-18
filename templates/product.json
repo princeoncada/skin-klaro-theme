@@ -15,7 +15,9 @@
       }
     },
     "related-products": {
-      "type": "custom-related-products",
+      // "type": "custom-related-products",
+      "type": "cr-prod",
+
       "settings": {
       }
     }
