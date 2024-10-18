@@ -6,10 +6,11 @@
             </div>
         </div>
         <div class="">
-            <div
-                class="x-flex x-flex-col md:x-grid md:x-grid-cols-3">
+            <div class="x-flex x-flex-col md:x-grid md:x-grid-cols-3">
                 {% for product in collections["sets"].products %}
-                    {% render 'a-skin-product-card', product: product %}
+                    <div class="x-w-full x-aspect-square">
+                        {% render 'custom-product-card', product: product %}
+                    </div>
                 {% endfor %}
             </div>
             

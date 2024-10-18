@@ -10,10 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "i-main",
-      // "type": "test-i",
-      "settings": {
-      }
+      "type": "s-ship-faqs",
     }
   },
   "order": [

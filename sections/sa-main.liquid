@@ -53,7 +53,9 @@
             <div
                 class="x-flex x-flex-col md:x-grid md:x-grid-cols-3">
                 {% for product in collections["all-products"].products %}
-                    {% render 'a-skin-product-card', product: product %}
+                    <div class="x-w-full x-aspect-square">
+                        {% render 'custom-product-card', product: product %}
+                    </div>
                 {% endfor %}
             </div>
             

@@ -6,8 +6,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
+    <script src="{{ 'custom.js' | asset_url }}" defer></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.css">
+    {% comment %} {{ 'flickity.css' | asset_url | stylesheet_tag }} {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="https://unpkg.com/flickity-fullscreen@2/fullscreen.css"> {% endcomment %}
+    {{ 'fullscreen.css' | asset_url | stylesheet_tag }}
+    {{ 'flickity-fade.css' | asset_url | stylesheet_tag }}
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -307,7 +313,15 @@
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.js"></script>
+    {% comment %} <script src="{{ 'flickity.pkgd.js' | asset_url }}" defer></script> {% endcomment %}
+    <script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script>
+    {% comment %} <script src="https://unpkg.com/flickity-fullscreen@2/fullscreen.js"></script> {% endcomment %}
+    {% comment %} <script src="{{ 'fullscreen.js' | asset_url }}" defer></script> {% endcomment %}
+    <script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
+    {% comment %} <script src="{{ 'flickity-fade.js' | asset_url }}" defer></script> {% endcomment %}
 
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
@@ -323,7 +337,8 @@
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    {% comment %} {% sections 'footer-group' %} {% endcomment %}
+    {% section 'custom-footer' %}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>

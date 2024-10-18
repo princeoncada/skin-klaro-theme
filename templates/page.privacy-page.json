@@ -10,13 +10,10 @@
 {
   "sections": {
     "main": {
-      "type": "i-main",
-      // "type": "test-i",
-      "settings": {
-      }
+      "type": "p-privacy",
     }
   },
   "order": [
-    "main"
+      "main"
   ]
 }
