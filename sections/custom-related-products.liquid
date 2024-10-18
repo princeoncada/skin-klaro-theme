@@ -2,38 +2,31 @@
     <div class="x-max-w-[1440px] x-mx-auto md:x-px-[50px]">
         <!-- Tab Headers -->
         <div class="tabs x-flex x-flex-row x-gap-[32px] x-justify-center">
-            <button class="tab-button current x-text-[16px]" data-tab="related-products" checked>Related Products</button>
-            <button class="tab-button x-text-[16px]" data-tab="recently-viewed">Recently Viewed</button>
+            <button class="tab-button related current x-text-[16px]" checked>Related Products</button>
+            <button class="tab-button recent x-text-[16px]">Recently Viewed</button>
         </div>
-        <!-- Tab Content -->
-        <div class="tab-content x-flex x-overflow-auto">
             <!-- Related Products -->
-            <div class="tab-pane active" id="related-products">
-                <!-- Shopify Recommendations -->
-                <div class="product-recommendations"
-                    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related">
-                    {%- if recommendations.performed and recommendations.products_count > 0 -%}
-                        <div class="x-w-full md:x-grid x-flex md:x-grid-cols-3 lg:x-grid-cols-5 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
-                            {%- for product in recommendations.products -%}
-
-                            {%- endfor -%}
+            <div class="product-recommendations x-w-full md:x-grid x-flex md:x-grid-cols-4 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar"
+                data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related">
+                {%- if recommendations.performed and recommendations.products_count > 0 -%}
+                    {%- for recommended_product in recommendations.products -%}
+                        <div class="x-w-full x-aspect-square x-snap-start">
+                            {% render 'custom-product-card', product: recommended_product %}
                         </div>
-                    {%- endif -%}
-                </div>
+                    {%- endfor -%}
+                {%- endif -%}
             </div>
             <!-- Recently Viewed -->
-            <div class="tab-pane x-hidden" id="recently-viewed">
-                <div class="x-flex x-flex-row x-flex-wrap x-gap-[16px]" id="recently-viewed-products"></div>
+            <div class="product-recents x-w-full md:x-grid x-flex md:x-grid-cols-4 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
+
             </div>
         </div>
-    </div>
 </section>
 
 
 <script>
     $(document).ready(function () {
         handleTabSwitch();
-        console.log(getRecentlyViewedProducts());
         addRecentlyViewedProduct("{{ product.handle }}");
         loadShopifyRecommendations();
     });
@@ -42,6 +35,16 @@
         $('.tab-button').click(function () {
             $('.tab-button').removeClass('current');
             $(this).addClass('current');
+
+            if ($(this).hasClass("related")) {
+                $(".product-recents").css("height", "0px");
+                $(".product-recommendations").css("height", "auto");
+            }
+
+            if ($(this).hasClass("recent")) {
+                $(".product-recommendations").css("height", "0px");
+                $(".product-recents").css("height", "auto");
+            }
         });
     }
 
@@ -63,6 +66,8 @@
                 } else {
                     productRecommendationsSection.style.display = 'none'; // Hide if no recommendations found
                 }
+
+                reInitializeCardFunctions();
             })
             .catch((e) => {
                 console.error('Error loading related products:', e);
@@ -71,9 +76,7 @@
 
     function displayRecentlyViewedProducts() {
         let viewedProducts = getRecentlyViewedProducts();
-
         if (viewedProducts.length === 0) return;
-
         $('#recently-viewed').empty();
 
         viewedProducts.forEach(function (productHandle) {
@@ -116,6 +119,186 @@
         }
         viewedProducts.unshift(productHandle);
         Cookies.set('recently_viewed_products', JSON.stringify(viewedProducts), { expires: 30, path: '/' });
+    }
+
+    function reInitializeCardFunctions() {
+        handleAddButtonActions();
+        handleVariantSelection();
+        initializeCarousel();
+
+        function initializeCarousel() {
+            $(".carousel").flickity({
+                cellAlign: 'left',
+                freeScroll: true,
+            });
+        }
+
+        function handleVariantSelection() {
+            $(".variant-choice").on("mouseenter", function () {
+                const variantImage = $(this).data("variant-image");
+                $(this).closest(".product-image").css("background-image", `url(${variantImage})`);
+            });
+
+            $(".variant-choice").on("click", function () {
+                const variants = $(this).closest(".variants");
+                const addButton = variants.siblings(".add-button.variant-active");
+
+                variants.css("height", "0px");
+                addButton.removeClass("variant-active");
+
+                if (addButton.hasClass("desktop")) {
+                    addButton.css("height", "48px");
+                }
+
+                if (addButton.hasClass("mobile")) {
+                    addButton.css("opacity", "1").css("z-index", "1");
+                }
+
+                let id = $(this).data("id")
+                handleAddToCart(addButton, id);
+            });
+
+            $(".back-button").on("click", function () {
+                const variants = $(this).parent();
+                const addButton = variants.siblings(".add-button.variant-active");
+
+                variants.css("height", "0px");
+                addButton.removeClass("variant-active");
+
+                if (addButton.hasClass("desktop")) {
+                    addButton.css("height", "0px");
+                }
+
+                if (addButton.hasClass("mobile")) {
+                    addButton.css("opacity", "1").css("z-index", "1");
+                }
+            });
+        }
+        
+        function handleAddButtonActions() {
+            $(".product-image").on("mouseenter", function () {
+                const addButton = $(this).find(".add-button.desktop");
+
+                if (!addButton.hasClass("variant-active")) {
+                    addButton.css("height", "48px");
+                }
+            });
+
+            $(".product-image").on("mouseleave", function () {
+                const addButton = $(this).find(".add-button.desktop");
+
+                if (!addButton.hasClass("loading")) {
+                    addButton.css("height", "0px");
+                }
+            });
+
+            $(".add-button.desktop, .add-button.mobile").on("click", function () {
+                const addButton = $(this);
+                const variants = addButton.siblings(".variants");
+
+                // Show variants if they exist, otherwise proceed to add to cart
+                if (variants.length && !addButton.hasClass("loading")) {
+                    if (addButton.hasClass("desktop")) {
+                        addButton.addClass("variant-active").css("height", "0px");
+                    }
+
+                    if (addButton.hasClass("mobile")) {
+                        addButton.addClass("variant-active").css("opacity", "0");
+                        setTimeout(() => {
+                            addButton.css("z-index", "-1");
+                        }, 300);
+                    }
+
+                    variants.css("height", "64px");
+                    return;
+                }
+
+                if (!addButton.hasClass("loading")) {
+                    let id = $(this).data("id")
+                    handleAddToCart(addButton, id);
+                }
+            });
+        }
+
+        function handleAddToCart(addButton, dataId) {
+            addButton.addClass("loading")
+
+            if (addButton.hasClass("desktop")) {
+                addButton.css("height", "48px").html("<i class='bx bx-loader-alt bx-spin bx-rotate-270'></i>");
+            } 
+
+            if (addButton.hasClass("mobile")) {
+                addButton.html("<i class='bx bx-loader-alt bx-spin bx-rotate-270 x-text-[24px] x-leading-[0px]'></i>");
+            }
+
+            $.ajax({
+                url: '/cart/add.js',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ 
+                    id: dataId, 
+                    quantity: 1 
+                }),
+                success: function (success) {
+                    if (addButton.hasClass("desktop")) {
+                        addButton.html("Added to cart!");
+                    }
+
+                    if (addButton.hasClass("mobile")) {
+                        addButton.html("<i class='bx bx-check x-text-[24px] x-leading-[0px]' style='color:#0e9f0a'></i>");
+                    }
+                    setTimeout(() => {
+                        if (addButton.hasClass("desktop")) {
+                            addButton.removeClass("loading").css("height", "0px").html("Add to cart");
+                        }
+
+                        if (addButton.hasClass("mobile")) {
+                            addButton.removeClass("loading").html("<i class='bx bx-plus x-text-[24px] x-leading-[0px]'></i>");
+                        }
+                    }, 2000);
+                },
+                error: function (error) {
+                    if (error.status === 422) {
+                        let errorMessage = JSON.parse(error.responseText).message;
+                        if (errorMessage.includes("sold out")) {
+                            if (addButton.hasClass("desktop")) {
+                                addButton.html("Sold out!");
+                            }
+
+                            if (addButton.hasClass("mobile")) {
+                                addButton.html("<i class='bx bx-shopping-bag bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909'></i>");
+                            }
+                        if (errorMessage.includes("You can't add more")) {
+                            if (addButton.hasClass("desktop")) {
+                                addButton.html("Maximum quantity reached!");
+                            }
+
+                            if (addButton.hasClass("mobile")) {
+                                addButton.html("<i class='bx bx-shopping-bag bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909'></i>");
+                            }
+                        }
+                        } else {
+                            if (addButton.hasClass("desktop")) {
+                                addButton.html("Something went wrong...");
+                            }
+
+                            if (addButton.hasClass("mobile")) {
+                                addButton.html("<i class='bx bx-error bx-flashing x-text-[24px] x-leading-[0px]' style='color:#f50909' ></i>");
+                            }
+                        }
+
+                        setTimeout(() => {
+                            if (addButton.hasClass("desktop")) {
+                                addButton.removeClass("loading").css("height", "0px").html("Add to cart");
+                            }
+                            if (addButton.hasClass("mobile")) {
+                                addButton.removeClass("loading").html("<i class='bx bx-plus x-text-[24px] x-leading-[0px]'></i>");
+                            }
+                        }, 3000);
+                    }
+                }
+            });
+        }
     }
 </script>
 

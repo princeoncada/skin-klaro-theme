@@ -1177,6 +1177,10 @@ html {
   height: 0px !important;
 }
 
+.x-h-\[100px\] {
+  height: 100px !important;
+}
+
 .x-h-\[110\%\] {
   height: 110% !important;
 }
@@ -1416,6 +1420,10 @@ html {
   scroll-padding-left: 16px !important;
 }
 
+.x-list-disc {
+  list-style-type: disc !important;
+}
+
 .x-grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
 }
@@ -1426,6 +1434,10 @@ html {
 
 .x-grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.x-grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
 }
 
 .x-grid-cols-5 {
@@ -2446,6 +2458,10 @@ html {
 
   .md\:x-grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .md\:x-grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
 
   .md\:x-flex-row {

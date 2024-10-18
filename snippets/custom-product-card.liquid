@@ -5,7 +5,7 @@
                 <button class="back-button x-absolute x-left-[12px] x-text-[24px] x-text-gray-400 hover:x-text-gray-800 x-transition-colors x-duration-300 x-flex x-items-center">
                     <i class='bx bx-x-circle x-leading-[0px]'></i>
                 </button>
-                <div class="x-flex x-justify-center x-items-center x-w-full" data-flickity='{ "freeScroll": true, "cellAlign": "left" }'>
+                <div class="carousel x-flex x-justify-center x-items-center x-w-full">
                     {% for option in product.options %}
                         {% case option %}
                             {% when 'Color' %}
@@ -43,11 +43,18 @@
 </div>
 
 <script>
-
     $(document).ready(function () {
         handleAddButtonActions();
         handleVariantSelection();
+        initializeCarousel();
     });
+
+    function initializeCarousel() {
+        $(".carousel").flickity({
+            cellAlign: 'left',
+            freeScroll: true,
+        });
+    }
 
     function handleVariantSelection() {
         $(".variant-choice").on("mouseenter", function () {
