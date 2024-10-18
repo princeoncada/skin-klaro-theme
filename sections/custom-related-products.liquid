@@ -1,0 +1,158 @@
+<section class="tabs-section x-py-[32px] md:x-py-[40px]">
+    <div class="x-max-w-[1440px] x-mx-auto md:x-px-[50px]">
+        <!-- Tab Headers -->
+        <div class="tabs x-flex x-flex-row x-gap-[24px] x-border-b-[1px] x-justify-center">
+            <button class="tab-button active x-text-[16px] x-uppercase" data-tab="related-products">Related
+                Products</button>
+            <button class="tab-button x-text-[16px] x-uppercase" data-tab="recently-viewed">Recently Viewed</button>
+        </div>
+        <!-- Tab Content -->
+        <div class="tab-content x-flex x-overflow-auto">
+            <!-- Related Products -->
+            <div class="tab-pane active" id="related-products">
+                <!-- Shopify Recommendations -->
+                <div class="product-recommendations"
+                    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related">
+                    {%- if recommendations.performed and recommendations.products_count > 0 -%}
+                        <div class="x-flex x-flex-row x-flex-wrap x-gap-[16px]">
+                            {%- for product in recommendations.products -%}
+                                <a href="{{ product.url }}" class="related-product x-w-[200px] x-mb-[20px] x-inline-block">
+                                    <img src="{{ product.featured_image | image_url: width: 300, height: 300 }}"
+                                        alt="{{ product.featured_image.alt }}" class="x-h-[100px] md:x-h-[300px] x-w-full"
+                                        width="300" height="300">
+                                    <p class="x-text-[14px]">{{ product.title }}</p>
+                                    <p class="x-text-[14px]">{{ product.price | money }}</p>
+                                </a>
+                            {%- endfor -%}
+                        </div>
+                    {%- endif -%}
+                </div>
+            </div>
+            <!-- Recently Viewed -->
+            <div class="tab-pane x-hidden" id="recently-viewed">
+                <div class="x-flex x-flex-row x-flex-wrap x-gap-[16px]" id="recently-viewed-products"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    let product = "{{ product.handle }}";
+    $(document).ready(function () {
+        handleTabSwitch();
+        addRecentlyViewedProduct(product);
+        loadShopifyRecommendations();
+    });
+
+    function handleTabSwitch() {
+        $('.tab-button').click(function () {
+            $('.tab-button').removeClass('active');
+            $('.tab-pane').removeClass('active').addClass('x-hidden');
+
+            var target = $(this).data('tab');
+            $(this).addClass('active');
+            $('#' + target)
+                .addClass('active')
+                .removeClass('x-hidden');
+
+            if (target === 'recently-viewed') {
+                displayRecentlyViewedProducts();
+            }
+        });
+    }
+
+    function loadShopifyRecommendations() {
+        const productRecommendationsSection = document.querySelector('.product-recommendations');
+        const url = productRecommendationsSection.dataset.url;
+
+        if (!url) return;
+
+        fetch(url)
+            .then((response) => response.text())
+            .then((html) => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const recommendations = doc.querySelector('.product-recommendations');
+
+                if (recommendations) {
+                    productRecommendationsSection.innerHTML = recommendations.innerHTML;
+                } else {
+                    productRecommendationsSection.style.display = 'none'; // Hide if no recommendations found
+                }
+            })
+            .catch((e) => {
+                console.error('Error loading related products:', e);
+            });
+    }
+
+    function getRecentlyViewedProducts() {
+        var viewedProducts = [];
+        var cookie = Cookies.get('recently_viewed_products');
+        if (cookie) {
+            viewedProducts = JSON.parse(cookie);
+        }
+        return viewedProducts;
+    }
+
+    function addRecentlyViewedProduct(productHandle) {
+        var viewedProducts = getRecentlyViewedProducts();
+        var index = viewedProducts.indexOf(productHandle);
+        if (index > -1) {
+            viewedProducts.splice(index, 1);
+        }
+        viewedProducts.unshift(productHandle);
+        Cookies.set('recently_viewed_products', JSON.stringify(viewedProducts), { expires: 30, path: '/' });
+    }
+
+    function displayRecentlyViewedProducts() {
+        var viewedProducts = getRecentlyViewedProducts();
+
+        if (viewedProducts.length === 0) return;
+
+        $('#recently-viewed').empty();
+
+        viewedProducts.forEach(function (productHandle) {
+            $.ajax({
+                url: `/products/${productHandle}.js`,
+                method: 'GET',
+                dataType: 'json',
+                success: function (product) {
+                    const productHTML = `
+                        <a href="/products/${product.handle}" class="recently-viewed-product x-inline-block x-w-[200px] x-mb-[20px]">
+                            <img src="${product.featured_image}" class="x-w-full x-h-[100px] md:x-h-[300px]" alt="${product.title}">  
+                            <div class="x-text-[14px]">${product.title}</div>
+                        </a>
+                    `;
+                    $('#recently-viewed')
+                        .append(productHTML)
+                        .addClass('x-flex x-gap-[16px] x-overflow-x-auto x-whitespace-nowrap');
+                },
+                error: function (error) {
+                    console.log('Error fetching product data:', error);
+                },
+            });
+        });
+    }
+</script>
+
+<style>
+    .tab-button {
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+    }
+
+    .tab-button.active {
+        border-color: #000;
+        font-weight: bold;
+    }
+
+    .tab-pane {
+        display: none;
+    }
+
+    .tab-pane.active {
+        display: block;
+    }
+</style>

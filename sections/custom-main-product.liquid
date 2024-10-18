@@ -1,20 +1,3 @@
-{% comment %} {% assign product = all_products['test-product-2'] %} {% endcomment %}
-
-{% if product.has_only_default_variant %}
-  {% for url in product.images %}
-    {% comment %} {{ url | image_url: width: 1000 }} {% endcomment %}
-  {% endfor %}
-{% else %}
-  {% for variant in product.variants %}
-    {% comment %} {{ variant.metafields.custom.color_hexcode }} {% endcomment %}
-    {% comment %}
-      {% assign main_image = variant.featured_image | image_url: width: '1000', height: '1000' | append: ", " %}
-      {% assign thumbnails = variant.metafields.custom.img_src.value | join: ", " %}
-      {{ main_image | append: thumbnails }}
-    {% endcomment %}
-  {% endfor %}
-{% endif %}
-
 <section class="md:x-py-[30px] md:x-pt-[90px]">
   <div
     class="x-flex x-flex-col md:x-flex-row md:x-px-[50px] md:x-gap-[50px] x-h-auto lg:x-h-full lg:x-max-w-[1440px] lg:x-mx-auto"
