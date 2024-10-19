@@ -138,6 +138,11 @@
         "settings": {
           "color_scheme": "scheme-1"
         }
+      },
+      "custom-footer": {
+        "type": "custom-footer",
+        "settings": {
+        }
       }
     },
     "content_for_index": [
@@ -166,9 +171,9 @@
     "color_schemes": {
       "scheme-1": {
         "settings": {
-          "background": "#ffffff",
+          "background": "#1a483c",
           "background_gradient": "",
-          "text": "#121212",
+          "text": "#ffffff",
           "button": "#121212",
           "button_label": "#ffffff",
           "secondary_button_label": "#121212",
