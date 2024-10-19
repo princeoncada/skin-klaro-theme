@@ -9,6 +9,7 @@
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
 
     <link rel="stylesheet" href="https://use.typekit.net/huq5fpx.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.css">
     {% comment %} {{ 'flickity.css' | asset_url | stylesheet_tag }} {% endcomment %}
     {% comment %} <link rel="stylesheet" href="https://unpkg.com/flickity-fullscreen@2/fullscreen.css"> {% endcomment %}
@@ -316,6 +317,8 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.js"></script>
@@ -464,5 +467,8 @@
     <div class="shopify-dynamic-checkout---buttons" style="display:none!important;">
       {{ content_for_additional_checkout_buttons }}
     </div>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
