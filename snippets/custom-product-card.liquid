@@ -1,11 +1,11 @@
-<div class="product-card x-border-[1px] x-flex x-flex-col x-aspect-square x-min-w-[380px] md:x-w-auto md:x-min-w-fit">
+<div class="product-card x-border-[1px] x-border-[#e5e7eb] x-flex x-flex-col x-aspect-square x-min-w-[380px] md:x-w-auto md:x-min-w-fit x-font-myriad-pro">
     <div class="product-image x-relative x-h-full x-bg-cover x-bg-center" style="background-image: url({{ product.featured_image | image_url: width: 1000  }});">
         {% if product.has_only_default_variant == false %}
             <div class="variants x-flex x-flex-row x-absolute x-bottom-0 x-w-full x-overflow-y-hidden x-items-center">
                 <button class="back-button x-absolute x-left-[12px] x-text-[24px] x-text-gray-400 hover:x-text-gray-800 x-transition-colors x-duration-300 x-flex x-items-center">
                     <i class='bx bx-x-circle x-leading-[0px]'></i>
                 </button>
-                <div class="carousel x-flex x-justify-center x-items-center x-w-full">
+                <div class="product-variant-carousel x-flex x-justify-center x-items-center x-w-full">
                     {% for option in product.options %}
                         {% case option %}
                             {% when 'Color' %}
@@ -16,7 +16,7 @@
                                 {% endfor %}
                             {% else %}
                                 {% for variant in product.variants %}
-                                    <button class="variant-choice" data-variant-image="{{ variant.featured_image | image_url: width: 1000 }}" data-id="{{ variant.id }}">{{ variant.title }}</button>
+                                    <button class="variant-choice x-font-myriad-pro" data-variant-image="{{ variant.featured_image | image_url: width: 1000 }}" data-id="{{ variant.id }}">{{ variant.title }}</button>
                                 {% endfor %}
                         {% endcase %}
                     {% endfor %}
@@ -29,14 +29,14 @@
             {% assign only_variant = product.first_available_variant.id %}
         {% endif %}
 
-        <button class="add-button desktop x-bg-white x-absolute x-bottom-0 x-w-full x-overflow-y-hidden x-hidden md:x-flex x-items-center x-justify-center" data-id="{{ only_variant }}">
+        <button class="add-button desktop x-bg-[#f5f8f5] x-absolute x-bottom-0 x-w-full x-overflow-y-hidden x-hidden md:x-flex x-items-center x-justify-center x-font-myriad-pro" data-id="{{ only_variant }}">
             Add to cart
         </button>
-        <button class="add-button mobile x-bg-white x-absolute x-bottom-[32px] x-right-[32px] x-w-[48px] x-h-[48px] x-rounded-full x-flex md:x-hidden x-items-center x-justify-center" data-id="{{ only_variant }}">
+        <button class="add-button mobile x-bg-[#f5f8f5] x-absolute x-bottom-[32px] x-right-[32px] x-w-[48px] x-h-[48px] x-rounded-full x-flex md:x-hidden x-items-center x-justify-center" data-id="{{ only_variant }}">
             <i class='bx bx-plus x-text-[24px] x-leading-[0px]'></i>
         </button>
     </div>
-    <a href="{{ product.url }}" class="product-details x-flex x-flex-col x-justify-center x-p-[16px] x-border-t-[1px]">
+    <a href="{{ product.url }}" class="product-details x-flex x-flex-col x-justify-center x-p-[16px] x-border-t-[1px] x-border-[#e5e7eb] x-bg-[#f9faf9]">
         <div>{{ product.title }}</div>
         <div>{{ product.price | money }}</div>
     </a>
@@ -50,7 +50,7 @@
     });
 
     function initializeCarousel() {
-        $(".carousel").flickity({
+        $(".product-variant-carousel").flickity({
             cellAlign: 'left',
             freeScroll: true,
         });
@@ -225,17 +225,17 @@
 </script>
 
 <style>
-    .flickity-viewport {
+    .product-variant-carousel .flickity-viewport {
         width: 60%;
     }
 
-    .flickity-prev-next-button {
+    .product-variant-carousel .flickity-prev-next-button {
         width: 24px;
         height: 24px;
         border-radius: 4px;
     }
 
-    .flickity-page-dots {
+    .product-variant-carousel .flickity-page-dots {
         display: none;
     }
 

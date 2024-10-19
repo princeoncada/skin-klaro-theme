@@ -14,7 +14,7 @@
             <details id="Details-HeaderMenu-{{ forloop.index }}">
               <summary
                 id="HeaderMenu-{{ link.handle }}"
-                class="header__menu-item list-menu__item link focus-inset"
+                class="x-font-myriad-pro header__menu-item list-menu__item link focus-inset"
               >
                 <span
                   {%- if link.child_active %}
@@ -36,7 +36,7 @@
                       <a
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                         href="{{ childlink.url }}"
-                        class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+                        class="x-font-myriad-pro header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
                         {% if childlink.current %}
                           aria-current="page"
                         {% endif %}
@@ -49,7 +49,7 @@
                           id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                           class="header__menu-item link link--text list-menu__item focus-inset caption-large"
                         >
-                          <span>{{ childlink.title | escape }}</span>
+                          <span class="x-font-myriad-pro">{{ childlink.title | escape }}</span>
                           {{- 'icon-caret.svg' | inline_asset_content -}}
                         </summary>
                         <ul
@@ -89,7 +89,7 @@
           >
             <span
               {%- if link.current %}
-                class="header__active-menu-item"
+                class="x-font-myriad-pro header__active-menu-item"
               {% endif %}
             >
               {{- link.title | escape -}}

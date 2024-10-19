@@ -404,7 +404,7 @@
     {% if template == 'index' %}
       <style>
         .scrolled {
-          background-color: #f5f9f1 !important;
+          background-color: #fefffe !important;
         }
 
         .header-wrapper {
@@ -427,20 +427,28 @@
         const header = document.querySelector('.header-wrapper');
         const spans = document.querySelectorAll('.header span');
         const cartBubbleSpan = document.querySelector('.cart-count-bubble span');
+        const outlines = document.querySelectorAll('.details-hover--outline');
 
         spans.forEach((span) => {
           span.style.color = 'white';
         });
+
         window.onscroll = function () {
           if (window.scrollY > 38) {
             header.classList.add('scrolled');
             spans.forEach((span) => {
               span.style.color = 'black';
             });
+            outlines.forEach((outline) => {
+              outline.style.backgroundColor = 'black';
+            });
           } else {
             header.classList.remove('scrolled');
             spans.forEach((span) => {
               span.style.color = 'white';
+            });
+            outlines.forEach((outline) => {
+              outline.style.backgroundColor = 'white';
             });
           }
           //   cartBubbleSpan.style.color = 'white';
@@ -449,7 +457,7 @@
     {% else %}
       <style>
         .header-wrapper {
-          background-color: #f5f9f1;
+          background-color: #fefffe !important;
         }
       </style>
     {% endif %}
