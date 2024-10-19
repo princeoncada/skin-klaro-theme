@@ -1,48 +1,54 @@
 <section class="x-p-[16px] md:x-p-[50px] x-bg-[#F9F8F5]">
-    <div class="x-flex x-flex-col x-gap-[16px] md:x-gap-[50px]">
-        <div class="x-flex x-flex-col md:x-flex-row x-gap-[16px] md:x-gap-[50px]">
-            <div class="md:x-w-1/2 x-relative x-overflow-hidden x-h-[630px] x-w-full">
-                <div class="parallax-contact x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
-                    style="background-image: url({{ 'founder_pholder.png' | asset_url }});">
-                </div>
-            </div>
-            <div
-                class="md:x-w-1/2 x-p-[16px] x-py-[26px] x-pt-[32px] md:x-p-[50px] md:x-flex md:x-items-center x-bg-white">
-                <div class="x-flex x-flex-col x-gap-[8px] md:x-gap-[16px] x-text-[14px]">
-                    <div class="x-text-[26px] x-leading-[28px] md:x-text-[30px]">CONTACT US
-                    </div>
-                    <div>If you need help finding the best shades or have any other questions about our company, ingredients or products, please email us at info@mangopeopleofficial.com</div>
-                    <div>Our hours of operation are Monday – Friday, 9AM – 5PM PST.</div>
-                    <div>We'll try to get back to you within 24-48 business hours.</div>
-                </div>
-            </div>
+  <div class="x-flex x-flex-col x-gap-[16px] md:x-gap-[50px]">
+    <div class="x-flex x-flex-col md:x-flex-row x-gap-[16px] md:x-gap-[50px]">
+      <div class="md:x-w-1/2 x-relative x-overflow-hidden x-h-[630px] x-w-full">
+        <div
+          class="parallax-contact x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
+          style="background-image: url({{ 'founder_pholder.png' | asset_url }});"
+        >
+          &nbsp;
         </div>
+      </div>
+      <div
+        class="md:x-w-1/2 x-p-[16px] x-py-[26px] x-pt-[32px] md:x-p-[50px] md:x-flex md:x-items-center x-bg-white"
+      >
+        <div class="x-flex x-flex-col x-gap-[8px] md:x-gap-[16px] x-text-[14px]">
+          <div class="x-text-[26px] x-leading-[28px] md:x-text-[30px]">CONTACT US</div>
+          <div>
+            If you need help finding the best shades or have any other questions about our company, ingredients or
+            products, please email us at info@OfficalChloee.com
+          </div>
+          <div>Our hours of operation are Monday – Friday, 9AM – 5PM PST.</div>
+          <div>We'll try to get back to you within 24-48 business hours.</div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <script>
-    $(document).ready(function () {
-        applyParallax();
+  $(document).ready(function () {
+    applyParallax();
+  });
+
+  $(window).on('scroll', function () {
+    applyParallax();
+  });
+
+  function applyParallax() {
+    $('.parallax-contact').each(function () {
+      const speed = 0.15; // Adjust the speed for the desired parallax effect
+      const initialOffset = 0; // Offset to move the image down initially
+      const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
+      const scrollPosition = $(window).scrollTop();
+      const windowHeight = $(window).height();
+      const sectionHeight = $(this).parent().outerHeight();
+
+      // Check if the section is in the viewport
+      if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
+        $(this).css('transform', `translateY(${yPos}px)`);
+      }
     });
-
-    $(window).on('scroll', function () {
-        applyParallax();
-    });
-
-    function applyParallax() {
-        $('.parallax-contact').each(function () {
-            const speed = 0.15; // Adjust the speed for the desired parallax effect
-            const initialOffset = 0; // Offset to move the image down initially
-            const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
-            const scrollPosition = $(window).scrollTop();
-            const windowHeight = $(window).height();
-            const sectionHeight = $(this).parent().outerHeight();
-
-            // Check if the section is in the viewport
-            if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
-                $(this).css('transform', `translateY(${yPos}px)`);
-            }
-        });
-    }
+  }
 </script>
