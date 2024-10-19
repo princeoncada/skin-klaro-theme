@@ -1,34 +1,37 @@
 <!-- featured-product.liquid -->
 
 <div class="featured-product-section">
-    <div
-        class="x-w-full x-h-90 x-bg-[#F2E8DA] x-flex x-flex-col x-justify-center x-items-start x-px-[16px] x-h-[180px] x-gap-[16px] md:x-flex-row md:x-justify-between md:x-items-center md:x-px-[50px]">
-        <div class="x-text-black x-flex x-flex-col x-gap-4">
-            <div class="x-text-[32px] x-leading-10">OUR COLLECTION</div>
-            <div class="x-text-[16px] x-italic">Plant Powered • Cruelty Free • Infinitely Recyclable</div>
-        </div>
-        <a href="/pages/shop-all"
-            class="x-text-lg x-text-black x-py-4 x-px-40 md:x-py-6 md:x-px-16 x-border-whie x-border-[1px] x-bg-transparent x-border-black x-uppercase hover:x-bg-black hover:x-text-white x-transition-colors x-duration-300">
-            SHOP NOW
-        </a>
+  <div
+    class="x-w-full x-h-90 x-bg-[#F5F9F1] x-flex x-flex-col x-justify-center x-items-start x-px-[16px] x-h-[180px] x-gap-[16px] md:x-flex-row md:x-justify-between md:x-items-center md:x-px-[50px]"
+  >
+    <div class="x-text-black x-flex x-flex-col x-gap-4">
+      <div class="x-text-[32px] x-leading-10">OUR COLLECTION</div>
+      <div class="x-text-[16px] x-italic">Plant Powered • Cruelty Free • Infinitely Recyclable</div>
     </div>
+    <a
+      href="/pages/shop-all"
+      class="x-text-lg x-text-black x-py-4 x-px-40 md:x-py-6 md:x-px-16 x-border-whie x-border-[1px] x-bg-transparent x-border-black x-uppercase hover:x-bg-black hover:x-text-white x-transition-colors x-duration-300"
+    >
+      SHOP NOW
+    </a>
+  </div>
 
-    <div class="featured-product-container">
-        <!-- Assuming you're showcasing one specific product, hardcode the handle or use dynamic settings -->
-        {% assign featured_product = all_products['test-product'] %}
-        {% assign featured_product_2 = all_products['test-product-2'] %}
-        {% assign featured_product_3 = all_products['test-product-3'] %}
-        <!-- Include the product-card snippet, passing the featured product -->
-        <div class="x-w-full md:x-grid x-flex md:x-grid-cols-3 lg:x-grid-cols-5 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
-            <div class="x-w-full x-aspect-square x-snap-start">
-                {% render 'custom-product-card', product: featured_product %}
-            </div>
-            <div class="x-w-full x-aspect-square x-snap-start">
-                {% render 'custom-product-card', product: featured_product_2 %}
-            </div>
-            <div class="x-w-full x-aspect-square x-snap-start">
-                {% render 'custom-product-card', product: featured_product_3 %}
-            </div>
-        </div>
+  <div class="featured-product-container">
+    <!-- Assuming you're showcasing one specific product, hardcode the handle or use dynamic settings -->
+    {% assign featured_product = all_products['test-product'] %}
+    {% assign featured_product_2 = all_products['test-product-2'] %}
+    {% assign featured_product_3 = all_products['test-product-3'] %}
+    <!-- Include the product-card snippet, passing the featured product -->
+    <div class="x-w-full md:x-grid x-flex md:x-grid-cols-3 lg:x-grid-cols-5 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
+      <div class="x-w-full x-aspect-square x-snap-start">
+        {% render 'custom-product-card', product: featured_product %}
+      </div>
+      <div class="x-w-full x-aspect-square x-snap-start">
+        {% render 'custom-product-card', product: featured_product_2 %}
+      </div>
+      <div class="x-w-full x-aspect-square x-snap-start">
+        {% render 'custom-product-card', product: featured_product_3 %}
+      </div>
     </div>
+  </div>
 </div>

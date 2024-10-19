@@ -1,96 +1,79 @@
 <div class="wrapper">
-    <div class="item item1">
-        PLANT BASED
-    </div>
-    <div class="item item2">
-        ADAPTOGEN POWERED
-    </div>
-    <div class="item item3">
-        HIGH PERFORMING
-    </div>
-    <div class="item item4">
-        CARBON NEUTRAL
-    </div>
-    <div class="item item5">
-        RECYCABLE PACKAGING
-    </div>
-    <div class="item item6">
-        VEGAN
-    </div>
-    <div class="item item7">
-        CRUELTY FREE
-    </div>
-    <div class="item item8">
-        SUSTAINABLE
-    </div>
+  <div class="item item1">PLANT BASED</div>
+  <div class="item item2">ADAPTOGEN POWERED</div>
+  <div class="item item3">HIGH PERFORMING</div>
+  <div class="item item4">CARBON NEUTRAL</div>
+  <div class="item item5">RECYCABLE PACKAGING</div>
+  <div class="item item6">VEGAN</div>
+  <div class="item item7">CRUELTY FREE</div>
+  <div class="item item8">SUSTAINABLE</div>
 </div>
 
-
 <style>
-    @keyframes scrollleft {
-        to {
-            left: -180px;
-        }
+  @keyframes scrollleft {
+    to {
+      left: -180px;
     }
+  }
 
-    .wrapper {
-        display: flex;
-        background-color: #4D4032;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-        max-width: 100%;
-        margin-inline: auto;
-        position: relative;
-        height: 75px;
-        overflow: hidden;
-    }
+  .wrapper {
+    display: flex;
+    background-color: #31321c;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    position: relative;
+    height: 75px;
+    overflow: hidden;
+  }
 
-    .item {
-        color: #f8f8f8;
-        text-align: center;
-        width: 180px;
-        position: absolute;
-        left: max(calc(200px * 8), 100%);
-        animation-name: scrollleft;
-        animation-duration: 30s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-    }
+  .item {
+    color: #f8f8f8;
+    text-align: center;
+    width: 180px;
+    position: absolute;
+    left: max(calc(200px * 8), 100%);
+    animation-name: scrollleft;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
 
-    .wrapper:hover .item {
-        animation-play-state: paused;
-    }
+  .wrapper:hover .item {
+    animation-play-state: paused;
+  }
 
-    .item1 {
-        animation-delay: calc(30s / 8 * (8 - 1) * -1);
-    }
+  .item1 {
+    animation-delay: calc(30s / 8 * (8 - 1) * -1);
+  }
 
-    .item2 {
-        animation-delay: calc(30s / 8 * (8 - 2) * -1);
-    }
+  .item2 {
+    animation-delay: calc(30s / 8 * (8 - 2) * -1);
+  }
 
-    .item3 {
-        animation-delay: calc(30s / 8 * (8 - 3) * -1);
-    }
+  .item3 {
+    animation-delay: calc(30s / 8 * (8 - 3) * -1);
+  }
 
-    .item4 {
-        animation-delay: calc(30s / 8 * (8 - 4) * -1);
-    }
+  .item4 {
+    animation-delay: calc(30s / 8 * (8 - 4) * -1);
+  }
 
-    .item5 {
-        animation-delay: calc(30s / 8 * (8 - 5) * -1);
-    }
+  .item5 {
+    animation-delay: calc(30s / 8 * (8 - 5) * -1);
+  }
 
-    .item6 {
-        animation-delay: calc(30s / 8 * (8 - 6) * -1);
-    }
+  .item6 {
+    animation-delay: calc(30s / 8 * (8 - 6) * -1);
+  }
 
-    .item7 {
-        animation-delay: calc(30s / 8 * (8 - 7) * -1);
-    }
+  .item7 {
+    animation-delay: calc(30s / 8 * (8 - 7) * -1);
+  }
 
-    .item8 {
-        animation-delay: calc(30s / 8 * (8 - 8) * -1);
-    }
+  .item8 {
+    animation-delay: calc(30s / 8 * (8 - 8) * -1);
+  }
 </style>

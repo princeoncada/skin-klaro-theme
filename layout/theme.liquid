@@ -8,7 +8,7 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
 
-
+    <link rel="stylesheet" href="https://use.typekit.net/huq5fpx.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.css">
     {% comment %} {{ 'flickity.css' | asset_url | stylesheet_tag }} {% endcomment %}
     {% comment %} <link rel="stylesheet" href="https://unpkg.com/flickity-fullscreen@2/fullscreen.css"> {% endcomment %}
@@ -311,8 +311,11 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-    
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.js"></script>
@@ -401,7 +404,7 @@
     {% if template == 'index' %}
       <style>
         .scrolled {
-          background: white !important;
+          background-color: #f5f9f1 !important;
         }
 
         .header-wrapper {
@@ -440,13 +443,18 @@
               span.style.color = 'white';
             });
           }
-        //   cartBubbleSpan.style.color = 'white';
+          //   cartBubbleSpan.style.color = 'white';
         };
       </script>
+    {% else %}
+      <style>
+        .header-wrapper {
+          background-color: #f5f9f1;
+        }
+      </style>
     {% endif %}
     <div class="shopify-dynamic-checkout---buttons" style="display:none!important;">
       {{ content_for_additional_checkout_buttons }}
     </div>
-
   </body>
 </html>
