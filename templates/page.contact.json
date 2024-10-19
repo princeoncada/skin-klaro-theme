@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "contact-form"
+      "type": "contact-us-main"
     }
   },
   "order": ["main"]
