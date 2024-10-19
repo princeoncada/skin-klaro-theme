@@ -9,8 +9,12 @@ module.exports = {
     ],
     theme: {
       extend: {
+        fontFamily: {
+          'amandine': ['amandine', 'sans-serif'],
+          'myriad-pro': ['myriad-pro', 'sans-serif'],
+        },
         transitionProperty: {
-            'collapse': 'height !important, margin !important'
+          'collapse': 'height !important, margin !important'
         }
       },
       screens: {

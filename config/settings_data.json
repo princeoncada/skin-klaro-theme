@@ -138,6 +138,11 @@
         "settings": {
           "color_scheme": "scheme-1"
         }
+      },
+      "custom-footer": {
+        "type": "custom-footer",
+        "settings": {
+        }
       }
     },
     "content_for_index": [

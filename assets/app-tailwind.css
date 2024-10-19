@@ -1626,6 +1626,11 @@ html {
   border-color: rgb(255 255 255 / var(--tw-border-opacity)) !important;
 }
 
+.x-bg-\[\#3c3c3c\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(60 60 60 / var(--tw-bg-opacity)) !important;
+}
+
 .x-bg-\[\#4D4032\] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(77 64 50 / var(--tw-bg-opacity)) !important;
@@ -1683,6 +1688,55 @@ html {
 .x-bg-white {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#30311B\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(48 49 27 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#1A483C\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(26 72 60 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#31321c\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(49 50 28 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#E7F1EF\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(231 241 239 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#F5F9F1\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(245 249 241 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#F9F8F4\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(249 248 244 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#f9f8f4\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(249 248 244 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#\#1A483C\] {
+  background-color: ##1A483C !important;
+}
+
+.x-bg-\[\#EDF2EB\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(237 242 235 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#DBE5D3\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(219 229 211 / var(--tw-bg-opacity)) !important;
 }
 
 .x-bg-opacity-40 {
@@ -1911,6 +1965,14 @@ html {
   text-align: start !important;
 }
 
+.x-font-amandine {
+  font-family: amandine, sans-serif !important;
+}
+
+.x-font-myriad-pro {
+  font-family: myriad-pro, sans-serif !important;
+}
+
 .x-text-2xl {
   font-size: 1.5rem !important;
   line-height: 2rem !important;
@@ -2001,6 +2063,22 @@ html {
 .x-text-xl {
   font-size: 1.25rem !important;
   line-height: 1.75rem !important;
+}
+
+.x-text-\[48px\] {
+  font-size: 48px !important;
+}
+
+.x-text-\[30px\] {
+  font-size: 30px !important;
+}
+
+.x-text-\[28px\] {
+  font-size: 28px !important;
+}
+
+.x-text-\[34px\] {
+  font-size: 34px !important;
 }
 
 .x-font-bold {

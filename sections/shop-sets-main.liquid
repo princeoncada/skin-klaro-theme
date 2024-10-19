@@ -1,98 +1,95 @@
 <div>
-    <div>
-        <div class="x-p-[16px] md:x-p-[32px]">
-            <div class="x-p-[16px] md:x-p-[32px] x-text-center x-uppercase x-text-[24px]">
-                Shop Sets
-            </div>
-        </div>
-        <div class="">
-            <div class="x-flex x-flex-col md:x-grid md:x-grid-cols-3">
-                {% for product in collections["sets"].products %}
-                    <div class="x-w-full x-aspect-square">
-                        {% render 'custom-product-card', product: product %}
-                    </div>
-                {% endfor %}
-            </div>
-            
-        </div>
+  <div>
+    <div class="x-p-[16px] md:x-p-[32px] x-bg-[#F5F9F1]">
+      <div class="x-p-[16px] md:x-p-[32px] x-text-center x-uppercase x-text-[34px] x-font-amandine ">Shop Sets</div>
     </div>
+    <div class="">
+      <div class="x-flex x-flex-col md:x-grid md:x-grid-cols-3">
+        {% for product in collections.sets.products %}
+          <div class="x-w-full x-aspect-square">
+            {% render 'custom-product-card', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-    $(document).ready(function () {
-        applyParallax();
+  $(document).ready(function () {
+    applyParallax();
+  });
+
+  $(window).on('scroll', function () {
+    applyParallax();
+  });
+
+  function applyParallax() {
+    $('.parallax-sa').each(function () {
+      const speed = 0.3; // Adjust the speed for the desired parallax effect
+      const initialOffset = 0; // Offset to move the image down initially
+      const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
+      const scrollPosition = $(window).scrollTop();
+      const windowHeight = $(window).height();
+      const sectionHeight = $(this).parent().outerHeight();
+
+      // Check if the section is in the viewport
+      if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
+        $(this).css('transform', `translateY(${yPos}px)`);
+      }
     });
-
-    $(window).on('scroll', function () {
-        applyParallax();
-    });
-
-    function applyParallax() {
-        $('.parallax-sa').each(function () {
-            const speed = 0.3; // Adjust the speed for the desired parallax effect
-            const initialOffset = 0; // Offset to move the image down initially
-            const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
-            const scrollPosition = $(window).scrollTop();
-            const windowHeight = $(window).height();
-            const sectionHeight = $(this).parent().outerHeight();
-
-            // Check if the section is in the viewport
-            if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
-                $(this).css('transform', `translateY(${yPos}px)`);
-            }
-        });
-    }
+  }
 </script>
 
 <style>
-    @keyframes scrollleft {
-        to {
-            left: -180px;
-        }
+  @keyframes scrollleft {
+    to {
+      left: -180px;
     }
+  }
 
-    .item {
-        left: max(calc(200px * 8), 100%);
-        animation-name: scrollleft;
-        animation-duration: 30s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-    }
+  .item {
+    left: max(calc(200px * 8), 100%);
+    animation-name: scrollleft;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
 
-    .wrapper:hover .item {
-        animation-play-state: paused;
-    }
+  .wrapper:hover .item {
+    animation-play-state: paused;
+  }
 
-    .item-1 {
-        animation-delay: calc(30s / 8 * (8 - 1) * -1);
-    }
+  .item-1 {
+    animation-delay: calc(30s / 8 * (8 - 1) * -1);
+  }
 
-    .item-2 {
-        animation-delay: calc(30s / 8 * (8 - 2) * -1);
-    }
+  .item-2 {
+    animation-delay: calc(30s / 8 * (8 - 2) * -1);
+  }
 
-    .item-3 {
-        animation-delay: calc(30s / 8 * (8 - 3) * -1);
-    }
+  .item-3 {
+    animation-delay: calc(30s / 8 * (8 - 3) * -1);
+  }
 
-    .item-4 {
-        animation-delay: calc(30s / 8 * (8 - 4) * -1);
-    }
+  .item-4 {
+    animation-delay: calc(30s / 8 * (8 - 4) * -1);
+  }
 
-    .item-5 {
-        animation-delay: calc(30s / 8 * (8 - 5) * -1);
-    }
+  .item-5 {
+    animation-delay: calc(30s / 8 * (8 - 5) * -1);
+  }
 
-    .item-6 {
-        animation-delay: calc(30s / 8 * (8 - 6) * -1);
-    }
+  .item-6 {
+    animation-delay: calc(30s / 8 * (8 - 6) * -1);
+  }
 
-    .item-7 {
-        animation-delay: calc(30s / 8 * (8 - 7) * -1);
-    }
+  .item-7 {
+    animation-delay: calc(30s / 8 * (8 - 7) * -1);
+  }
 
-    .item-8 {
-        animation-delay: calc(30s / 8 * (8 - 8) * -1);
-    }
+  .item-8 {
+    animation-delay: calc(30s / 8 * (8 - 8) * -1);
+  }
 </style>
