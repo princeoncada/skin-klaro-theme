@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-  "sustain-contents":{
-    "type": "s-content",
+  "main":{
+    "type": "sustainability-main",
   },
     
   },
   "order": [
-    "sustain-contents"
+    "main"
   ]
 }

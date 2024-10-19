@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "t-tos",
+      "type": "terms-of-service-main",
     }
   },
   "order": [

@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "sa-main"
+      "type": "shop-all-main"
     }
   },
   "order": [

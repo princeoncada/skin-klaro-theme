@@ -10,8 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "i-main",
-      // "type": "test-i",
+      "type": "ingredients-main",
       "settings": {
       }
     }

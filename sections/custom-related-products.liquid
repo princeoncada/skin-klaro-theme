@@ -1,10 +1,12 @@
 <section class="tabs-section x-py-[32px] md:x-py-[40px]">
     <div class="x-max-w-[1440px] x-mx-auto md:x-px-[50px]">
+
         <!-- Tab Headers -->
         <div class="tabs x-flex x-flex-row x-gap-[32px] x-justify-center">
             <button class="tab-button related current x-text-[16px]" checked>Related Products</button>
             <button class="tab-button recent x-text-[16px]">Recently Viewed</button>
         </div>
+
         <!-- Related Products -->
         <div class="product-recommendations x-w-full md:x-grid x-flex md:x-grid-cols-4 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar"
             data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related">
@@ -16,9 +18,9 @@
                 {%- endfor -%}
             {%- endif -%}
         </div>
+
         <!-- Recently Viewed -->
-        <div
-            class="product-recents x-w-full md:x-grid x-flex md:x-grid-cols-4 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
+        <div class="product-recents x-w-full md:x-grid x-flex md:x-grid-cols-4 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
         </div>
     </div>
 </section>
@@ -107,9 +109,11 @@
     function addRecentlyViewedProduct(productHandle) {
         let viewedProducts = getRecentlyViewedProducts();
         let index = viewedProducts.indexOf(productHandle);
+
         if (index > -1) {
             viewedProducts.splice(index, 1);
         }
+
         viewedProducts.unshift(productHandle);
         Cookies.set('recently_viewed_products', JSON.stringify(viewedProducts), { expires: 30, path: '/' });
     }
