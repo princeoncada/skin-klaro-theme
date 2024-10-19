@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "p-privacy",
+      "type": "privacy-main",
     }
   },
   "order": [

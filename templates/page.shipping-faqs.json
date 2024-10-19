@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "s-ship-faqs",
+      "type": "ship-faqs-main",
     }
   },
   "order": [

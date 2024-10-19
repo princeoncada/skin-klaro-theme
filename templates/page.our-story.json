@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "os-main",
+      "type": "our-story-main",
     }
   },
   "order": [
