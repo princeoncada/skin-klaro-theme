@@ -9,8 +9,8 @@
  */
 {
 	"sections": {
-		"skin-banner": {
-			"type": "a-skin-banner",
+		"banner": {
+			"type": "home-banner",
 			"settings": {
 				"background_image": "shopify://shop_images/bg-photo.jpg",
 				"heading": "YOUR PRODUCT NAME",
@@ -18,24 +18,24 @@
 			}
 		},
 		"text-banner": {
-			"type": "a-text-banner",
+			"type": "home-text-banner",
 			"settings": {}
 		},
 		"featured-products": {
-			"type": "a-skin-featured-products"
+			"type": "home-featured-products"
 		},
 		"marquee": {
-			"type": "a-marquee"
+			"type": "home-marquee"
 		},
 		"multirow": {
-			"type": "a-multirow"
+			"type": "home-multirow"
 		},
 		"call-to-action": {
-			"type": "a-call-to-action"
+			"type": "home-cta"
 		}
 	},
 	"order": [
-		"skin-banner",
+		"banner",
 		"text-banner",
 		"featured-products",
 		"marquee",

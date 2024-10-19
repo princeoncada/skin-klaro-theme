@@ -113,7 +113,7 @@
         if (index > -1) {
             viewedProducts.splice(index, 1);
         }
-        
+
         viewedProducts.unshift(productHandle);
         Cookies.set('recently_viewed_products', JSON.stringify(viewedProducts), { expires: 30, path: '/' });
     }
