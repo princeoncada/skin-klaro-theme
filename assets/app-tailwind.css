@@ -976,14 +976,6 @@ html {
   z-index: 10 !important;
 }
 
-.x-z-\[1\] {
-  z-index: 1 !important;
-}
-
-.x-z-\[2\] {
-  z-index: 2 !important;
-}
-
 .x-order-1 {
   order: 1 !important;
 }
@@ -1069,10 +1061,6 @@ html {
   margin-left: 1.5rem !important;
 }
 
-.x-ml-\[-1px\] {
-  margin-left: -1px !important;
-}
-
 .x-mr-4 {
   margin-right: 1rem !important;
 }
@@ -1103,10 +1091,6 @@ html {
 
 .x-mt-8 {
   margin-top: 2rem !important;
-}
-
-.x-mt-\[-1px\] {
-  margin-top: -1px !important;
 }
 
 .x-mt-\[24px\] {
@@ -1189,16 +1173,8 @@ html {
   height: 20px !important;
 }
 
-.x-h-\[30px\] {
-  height: 30px !important;
-}
-
 .x-h-\[400px\] {
   height: 400px !important;
-}
-
-.x-h-\[40px\] {
-  height: 40px !important;
 }
 
 .x-h-\[455px\] {
@@ -1285,10 +1261,6 @@ html {
   width: 30px !important;
 }
 
-.x-w-\[40px\] {
-  width: 40px !important;
-}
-
 .x-w-\[48px\] {
   width: 48px !important;
 }
@@ -1307,10 +1279,6 @@ html {
 
 .x-min-w-\[380px\] {
   min-width: 380px !important;
-}
-
-.x-min-w-\[400px\] {
-  min-width: 400px !important;
 }
 
 .x-min-w-fit {
@@ -1516,10 +1484,6 @@ html {
   gap: 8px !important;
 }
 
-.x-gap-\[\] {
-  gap:  !important;
-}
-
 .x-gap-x-\[5\%\] {
   -moz-column-gap: 5% !important;
        column-gap: 5% !important;
@@ -1662,11 +1626,6 @@ html {
   border-color: rgb(255 255 255 / var(--tw-border-opacity)) !important;
 }
 
-.x-bg-\[\#3c3c3c\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(60 60 60 / var(--tw-bg-opacity)) !important;
-}
-
 .x-bg-\[\#4D4032\] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(77 64 50 / var(--tw-bg-opacity)) !important;
@@ -1685,11 +1644,6 @@ html {
 .x-bg-\[\#FAFAFA\] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(250 250 250 / var(--tw-bg-opacity)) !important;
-}
-
-.x-bg-\[\#FFE4D9\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(255 228 217 / var(--tw-bg-opacity)) !important;
 }
 
 .x-bg-black {
@@ -2300,10 +2254,6 @@ html {
   background-color: rgb(5 46 22 / var(--tw-bg-opacity)) !important;
 }
 
-.x-group:hover .group-hover\:x-h-16 {
-  height: 4rem !important;
-}
-
 @media (max-width: 990px) {
   .max-\[990px\]\:x-justify-center {
     justify-content: center !important;
@@ -2402,10 +2352,6 @@ html {
     min-width: fit-content !important;
   }
 
-  .md\:x-min-w-full {
-    min-width: 100% !important;
-  }
-
   .md\:x-flex-1 {
     flex: 1 1 0% !important;
   }
@@ -2424,10 +2370,6 @@ html {
 
   .md\:x-flex-row-reverse {
     flex-direction: row-reverse !important;
-  }
-
-  .md\:x-flex-col {
-    flex-direction: column !important;
   }
 
   .md\:x-items-start {
