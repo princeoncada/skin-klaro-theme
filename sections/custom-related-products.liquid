@@ -1,5 +1,6 @@
 <section class="tabs-section x-py-[32px] md:x-py-[40px]">
     <div class="x-max-w-[1440px] x-mx-auto md:x-px-[50px]">
+
         <!-- Tab Headers -->
         <div class="tabs x-flex x-flex-row x-gap-[32px] x-justify-center">
             <button class="tab-button related current x-text-[16px]" checked>Related Products</button>
@@ -9,31 +10,24 @@
         <!-- Related Products -->
         <div class="product-recommendations x-w-full md:x-grid x-flex md:x-grid-cols-4 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar"
             data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related">
-            {% comment %} {%- if recommendations.performed and recommendations.products_count > 0 -%} {% endcomment %}
-            {% comment %} {%- for recommended_product in recommendations.products -%} {% endcomment %}
-            {% comment %} <div
-                class="x-w-full x-aspect-square x-snap-start">
-                {% render 'custom-product-card', product: all_products["test-product"] %}
-            </div>
-            <div
-                class="x-w-full x-aspect-square x-snap-start">
-                {% render 'custom-product-card', product: all_products["test-product"] %}
-            </div>
-            <div
-                class="x-w-full x-aspect-square x-snap-start">
-                {% render 'custom-product-card', product: all_products["test-product"] %}
-            </div>
-            <div
-                class="x-w-full x-aspect-square x-snap-start">
-                {% render 'custom-product-card', product: all_products["test-product"] %}
-            </div> {% endcomment %}
-            {% comment %} {%- endfor -%} {% endcomment %}
-            {% comment %} {%- endif -%} {% endcomment %}
+            {% assign delay = 0 %}
+            {%- if recommendations.performed and recommendations.products_count > 0 -%}
+                {%- for recommended_product in recommendations.products -%}
+                    <div 
+                        data-aos="fade-in"
+                        data-aos-duration="800"
+                        data-aos-once="true"
+                        data-aos-delay="{{ delay }}"
+                        class="x-w-full x-aspect-square x-snap-start"
+                    >
+                        {% render 'custom-product-card', product: recommended_product %}
+                    </div>
+                    {% assign delay = delay | plus: 100 %}                {%- endfor -%}
+            {%- endif -%}
         </div>
 
         <!-- Recently Viewed -->
-        <div
-            class="product-recents x-w-full md:x-grid x-flex md:x-grid-cols-4 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
+        <div class="product-recents x-w-full md:x-grid x-flex md:x-grid-cols-4 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
         </div>
     </div>
 </section>
@@ -67,27 +61,26 @@
         });
     }
 
-    //so i researched about the params pero kapoy na ata akong utok so i'll leave this to you for the delay 
+    // so i researched about the params pero kapoy na ata akong utok so i'll leave this to you for the delay 
     // add aos effect to recently viewed products after all products are loaded - prince #2
     function retrieveAndAppendRecentProduct(productHandle, index) {
         $.ajax({
             url: `/products/${productHandle}?view=card`,
             method: 'GET',
             success: function (response) {
-                $('.product-recents').append(
-                    `<div class="x-w-full x-aspect-square x-snap-start">${response}</div>`
-                );
-                
+                $('.product-recents').append(response);
+
                 if (index === 3) {
                     addAOSEffectToRecentlyViewedProducts();
                 }
             },
             error: function (error) {
                 console.log(error);
-            },
+            }
         });
     }
 
+    // added aos on-click effect trigger on children to tab switches - prince #4
     function handleTabSwitch() {
         $('.tab-button').click(function () {
             $('.tab-button').removeClass('current');
@@ -363,7 +356,6 @@
     .aos-no-transition {
         transition: none !important;
     }
-
     .tab-button {
         padding: 10px;
         cursor: pointer;

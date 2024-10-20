@@ -13,8 +13,7 @@
       "type": "custom-main-product"
     },
     "related-products": {
-      "type": "custom-related-products",
-    //   "type": "test-related-products",
+      "type": "custom-related-products"
     }
   },
   "order": [
