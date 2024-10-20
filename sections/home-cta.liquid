@@ -4,7 +4,7 @@
   >
     <div
       class="x-relative x-overflow-hidden x-h-[600px] x-w-full md:x-w-1/2 md:x-h-full translate-up-20"
-      data-aos="fade-up"
+      data-aos="fade"
       data-aos-duration="1000"
       data-aos-once="true"
     >
@@ -54,7 +54,7 @@
     const parallaxSections = document.querySelectorAll('.parallax-cta');
     parallaxSections.forEach((parallax) => {
       const speed = 0.2; // Adjust the speed for the desired parallax effect
-      const initialOffset = 60; // Offset to move the image down initially
+      const initialOffset = 0; // Offset to move the image down initially
       const sectionTop = parallax.parentElement.offsetTop; // Get the top position of the parent element relative to the document
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
