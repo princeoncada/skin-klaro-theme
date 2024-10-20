@@ -5,28 +5,33 @@
   >
     &nbsp;
   </div>
+
   <div class="x-relative x-flex x-items-center max-[990px]:x-justify-center x-h-full x-text-center x-p-4 md:x-left-[100px]">
     <div class="x-absolute x-text-start x-flex x-flex-col x-justify-center x-items-start x-gap-4">
       <h2
-        class="x-text-white x-text-[36px] lg:x-text-[48px] x-font-medium x-uppercase x-font-amandine"
-        data-aos="fade"
-        data-aos-duration="1000"
-        data-aos-once="true"
-        data-aos-delay="500"
-        data-aos-order="1"
-      >
-        {{ section.settings.heading }}
-      </h2>
-      <button
-        class="x-bg-transparent x-p-4 x-px-6 x-text-xl x-border x-border-white x-text-white x-uppercase hover:x-bg-white hover:x-text-black x-transition-colors x-duration-300"
-        data-aos="fade"
+        class="x-text-white x-text-[36px] lg:x-text-[48px] x-font-medium x-uppercase x-font-amandine translate-up-20"
+        data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-once="true"
         data-aos-delay="500"
         data-aos-order="2"
       >
-        {{ section.settings.button_text }}
-      </button>
+        {{ section.settings.heading }}
+      </h2>
+      <div
+        class="translate-up-20"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-once="true"
+        data-aos-delay="800"
+        data-aos-order="3"
+      >
+        <button
+          class="x-bg-transparent x-p-4 x-px-6 x-text-xl x-border x-border-white x-text-white x-uppercase hover:x-bg-white hover:x-text-black x-transition-colors x-duration-300"
+        >
+          {{ section.settings.button_text }}
+        </button>
+      </div>
     </div>
   </div>
 </div>
