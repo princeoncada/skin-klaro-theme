@@ -3,10 +3,6 @@
 >
   <div
     class="product-image x-relative x-h-full x-bg-cover x-bg-center"
-    data-aos="fade-in"
-    data-aos-duration="1000"
-    data-aos-once="true"
-    data-aos-delay="{{ delay }}"
     style="background-image: url({{ product.featured_image | image_url: width: 1000  }});"
   >
     {% if product.has_only_default_variant == false %}

@@ -1,5 +1,6 @@
 <section class="tabs-section x-py-[32px] md:x-py-[40px]">
     <div class="x-max-w-[1440px] x-mx-auto md:x-px-[50px]">
+
         <!-- Tab Headers -->
         <div class="tabs x-flex x-flex-row x-gap-[32px] x-justify-center">
             <button class="tab-button related current x-text-[16px]" checked>Related Products</button>
@@ -9,31 +10,17 @@
         <!-- Related Products -->
         <div class="product-recommendations x-w-full md:x-grid x-flex md:x-grid-cols-4 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar"
             data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related">
-            {% comment %} {%- if recommendations.performed and recommendations.products_count > 0 -%} {% endcomment %}
-            {% comment %} {%- for recommended_product in recommendations.products -%} {% endcomment %}
-            {% comment %} <div
-                class="x-w-full x-aspect-square x-snap-start">
-                {% render 'custom-product-card', product: all_products["test-product"] %}
-            </div>
-            <div
-                class="x-w-full x-aspect-square x-snap-start">
-                {% render 'custom-product-card', product: all_products["test-product"] %}
-            </div>
-            <div
-                class="x-w-full x-aspect-square x-snap-start">
-                {% render 'custom-product-card', product: all_products["test-product"] %}
-            </div>
-            <div
-                class="x-w-full x-aspect-square x-snap-start">
-                {% render 'custom-product-card', product: all_products["test-product"] %}
-            </div> {% endcomment %}
-            {% comment %} {%- endfor -%} {% endcomment %}
-            {% comment %} {%- endif -%} {% endcomment %}
+            {%- if recommendations.performed and recommendations.products_count > 0 -%}
+                {%- for recommended_product in recommendations.products -%}
+                    <div class="x-w-full x-aspect-square x-snap-start">
+                        {% render 'custom-product-card', product: recommended_product %}
+                    </div>
+                {%- endfor -%}
+            {%- endif -%}
         </div>
 
         <!-- Recently Viewed -->
-        <div
-            class="product-recents x-w-full md:x-grid x-flex md:x-grid-cols-4 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
+        <div class="product-recents x-w-full md:x-grid x-flex md:x-grid-cols-4 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
         </div>
     </div>
 </section>
@@ -46,45 +33,24 @@
         handleRecentlyViewedProducts();
     });
 
-    // attach aos effect to recently viewed products - prince #3
-    function addAOSEffectToRecentlyViewedProducts() {
-        $('.product-recents').children().each(function (index) {
-            $(this)
-                .attr('data-aos', 'fade-in')
-                .attr('data-aos-duration', '800')
-                .attr('data-aos-delay', `${index * 100}`)
-                .attr('data-aos-once', 'true');
-        });
-    }
-
-    // so i think kailangan ibutang pud ang delay diri? - questions ni nex
-    // index needed to know when to start applying AOS effect - prince #1
     function handleRecentlyViewedProducts() {
         let productHandles = getRecentlyViewedProducts();
         if (productHandles.length === 0) return;
-        productHandles.slice(0, 4).forEach((productHandle, index) => {
-            retrieveAndAppendRecentProduct(productHandle, index);
+        productHandles.slice(0, 4).forEach(productHandle => {
+            retrieveAndAppendRecentProduct(productHandle);
         });
     }
 
-    //so i researched about the params pero kapoy na ata akong utok so i'll leave this to you for the delay 
-    // add aos effect to recently viewed products after all products are loaded - prince #2
-    function retrieveAndAppendRecentProduct(productHandle, index) {
+    function retrieveAndAppendRecentProduct(productHandle) {
         $.ajax({
             url: `/products/${productHandle}?view=card`,
             method: 'GET',
             success: function (response) {
-                $('.product-recents').append(
-                    `<div class="x-w-full x-aspect-square x-snap-start">${response}</div>`
-                );
-                
-                if (index === 3) {
-                    addAOSEffectToRecentlyViewedProducts();
-                }
+                $('.product-recents').append(response);
             },
             error: function (error) {
                 console.log(error);
-            },
+            }
         });
     }
 
@@ -96,31 +62,11 @@
             if ($(this).hasClass('related')) {
                 $('.product-recents').css('height', '0px');
                 $('.product-recommendations').css('height', 'auto');
-
-                $('.product-recommendations').children().each(function () {
-                    $(this).removeClass('aos-animate');
-                    $(this).addClass('aos-no-transition');
-
-                    setTimeout(() => {
-                        $(this).removeClass('aos-no-transition');
-                        $(this).addClass('aos-animate');
-                    }, 100);
-                });
             }
 
             if ($(this).hasClass('recent')) {
                 $('.product-recommendations').css('height', '0px');
                 $('.product-recents').css('height', 'auto');
-
-                $('.product-recents').children().each(function () {
-                    $(this).removeClass('aos-animate');
-                    $(this).addClass('aos-no-transition');
-
-                    setTimeout(() => {
-                        $(this).removeClass('aos-no-transition');
-                        $(this).addClass('aos-animate');
-                    }, 100);
-                });
             }
         });
     }
@@ -360,10 +306,6 @@
 </script>
 
 <style>
-    .aos-no-transition {
-        transition: none !important;
-    }
-
     .tab-button {
         padding: 10px;
         cursor: pointer;
