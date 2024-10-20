@@ -1648,6 +1648,11 @@ html {
   border-color: rgb(255 255 255 / var(--tw-border-opacity)) !important;
 }
 
+.x-border-\[\#1A483C\] {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(26 72 60 / var(--tw-border-opacity)) !important;
+}
+
 .x-bg-\[\#1A483C\] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(26 72 60 / var(--tw-bg-opacity)) !important;
@@ -1720,6 +1725,10 @@ html {
 .x-bg-white {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\] {
+  background-color:  !important;
 }
 
 .x-bg-opacity-40 {
@@ -2157,6 +2166,11 @@ html {
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
 }
 
+.x-text-\[\#1A483C\] {
+  --tw-text-opacity: 1 !important;
+  color: rgb(26 72 60 / var(--tw-text-opacity)) !important;
+}
+
 .x-underline {
   text-decoration-line: underline !important;
 }
@@ -2281,6 +2295,11 @@ html {
 .hover\:x-bg-white:hover {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
+}
+
+.hover\:x-bg-\[\#1A483C\]:hover {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(26 72 60 / var(--tw-bg-opacity)) !important;
 }
 
 .hover\:x-text-black:hover {
