@@ -1,5 +1,3 @@
-<!-- featured-product.liquid -->
-
 <div class="featured-product-section">
   <div
     class="x-w-full x-h-90 x-bg-[#F5F9F1] x-flex x-flex-col x-justify-center x-items-start x-px-[16px] x-h-[180px] x-gap-[16px] md:x-flex-row md:x-justify-between md:x-items-center md:x-px-[50px] x-font-myriad-pro"
@@ -42,22 +40,20 @@
   </div>
 
   <div class="featured-product-container">
-    <!-- Assuming you're showcasing one specific product, hardcode the handle or use dynamic settings -->
-    {% assign featured_product = all_products['test-product'] %}
-    {% assign featured_product_2 = all_products['test-product-2'] %}
-    {% assign featured_product_3 = all_products['test-product-3'] %}
-
-    <!-- Include the product-card snippet, passing the featured product -->
     <div class="x-w-full md:x-grid x-flex md:x-grid-cols-3 lg:x-grid-cols-5 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar">
-      <div class="x-w-full x-aspect-square x-snap-start">
-        {% render 'custom-product-card', product: featured_product, delay: 100 %}
-      </div>
-      <div class="x-w-full x-aspect-square x-snap-start">
-        {% render 'custom-product-card', product: featured_product_2, delay: 200 %}
-      </div>
-      <div class="x-w-full x-aspect-square x-snap-start">
-        {% render 'custom-product-card', product: featured_product_3, delay: 300 %}
-      </div>
+        {%- assign delay = 0 -%}    
+        {% for product in collections['home-featured'].products limit:5 %}
+            <div
+                data-aos="fade-in"
+                data-aos-duration="800"
+                data-aos-once="true"
+                data-aos-delay="{{ delay }}"
+                class="x-w-full x-aspect-square x-snap-start"
+            >
+                {% render 'custom-product-card', product: product %}
+            </div>
+            {%- assign delay = delay | plus: 100 -%}
+        {% endfor %}
     </div>
   </div>
 </div>
