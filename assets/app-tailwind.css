@@ -1658,19 +1658,29 @@ html {
   background-color: rgb(245 249 241 / var(--tw-bg-opacity)) !important;
 }
 
-.x-bg-\[\#F9F8F5\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(249 248 245 / var(--tw-bg-opacity)) !important;
-}
-
 .x-bg-\[\#FAFAFA\] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(250 250 250 / var(--tw-bg-opacity)) !important;
 }
 
+.x-bg-\[\#f5f8f5\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(245 248 245 / var(--tw-bg-opacity)) !important;
+}
+
 .x-bg-\[\#f9f8f4\] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(249 248 244 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#f9faf9\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(249 250 249 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#fefffe\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(254 255 254 / var(--tw-bg-opacity)) !important;
 }
 
 .x-bg-black {
@@ -1710,31 +1720,6 @@ html {
 .x-bg-white {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
-}
-
-.x-bg-\[\#fefffe\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(254 255 254 / var(--tw-bg-opacity)) !important;
-}
-
-.x-bg-\[\#edf1ed\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(237 241 237 / var(--tw-bg-opacity)) !important;
-}
-
-.x-bg-\[\#f5f8f5\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(245 248 245 / var(--tw-bg-opacity)) !important;
-}
-
-.x-bg-\[\#f5f7f5\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(245 247 245 / var(--tw-bg-opacity)) !important;
-}
-
-.x-bg-\[\#f9faf9\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(249 250 249 / var(--tw-bg-opacity)) !important;
 }
 
 .x-bg-opacity-40 {
