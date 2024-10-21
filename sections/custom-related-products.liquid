@@ -34,6 +34,8 @@
 </section>
 
 <script>
+    let current = [false, false, false, false];
+
     $(document).ready(function () {
         addRecentlyViewedProduct('{{ product.handle }}');
         handleTabSwitch();
@@ -43,6 +45,7 @@
 
     // attach aos effect to recently viewed products - prince #3
     function addAOSEffectToRecentlyViewedProducts() {
+        console.log('Adding AOS effect to recently viewed products');
         $('.product-recents').children().each(function (index) {
             $(this)
                 .attr('data-aos', 'fade-in')
@@ -70,8 +73,9 @@
             method: 'GET',
             success: function (response) {
                 $('.product-recents').append(response);
-
-                if (index === 3) {
+                current[index] = true;
+                let checker = arr => arr.every(v => v === true);
+                if (checker(current)) {
                     addAOSEffectToRecentlyViewedProducts();
                 }
             },
