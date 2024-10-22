@@ -1125,6 +1125,10 @@ html {
   aspect-ratio: 1 / 1 !important;
 }
 
+.x-aspect-video {
+  aspect-ratio: 16 / 9 !important;
+}
+
 .x-h-0 {
   height: 0px !important;
 }
@@ -1235,6 +1239,10 @@ html {
 
 .x-w-2 {
   width: 0.5rem !important;
+}
+
+.x-w-\[120px\] {
+  width: 120px !important;
 }
 
 .x-w-\[1440px\] {
@@ -2384,6 +2392,10 @@ html {
 
   .md\:x-w-\[100\%\] {
     width: 100% !important;
+  }
+
+  .md\:x-w-\[160px\] {
+    width: 160px !important;
   }
 
   .md\:x-w-\[420px\] {
