@@ -1285,6 +1285,14 @@ html {
   width: 100% !important;
 }
 
+.x-w-\[200px\] {
+  width: 200px !important;
+}
+
+.x-w-\[240px\] {
+  width: 240px !important;
+}
+
 .x-min-w-\[380px\] {
   min-width: 380px !important;
 }
@@ -1476,6 +1484,10 @@ html {
   gap: 54px !important;
 }
 
+.x-gap-\[64px\] {
+  gap: 64px !important;
+}
+
 .x-gap-\[6px\] {
   gap: 6px !important;
 }
@@ -1490,6 +1502,10 @@ html {
 
 .x-gap-\[8px\] {
   gap: 8px !important;
+}
+
+.x-gap-\[56px\] {
+  gap: 56px !important;
 }
 
 .x-gap-x-\[5\%\] {
