@@ -431,6 +431,7 @@
         const spans = document.querySelectorAll('.header span');
         const cartBubbleSpan = document.querySelector('.cart-count-bubble span');
         const outlines = document.querySelectorAll('.details-hover--outline');
+        const logoSvg = document.querySelector('.logo-container');
 
         spans.forEach((span) => {
           span.style.color = 'white';
@@ -445,6 +446,7 @@
             outlines.forEach((outline) => {
               outline.style.backgroundColor = 'black';
             });
+            logoSvg.innerHTML = `{% render "main-logo" %}`;
           } else {
             header.classList.remove('scrolled');
             spans.forEach((span) => {
@@ -453,8 +455,8 @@
             outlines.forEach((outline) => {
               outline.style.backgroundColor = 'white';
             });
+            logoSvg.innerHTML = `{% render "main-logo-light" %}`;
           }
-          //   cartBubbleSpan.style.color = 'white';
         };
       </script>
     {% else %}
