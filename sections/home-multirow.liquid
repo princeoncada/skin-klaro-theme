@@ -9,7 +9,9 @@
         data-aos-order="1"
       >
         <div
-          class="parallax-row x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
+          class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
+          data-rellax-speed="-10"
+          data-rellax-percentage="0.5"
           style="background-image: url({{ 'img1.jpg' |  asset_img_url: '1000x1000' }});"
         >
           &nbsp;
@@ -73,7 +75,9 @@
         data-aos-order="1"
       >
         <div
-          class="parallax-row x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
+          class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
+          data-rellax-speed="-10"
+          data-rellax-percentage="0.5"
           style="background-image: url({{ 'img2.jpg' |  asset_img_url: '1000x1000' }});"
         >
           &nbsp;
@@ -128,7 +132,9 @@
         data-aos-order="1"
       >
         <div
-          class="parallax-row x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
+          class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
+          data-rellax-speed="-10"
+          data-rellax-percentage="0.5"
           style="background-image: url({{ 'img3.jpg' |  asset_img_url: '1000x1000' }});"
         >
           &nbsp;
@@ -189,22 +195,23 @@
 </div>
 
 <script>
-  document.addEventListener('scroll', function () {
-    const parallaxSections = document.querySelectorAll('.parallax-row');
-    parallaxSections.forEach((parallax) => {
-      const speed = 0.3; // Adjust the speed for the desired parallax effect
-      const sectionTop = parallax.parentElement.offsetTop; // Get the top position of the parent element relative to the document
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
+  // prince code
+  // document.addEventListener('scroll', function () {
+  //   const parallaxSections = document.querySelectorAll('.parallax-row');
+  //   parallaxSections.forEach((parallax) => {
+  //     const speed = 0.3; // Adjust the speed for the desired parallax effect
+  //     const sectionTop = parallax.parentElement.offsetTop; // Get the top position of the parent element relative to the document
+  //     const scrollPosition = window.scrollY;
+  //     const windowHeight = window.innerHeight;
 
-      // Check if the section is in the viewport
-      if (
-        scrollPosition + windowHeight > sectionTop &&
-        scrollPosition < sectionTop + parallax.parentElement.offsetHeight
-      ) {
-        const yPos = (scrollPosition - sectionTop) * speed; // Calculate the parallax effect
-        parallax.style.transform = `translateY(${yPos}px)`;
-      }
-    });
-  });
+  //     // Check if the section is in the viewport
+  //     if (
+  //       scrollPosition + windowHeight > sectionTop &&
+  //       scrollPosition < sectionTop + parallax.parentElement.offsetHeight
+  //     ) {
+  //       const yPos = (scrollPosition - sectionTop) * speed; // Calculate the parallax effect
+  //       parallax.style.transform = `translateY(${yPos}px)`;
+  //     }
+  //   });
+  // });
 </script>

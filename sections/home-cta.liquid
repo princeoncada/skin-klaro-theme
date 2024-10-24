@@ -3,13 +3,16 @@
     class="x-flex x-flex-col x-p-[16px] x-gap-[16px] md:x-gap-[50px] md:x-flex-row-reverse md:x-h-[600px] md:x-p-[50px] x-bg-[#F5F9F1]"
   >
     <div
-      class="x-relative x-overflow-hidden x-h-[600px] x-w-full md:x-w-1/2 md:x-h-full translate-up-20"
+      class=" x-relative x-overflow-hidden x-h-[600px] x-w-full md:x-w-1/2 md:x-h-full translate-up-20"
       data-aos="fade"
       data-aos-duration="1000"
       data-aos-once="true"
     >
       <div
-        class="parallax-cta x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
+        class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
+        data-rellax-speed="-5"
+        data-rellax-percentage="0.5"
+        data-rellax-max="0"
         style="background-image: url({{ 'img4.jpg' |  asset_img_url: '1000x1000' }});"
       >
         &nbsp;
@@ -50,23 +53,24 @@
 </div>
 
 <script>
-  document.addEventListener('scroll', function () {
-    const parallaxSections = document.querySelectorAll('.parallax-cta');
-    parallaxSections.forEach((parallax) => {
-      const speed = 0.2; // Adjust the speed for the desired parallax effect
-      const initialOffset = 0; // Offset to move the image down initially
-      const sectionTop = parallax.parentElement.offsetTop; // Get the top position of the parent element relative to the document
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
+  //prince code
+  // document.addEventListener('scroll', function () {
+  //   const parallaxSections = document.querySelectorAll('.parallax-cta');
+  //   parallaxSections.forEach((parallax) => {
+  //     const speed = 0.2; // Adjust the speed for the desired parallax effect
+  //     const initialOffset = 0; // Offset to move the image down initially
+  //     const sectionTop = parallax.parentElement.offsetTop; // Get the top position of the parent element relative to the document
+  //     const scrollPosition = window.scrollY;
+  //     const windowHeight = window.innerHeight;
 
-      // Check if the section is in the viewport
-      if (
-        scrollPosition + windowHeight > sectionTop &&
-        scrollPosition < sectionTop + parallax.parentElement.offsetHeight
-      ) {
-        const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
-        parallax.style.transform = `translateY(${yPos}px)`;
-      }
-    });
-  });
+  //     // Check if the section is in the viewport
+  //     if (
+  //       scrollPosition + windowHeight > sectionTop &&
+  //       scrollPosition < sectionTop + parallax.parentElement.offsetHeight
+  //     ) {
+  //       const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
+  //       parallax.style.transform = `translateY(${yPos}px)`;
+  //     }
+  //   });
+  // });
 </script>

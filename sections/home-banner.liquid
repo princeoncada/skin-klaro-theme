@@ -1,6 +1,7 @@
 <div class="x-relative x-overflow-hidden x-h-[850px]">
   <div
-    class="parallax-banner x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
+    class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
+    data-rellax-speed="-5"
     style="background-image: url({{ section.settings.background_image | image_url: width: 1000 }});"
   >
     &nbsp;
@@ -37,14 +38,15 @@
 </div>
 
 <script>
-  document.addEventListener('scroll', function () {
-    const parallaxSections = document.querySelectorAll('.parallax-banner');
-    parallaxSections.forEach((parallax) => {
-      const speed = 0.8; // Smaller value for a subtle effect
-      const scrollPosition = window.scrollY;
-      parallax.style.transform = `translateY(${scrollPosition * speed}px)`;
-    });
-  });
+  //prince code
+  // document.addEventListener('scroll', function () {
+  //   const parallaxSections = document.querySelectorAll('.parallax-banner');
+  //   parallaxSections.forEach((parallax) => {
+  //     const speed = 0.8; // Smaller value for a subtle effect
+  //     const scrollPosition = window.scrollY;
+  //     parallax.style.transform = `translateY(${scrollPosition * speed}px)`;
+  //   });
+  // });
 </script>
 
 {% schema %}

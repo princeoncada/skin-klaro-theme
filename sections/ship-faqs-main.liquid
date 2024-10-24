@@ -2,7 +2,9 @@
   <div>
     <div class="x-relative x-overflow-hidden x-h-[455px] x-w-full x-flex x-justify-center">
       <div
-        class="parallax-s x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center x-flex"
+        class="rellax x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center x-flex"
+        data-rellax-speed="-5"
+        data-rellax-percentage="0.5"
         style="background-image: url({{ 'founder_pholder.png' | asset_url }});"
       >
         &nbsp;
@@ -268,31 +270,31 @@
 
 <script>
   $(document).ready(function () {
-    applyParallax();
+    // applyParallax();
     applyCollapse('.collapse.product-ingredients');
     applyCollapse('.collapse.shipping-returns');
   });
 
-  $(window).on('scroll', function () {
-    applyParallax();
-  });
+  // $(window).on('scroll', function () {
+  //   applyParallax();
+  // });
 
-  function applyParallax() {
-    $('.parallax-s').each(function () {
-      const speed = 0.15; // Adjust the speed for the desired parallax effect
-      const initialOffset = 0; // Offset to move the image down initially
-      const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
-      const scrollPosition = $(window).scrollTop();
-      const windowHeight = $(window).height();
-      const sectionHeight = $(this).parent().outerHeight();
+  // function applyParallax() {
+  //   $('.parallax-s').each(function () {
+  //     const speed = 0.15; // Adjust the speed for the desired parallax effect
+  //     const initialOffset = 0; // Offset to move the image down initially
+  //     const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
+  //     const scrollPosition = $(window).scrollTop();
+  //     const windowHeight = $(window).height();
+  //     const sectionHeight = $(this).parent().outerHeight();
 
-      // Check if the section is in the viewport
-      if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
-        $(this).css('transform', `translateY(${yPos}px)`);
-      }
-    });
-  }
+  //     // Check if the section is in the viewport
+  //     if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
+  //       const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
+  //       $(this).css('transform', `translateY(${yPos}px)`);
+  //     }
+  //   });
+  // }
 
   function applyCollapse(groupClass) {
     $(groupClass).on('click', function () {

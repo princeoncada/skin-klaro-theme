@@ -9,7 +9,8 @@
         data-aos-delay="300"
       >
         <div
-          class="parallax-i x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
+          class="rellax x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
+          data-rellax-speed="-5"
           style="background-image: url({{ "asset1.webp" | asset_url }});"
         >
           &nbsp;
@@ -107,7 +108,9 @@
         data-aos-delay="100"
       >
         <div
-          class="parallax-i x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
+          class="rellax x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
+           data-rellax-speed="-5"
+           data-rellax-percentage="0.5"
           style="background-image: url({{ "asset2.jpg" | asset_url }});"
         >
           &nbsp;
@@ -206,13 +209,13 @@
 <script>
   $(document).ready(function () {
     initializeFlickity();
-    applyParallax();
+    // applyParallax();
     applyCollapse();
   });
 
-  $(window).on('scroll', function () {
-    applyParallax();
-  });
+  // $(window).on('scroll', function () {
+  //   applyParallax();
+  // });
 
   function applyCollapse() {
     $('.collapse').on('click', function () {
@@ -233,22 +236,22 @@
     });
   }
 
-  function applyParallax() {
-    $('.parallax-i').each(function () {
-      const speed = 0.3; // Adjust the speed for the desired parallax effect
-      const initialOffset = 0; // Offset to move the image down initially
-      const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
-      const scrollPosition = $(window).scrollTop();
-      const windowHeight = $(window).height();
-      const sectionHeight = $(this).parent().outerHeight();
+  // function applyParallax() {
+  //   $('.parallax-i').each(function () {
+  //     const speed = 0.3; // Adjust the speed for the desired parallax effect
+  //     const initialOffset = 0; // Offset to move the image down initially
+  //     const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
+  //     const scrollPosition = $(window).scrollTop();
+  //     const windowHeight = $(window).height();
+  //     const sectionHeight = $(this).parent().outerHeight();
 
-      // Check if the section is in the viewport
-      if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
-        $(this).css('transform', `translateY(${yPos}px)`);
-      }
-    });
-  }
+  //     // Check if the section is in the viewport
+  //     if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
+  //       const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
+  //       $(this).css('transform', `translateY(${yPos}px)`);
+  //     }
+  //   });
+  // }
 
   function initializeFlickity() {
     let flkty = new Flickity('.first-i-content-carousel', {
