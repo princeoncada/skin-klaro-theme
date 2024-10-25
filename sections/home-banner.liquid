@@ -1,81 +1,67 @@
 <div class="x-relative x-overflow-hidden x-h-[850px]">
-  <div
-    class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
-    data-rellax-speed="-5"
-    data-rellax-mobile-speed="-2"
-    style="background-image: url({{ section.settings.background_image | image_url: width: 1000 }});"
-  >
-    &nbsp;
-  </div>
-
-  <div class="x-relative x-flex x-items-center max-[990px]:x-justify-center x-h-full x-text-center x-p-4 md:x-left-[100px]">
-    <div class="x-absolute x-text-start x-flex x-flex-col x-justify-center x-items-start x-gap-4">
-      <h2
-        class="x-text-white x-text-[36px] lg:x-text-[48px] x-font-medium x-uppercase x-font-amandine translate-up-20"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        data-aos-once="true"
-        data-aos-delay="500"
-        data-aos-order="2"
-      >
-        {{ section.settings.heading }}
-      </h2>
-      <div
-        class="translate-up-20"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        data-aos-once="true"
-        data-aos-delay="800"
-        data-aos-order="3"
-      >
-        <button
-          class="x-bg-transparent x-p-4 x-px-6 x-text-xl x-border x-border-white x-text-white x-uppercase hover:x-bg-white hover:x-text-black x-transition-colors x-duration-300"
-        >
-          {{ section.settings.button_text }}
-        </button>
-      </div>
+    <div class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center" data-rellax-speed="-5"
+        data-rellax-mobile-speed="-2"
+        style="background-image: url({{ section.settings.background_image | image_url: width: 1000 }});">
+        &nbsp;
     </div>
-  </div>
+
+    <div
+        class="x-relative x-flex x-items-center max-[990px]:x-justify-center x-h-full x-text-center x-p-4 md:x-left-[100px]">
+        <div class="x-absolute x-text-start x-flex x-flex-col x-justify-center x-items-start x-gap-4">
+            <h2 class="x-text-white x-text-[36px] lg:x-text-[48px] x-font-medium x-uppercase x-font-amandine translate-up-20"
+                data-aos="fade-up" data-aos-duration="1000" data-aos-once="true" data-aos-delay="500"
+                data-aos-order="2">
+                {{ section.settings.heading }}
+            </h2>
+            <div class="translate-up-20" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true"
+                data-aos-delay="800" data-aos-order="3">
+                <button
+                    class="x-bg-transparent x-p-4 x-px-6 x-text-xl x-border x-border-white x-text-white x-uppercase hover:x-bg-white hover:x-text-black x-transition-colors x-duration-300">
+                    {{ section.settings.button_text }}
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
-  //prince code
-  // document.addEventListener('scroll', function () {
-  //   const parallaxSections = document.querySelectorAll('.parallax-banner');
-  //   parallaxSections.forEach((parallax) => {
-  //     const speed = 0.8; // Smaller value for a subtle effect
-  //     const scrollPosition = window.scrollY;
-  //     parallax.style.transform = `translateY(${scrollPosition * speed}px)`;
-  //   });
-  // });
+    //prince code
+    // document.addEventListener('scroll', function () {
+    //   const parallaxSections = document.querySelectorAll('.parallax-banner');
+    //   parallaxSections.forEach((parallax) => {
+    //     const speed = 0.8; // Smaller value for a subtle effect
+    //     const scrollPosition = window.scrollY;
+    //     parallax.style.transform = `translateY(${scrollPosition * speed}px)`;
+    //   });
+    // });
 </script>
 
 {% schema %}
 {
-  "name": "Parallax Section",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background Image"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "YOUR PRODUCT NAME"
-    },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "Button Text",
-      "default": "SHOP NOW"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Parallax Section",
-      "category": "Custom"
-    }
-  ]
+"name": "Parallax Section",
+"settings": [
+{
+"type": "image_picker",
+"id": "background_image",
+"label": "Background Image"
+},
+{
+"type": "text",
+"id": "heading",
+"label": "Heading",
+"default": "YOUR PRODUCT NAME"
+},
+{
+"type": "text",
+"id": "button_text",
+"label": "Button Text",
+"default": "SHOP NOW"
+}
+],
+"presets": [
+{
+"name": "Parallax Section",
+"category": "Custom"
+}
+]
 }
 {% endschema %}
