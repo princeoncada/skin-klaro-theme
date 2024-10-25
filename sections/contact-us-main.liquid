@@ -3,7 +3,9 @@
     <div class="x-flex x-flex-col md:x-flex-row x-gap-[16px] md:x-gap-[50px]">
       <div class="md:x-w-1/2 x-relative x-overflow-hidden x-h-[630px] x-w-full">
         <div
-          class="parallax-contact x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
+          class="rellax x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
+          data-rellax-speed="-10"
+          data-rellax-percentage="0.5"
           style="background-image: url({{ 'founder_pholder.png' | asset_url }});"
         >
           &nbsp;
@@ -27,28 +29,29 @@
 </section>
 
 <script>
-  $(document).ready(function () {
-    applyParallax();
-  });
+  //prince code
+  // $(document).ready(function () {
+  //   applyParallax();
+  // });
 
-  $(window).on('scroll', function () {
-    applyParallax();
-  });
+  // $(window).on('scroll', function () {
+  //   applyParallax();
+  // });
 
-  function applyParallax() {
-    $('.parallax-contact').each(function () {
-      const speed = 0.15; // Adjust the speed for the desired parallax effect
-      const initialOffset = 0; // Offset to move the image down initially
-      const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
-      const scrollPosition = $(window).scrollTop();
-      const windowHeight = $(window).height();
-      const sectionHeight = $(this).parent().outerHeight();
+  // function applyParallax() {
+  //   $('.parallax-contact').each(function () {
+  //     const speed = 0.15; // Adjust the speed for the desired parallax effect
+  //     const initialOffset = 0; // Offset to move the image down initially
+  //     const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
+  //     const scrollPosition = $(window).scrollTop();
+  //     const windowHeight = $(window).height();
+  //     const sectionHeight = $(this).parent().outerHeight();
 
-      // Check if the section is in the viewport
-      if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
-        $(this).css('transform', `translateY(${yPos}px)`);
-      }
-    });
-  }
+  //     // Check if the section is in the viewport
+  //     if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
+  //       const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
+  //       $(this).css('transform', `translateY(${yPos}px)`);
+  //     }
+  //   });
+  // }
 </script>

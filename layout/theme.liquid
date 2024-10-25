@@ -317,6 +317,7 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
+    <script src="{{ 'rellax.min.js' | asset_url }}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
@@ -472,6 +473,9 @@
 
     <script>
       AOS.init();
+      let rellax = new Rellax('.rellax', {
+        breakpoints: [425, 990, 1280],
+      });
     </script>
     <style>
       .translate-up-20[data-aos='fade-up'] {
