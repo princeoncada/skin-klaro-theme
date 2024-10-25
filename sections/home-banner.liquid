@@ -1,7 +1,6 @@
 <div class="x-relative x-overflow-hidden x-h-[850px]">
   <div
-    class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
-    data-rellax-speed="-5"
+    class="parallax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center"
     style="background-image: url({{ section.settings.background_image | image_url: width: 1000 }});"
   >
     &nbsp;
@@ -36,17 +35,43 @@
     </div>
   </div>
 </div>
+<style>
+  .parallax__container {
+	clip: rect(0, auto, auto, 0);
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: -100;
+}
 
+.parallax {
+	position: fixed;
+	top: 0;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	width: 100%;
+
+	/* BG behaviour */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+</style>
 <script>
   //prince code
-  // document.addEventListener('scroll', function () {
-  //   const parallaxSections = document.querySelectorAll('.parallax-banner');
-  //   parallaxSections.forEach((parallax) => {
-  //     const speed = 0.8; // Smaller value for a subtle effect
-  //     const scrollPosition = window.scrollY;
-  //     parallax.style.transform = `translateY(${scrollPosition * speed}px)`;
-  //   });
-  // });
+  document.addEventListener('scroll', function () {
+    const parallaxSections = document.querySelectorAll('.parallax');
+    parallaxSections.forEach((parallax) => {
+      const speed = 0.8; // Smaller value for a subtle effect
+      const scrollPosition = window.scrollY;
+      parallax.style.transform = `translateY(${scrollPosition * speed}px)`;
+    });
+  });
 </script>
 
 {% schema %}
