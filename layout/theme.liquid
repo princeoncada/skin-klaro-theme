@@ -268,6 +268,7 @@
     {{ 'app-tailwind.css' | asset_url | stylesheet_tag }}
 
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
@@ -328,7 +329,8 @@
     {% comment %} <script src="https://unpkg.com/flickity-fullscreen@2/fullscreen.js"></script> {% endcomment %}
     {% comment %} <script src="{{ 'fullscreen.js' | asset_url }}" defer></script> {% endcomment %}
     <script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
-    {% comment %} <script src="{{ 'flickity-fade.js' | asset_url }}" defer></script> {% endcomment %}
+    {% comment %} <script src="{{ 'flickity-fade.js' | asset_url }}" defer></script> {% endcomment %} 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
