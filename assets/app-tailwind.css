@@ -968,6 +968,14 @@ html {
   top: 0.25rem !important;
 }
 
+.x-left-\[4px\] {
+  left: 4px !important;
+}
+
+.x-right-\[4px\] {
+  right: 4px !important;
+}
+
 .x-z-0 {
   z-index: 0 !important;
 }
@@ -1019,6 +1027,11 @@ html {
 .x-my-auto {
   margin-top: auto !important;
   margin-bottom: auto !important;
+}
+
+.x-my-\[10px\] {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 .x-mb-1 {
@@ -1097,6 +1110,14 @@ html {
   margin-top: 24px !important;
 }
 
+.x-mb-\[40px\] {
+  margin-bottom: 40px !important;
+}
+
+.x-mt-\[20px\] {
+  margin-top: 20px !important;
+}
+
 .x-block {
   display: block !important;
 }
@@ -1123,6 +1144,10 @@ html {
 
 .x-aspect-square {
   aspect-ratio: 1 / 1 !important;
+}
+
+.x-aspect-video {
+  aspect-ratio: 16 / 9 !important;
 }
 
 .x-h-0 {
@@ -1237,6 +1262,10 @@ html {
   width: 0.5rem !important;
 }
 
+.x-w-\[120px\] {
+  width: 120px !important;
+}
+
 .x-w-\[1440px\] {
   width: 1440px !important;
 }
@@ -1251,6 +1280,10 @@ html {
 
 .x-w-\[1px\] {
   width: 1px !important;
+}
+
+.x-w-\[200px\] {
+  width: 200px !important;
 }
 
 .x-w-\[20px\] {
@@ -1277,6 +1310,10 @@ html {
   width: 100% !important;
 }
 
+.x-w-\[280px\] {
+  width: 280px !important;
+}
+
 .x-min-w-\[380px\] {
   min-width: 380px !important;
 }
@@ -1288,6 +1325,10 @@ html {
 
 .x-min-w-full {
   min-width: 100% !important;
+}
+
+.x-min-w-\[280px\] {
+  min-width: 280px !important;
 }
 
 .x-max-w-\[1200px\] {
@@ -1468,6 +1509,10 @@ html {
   gap: 54px !important;
 }
 
+.x-gap-\[56px\] {
+  gap: 56px !important;
+}
+
 .x-gap-\[6px\] {
   gap: 6px !important;
 }
@@ -1517,6 +1562,10 @@ html {
 
 .x-overflow-hidden {
   overflow: hidden !important;
+}
+
+.x-overflow-scroll {
+  overflow: scroll !important;
 }
 
 .x-overflow-x-auto {
@@ -1603,6 +1652,11 @@ html {
   border-style: none !important;
 }
 
+.x-border-\[\#1A483C\] {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(26 72 60 / var(--tw-border-opacity)) !important;
+}
+
 .x-border-\[\#242424\] {
   --tw-border-opacity: 1 !important;
   border-color: rgb(36 36 36 / var(--tw-border-opacity)) !important;
@@ -1646,6 +1700,11 @@ html {
 .x-border-white {
   --tw-border-opacity: 1 !important;
   border-color: rgb(255 255 255 / var(--tw-border-opacity)) !important;
+}
+
+.x-border-\[\#434341\] {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(67 67 65 / var(--tw-border-opacity)) !important;
 }
 
 .x-bg-\[\#1A483C\] {
@@ -1722,6 +1781,31 @@ html {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
 }
 
+.x-bg-\[\#fefffe\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(254 255 254 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#edf1ed\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(237 241 237 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#f5f8f5\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(245 248 245 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#f5f7f5\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(245 247 245 / var(--tw-bg-opacity)) !important;
+}
+
+.x-bg-\[\#f9faf9\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(249 250 249 / var(--tw-bg-opacity)) !important;
+}
+
 .x-bg-opacity-40 {
   --tw-bg-opacity: 0.4 !important;
 }
@@ -1767,6 +1851,10 @@ html {
 
 .x-p-\[16px\] {
   padding: 16px !important;
+}
+
+.x-p-\[4px\] {
+  padding: 4px !important;
 }
 
 .x-px-10 {
@@ -2112,6 +2200,31 @@ html {
   line-height: 1.625 !important;
 }
 
+.x-leading-\[16\.8px\] {
+  line-height: 16.8px !important;
+}
+
+.x-leading-\[19\.6px\] {
+  line-height: 19.6px !important;
+}
+
+.x-leading-\[24px\] {
+  line-height: 24px !important;
+}
+
+.x-leading-\[38\.4px\] {
+  line-height: 38.4px !important;
+}
+
+.x-tracking-\[2px\] {
+  letter-spacing: 2px !important;
+}
+
+.x-text-\[\#1A483C\] {
+  --tw-text-opacity: 1 !important;
+  color: rgb(26 72 60 / var(--tw-text-opacity)) !important;
+}
+
 .x-text-black {
   --tw-text-opacity: 1 !important;
   color: rgb(0 0 0 / var(--tw-text-opacity)) !important;
@@ -2263,6 +2376,11 @@ html {
   /* Firefox */
 }
 
+.hover\:x-bg-\[\#1A483C\]:hover {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(26 72 60 / var(--tw-bg-opacity)) !important;
+}
+
 .hover\:x-bg-\[\#1f2012\]:hover {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(31 32 18 / var(--tw-bg-opacity)) !important;
@@ -2271,11 +2389,6 @@ html {
 .hover\:x-bg-black:hover {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity)) !important;
-}
-
-.hover\:x-bg-gray-600:hover {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(75 85 99 / var(--tw-bg-opacity)) !important;
 }
 
 .hover\:x-bg-white:hover {
@@ -2374,6 +2487,10 @@ html {
 
   .md\:x-w-\[100\%\] {
     width: 100% !important;
+  }
+
+  .md\:x-w-\[160px\] {
+    width: 160px !important;
   }
 
   .md\:x-w-\[420px\] {
@@ -2528,8 +2645,17 @@ html {
     padding-bottom: 75px !important;
   }
 
+  .md\:x-px-\[8px\] {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
   .md\:x-pt-\[90px\] {
     padding-top: 90px !important;
+  }
+
+  .md\:x-pb-\[16px\] {
+    padding-bottom: 16px !important;
   }
 
   .md\:x-text-\[14px\] {
@@ -2564,6 +2690,10 @@ html {
     font-size: 56px !important;
   }
 
+  .md\:x-text-\[40px\] {
+    font-size: 40px !important;
+  }
+
   .md\:x-leading-\[18px\] {
     line-height: 18px !important;
   }
@@ -2578,6 +2708,26 @@ html {
 
   .md\:x-leading-\[34px\] {
     line-height: 34px !important;
+  }
+
+  .md\:x-leading-\[19\.2px\] {
+    line-height: 19.2px !important;
+  }
+
+  .md\:x-leading-\[21\.6px\] {
+    line-height: 21.6px !important;
+  }
+
+  .md\:x-leading-\[28\.6px\] {
+    line-height: 28.6px !important;
+  }
+
+  .md\:x-leading-\[48px\] {
+    line-height: 48px !important;
+  }
+
+  .md\:x-tracking-\[3px\] {
+    letter-spacing: 3px !important;
   }
 }
 
@@ -2646,5 +2796,29 @@ html {
 
   .lg\:x-text-\[48px\] {
     font-size: 48px !important;
+  }
+
+  .lg\:x-text-\[16px\] {
+    font-size: 16px !important;
+  }
+
+  .lg\:x-text-\[34px\] {
+    font-size: 34px !important;
+  }
+
+  .lg\:x-text-\[52px\] {
+    font-size: 52px !important;
+  }
+
+  .lg\:x-leading-\[21\.6px\] {
+    line-height: 21.6px !important;
+  }
+
+  .lg\:x-leading-\[35\.7px\] {
+    line-height: 35.7px !important;
+  }
+
+  .lg\:x-leading-\[52px\] {
+    line-height: 52px !important;
   }
 }

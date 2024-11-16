@@ -5,16 +5,24 @@
     </div>
     <div class="">
       <div class="x-flex x-flex-col md:x-grid md:x-grid-cols-3">
+        {%- assign delay = 0 -%}
         {% for product in collections.sets.products %}
-          <div class="x-w-full x-aspect-square">
+            <div 
+                data-aos="fade-in"
+                data-aos-duration="800"
+                data-aos-once="true"
+                data-aos-delay="{{ delay }}"
+                class="x-w-full x-aspect-square x-snap-start"
+            >
             {% render 'custom-product-card', product: product %}
           </div>
+          {%- assign delay = delay | plus: 100 -%}
+          <!-- Increase the delay by 100ms for each product -->
         {% endfor %}
       </div>
     </div>
   </div>
 </div>
-
 <script>
   $(document).ready(function () {
     applyParallax();

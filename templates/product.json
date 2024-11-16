@@ -13,11 +13,15 @@
       "type": "custom-main-product"
     },
     "related-products": {
-      "type": "custom-related-products",
+      "type": "custom-related-products"
+    },
+    "product-ingredients": {
+        "type": "custom-product-ingredients"
     }
   },
   "order": [
     "main",
+    "product-ingredients",
     "related-products"
   ]
 }

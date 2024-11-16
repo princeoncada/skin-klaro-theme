@@ -10,11 +10,19 @@
         <!-- Related Products -->
         <div class="product-recommendations x-w-full md:x-grid x-flex md:x-grid-cols-4 x-flex-row x-overflow-x-auto x-snap-x x-snap-mandatory x-overflow-hidden no-scrollbar"
             data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related">
+            {% assign delay = 0 %}
             {%- if recommendations.performed and recommendations.products_count > 0 -%}
                 {%- for recommended_product in recommendations.products -%}
-                    <div class="x-w-full x-aspect-square x-snap-start">
+                    <div 
+                        data-aos="fade-in"
+                        data-aos-duration="800"
+                        data-aos-once="true"
+                        data-aos-delay="{{ delay }}"
+                        class="x-w-full x-aspect-square x-snap-start"
+                    >
                         {% render 'custom-product-card', product: recommended_product %}
                     </div>
+                    {% assign delay = delay | plus: 100 %}                
                 {%- endfor -%}
             {%- endif -%}
         </div>
@@ -26,6 +34,8 @@
 </section>
 
 <script>
+    let current = [false, false, false, false];
+
     $(document).ready(function () {
         addRecentlyViewedProduct('{{ product.handle }}');
         handleTabSwitch();
@@ -33,20 +43,41 @@
         handleRecentlyViewedProducts();
     });
 
-    function handleRecentlyViewedProducts() {
-        let productHandles = getRecentlyViewedProducts();
-        if (productHandles.length === 0) return;
-        productHandles.slice(0, 4).forEach(productHandle => {
-            retrieveAndAppendRecentProduct(productHandle);
+    // attach aos effect to recently viewed products - prince #3
+    function addAOSEffectToRecentlyViewedProducts() {
+        console.log('Adding AOS effect to recently viewed products');
+        $('.product-recents').children().each(function (index) {
+            $(this)
+                .attr('data-aos', 'fade-in')
+                .attr('data-aos-duration', '800')
+                .attr('data-aos-delay', `${index * 100}`)
+                .attr('data-aos-once', 'true');
         });
     }
 
-    function retrieveAndAppendRecentProduct(productHandle) {
+    // so i think kailangan ibutang pud ang delay diri? - questions ni nex
+    // index needed to know when to start applying AOS effect - prince #1
+    function handleRecentlyViewedProducts() {
+        let productHandles = getRecentlyViewedProducts();
+        if (productHandles.length === 0) return;
+        productHandles.slice(0, 4).forEach((productHandle, index) => {
+            retrieveAndAppendRecentProduct(productHandle, index);
+        });
+    }
+    
+    // so i researched about the params pero kapoy na ata akong utok so i'll leave this to you for the delay 
+    // add aos effect to recently viewed products after all products are loaded - prince #2
+    function retrieveAndAppendRecentProduct(productHandle, index) {
         $.ajax({
             url: `/products/${productHandle}?view=card`,
             method: 'GET',
             success: function (response) {
                 $('.product-recents').append(response);
+                current[index] = true;
+                let checker = arr => arr.every(v => v === true);
+                if (checker(current)) {
+                    addAOSEffectToRecentlyViewedProducts();
+                }
             },
             error: function (error) {
                 console.log(error);
@@ -54,6 +85,7 @@
         });
     }
 
+    // added aos on-click effect trigger on children to tab switches - prince #4
     function handleTabSwitch() {
         $('.tab-button').click(function () {
             $('.tab-button').removeClass('current');
@@ -62,11 +94,31 @@
             if ($(this).hasClass('related')) {
                 $('.product-recents').css('height', '0px');
                 $('.product-recommendations').css('height', 'auto');
+
+                $('.product-recommendations').children().each(function () {
+                    $(this).addClass('aos-no-transition');
+                    $(this).removeClass('aos-animate');
+
+                    setTimeout(() => {
+                        $(this).removeClass('aos-no-transition');
+                        $(this).addClass('aos-animate');
+                    }, 100);
+                });
             }
 
             if ($(this).hasClass('recent')) {
                 $('.product-recommendations').css('height', '0px');
                 $('.product-recents').css('height', 'auto');
+
+                $('.product-recents').children().each(function () {
+                    $(this).addClass('aos-no-transition');
+                    $(this).removeClass('aos-animate');
+
+                    setTimeout(() => {
+                        $(this).removeClass('aos-no-transition');
+                        $(this).addClass('aos-animate');
+                    }, 100);
+                });
             }
         });
     }
@@ -306,6 +358,10 @@
 </script>
 
 <style>
+    .aos-no-transition {
+        transition: none !important;
+    }
+    
     .tab-button {
         padding: 10px;
         cursor: pointer;

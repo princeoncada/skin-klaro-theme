@@ -9,6 +9,7 @@
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
 
     <link rel="stylesheet" href="https://use.typekit.net/huq5fpx.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.css">
     {% comment %} {{ 'flickity.css' | asset_url | stylesheet_tag }} {% endcomment %}
     {% comment %} <link rel="stylesheet" href="https://unpkg.com/flickity-fullscreen@2/fullscreen.css"> {% endcomment %}
@@ -267,6 +268,7 @@
     {{ 'app-tailwind.css' | asset_url | stylesheet_tag }}
 
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
@@ -316,6 +318,9 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
+    <script src="{{ 'rellax.min.js' | asset_url }}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.js"></script>
@@ -324,7 +329,8 @@
     {% comment %} <script src="https://unpkg.com/flickity-fullscreen@2/fullscreen.js"></script> {% endcomment %}
     {% comment %} <script src="{{ 'fullscreen.js' | asset_url }}" defer></script> {% endcomment %}
     <script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
-    {% comment %} <script src="{{ 'flickity-fade.js' | asset_url }}" defer></script> {% endcomment %}
+    {% comment %} <script src="{{ 'flickity-fade.js' | asset_url }}" defer></script> {% endcomment %} 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
@@ -428,6 +434,7 @@
         const spans = document.querySelectorAll('.header span');
         const cartBubbleSpan = document.querySelector('.cart-count-bubble span');
         const outlines = document.querySelectorAll('.details-hover--outline');
+        const logoSvg = document.querySelector('.logo-container');
 
         spans.forEach((span) => {
           span.style.color = 'white';
@@ -442,6 +449,7 @@
             outlines.forEach((outline) => {
               outline.style.backgroundColor = 'black';
             });
+            logoSvg.innerHTML = `{% render "main-logo" %}`;
           } else {
             header.classList.remove('scrolled');
             spans.forEach((span) => {
@@ -450,8 +458,8 @@
             outlines.forEach((outline) => {
               outline.style.backgroundColor = 'white';
             });
+            logoSvg.innerHTML = `{% render "main-logo-light" %}`;
           }
-          //   cartBubbleSpan.style.color = 'white';
         };
       </script>
     {% else %}
@@ -464,5 +472,17 @@
     <div class="shopify-dynamic-checkout---buttons" style="display:none!important;">
       {{ content_for_additional_checkout_buttons }}
     </div>
+
+    <script>
+      AOS.init();
+      let rellax = new Rellax('.rellax', {
+        breakpoints: [425, 990, 1280],
+      });
+    </script>
+    <style>
+      .translate-up-20[data-aos='fade-up'] {
+        transform: translate3d(0, 20px, 0);
+      }
+    </style>
   </body>
 </html>

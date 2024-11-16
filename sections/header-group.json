@@ -42,7 +42,7 @@
         "sticky-header {z-index: 100;}"
       ],
       "settings": {
-        "logo_position": "middle-left",
+        "logo_position": "middle-center",
         "menu": "main-menu",
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "always",
