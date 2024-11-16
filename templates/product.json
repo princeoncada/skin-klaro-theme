@@ -16,7 +16,8 @@
       "type": "custom-related-products"
     },
     "product-ingredients": {
-        "type": "custom-product-ingredients"
+        // "type": "custom-product-ingredients"
+        "type": "custom-product-ingredients2"
     }
   },
   "order": [
