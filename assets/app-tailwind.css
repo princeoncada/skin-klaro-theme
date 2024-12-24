@@ -2782,6 +2782,10 @@ html {
     font-size: 16px !important;
   }
 
+  .lg\:x-text-\[18px\] {
+    font-size: 18px !important;
+  }
+
   .lg\:x-text-\[34px\] {
     font-size: 34px !important;
   }
@@ -2792,10 +2796,6 @@ html {
 
   .lg\:x-text-\[52px\] {
     font-size: 52px !important;
-  }
-
-  .lg\:x-text-\[18px\] {
-    font-size: 18px !important;
   }
 
   .lg\:x-leading-\[21\.6px\] {
