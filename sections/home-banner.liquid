@@ -1,7 +1,13 @@
 <div class="x-relative x-overflow-hidden x-h-[850px]">
-    <div class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center" data-rellax-speed="-5"
+    <div class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center x-hidden md:x-block" data-rellax-speed="-5"
         data-rellax-mobile-speed="-2"
-        style="background-image: url({{ section.settings.background_image | image_url: width: 1000 }});">
+        style="background-image: url({{ section.settings.background_image_desktop | image_url: width: 1000 }});">
+        &nbsp;
+    </div>
+
+    <div class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center x-block md:x-hidden" data-rellax-speed="-5"
+        data-rellax-mobile-speed="-2"
+        style="background-image: url({{ section.settings.background_image_mobile | image_url: width: 1000 }});">
         &nbsp;
     </div>
 
@@ -23,17 +29,6 @@
         </div>
     </div>
 </div>
-<script>
-    //prince code
-    // document.addEventListener('scroll', function () {
-    //   const parallaxSections = document.querySelectorAll('.parallax-banner');
-    //   parallaxSections.forEach((parallax) => {
-    //     const speed = 0.8; // Smaller value for a subtle effect
-    //     const scrollPosition = window.scrollY;
-    //     parallax.style.transform = `translateY(${scrollPosition * speed}px)`;
-    //   });
-    // });
-</script>
 
 {% schema %}
 {
@@ -41,7 +36,12 @@
 "settings": [
 {
 "type": "image_picker",
-"id": "background_image",
+"id": "background_image_mobile",
+"label": "Background Image"
+},
+{
+"type": "image_picker",
+"id": "background_image_desktop",
 "label": "Background Image"
 },
 {
