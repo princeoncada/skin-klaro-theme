@@ -8,38 +8,42 @@
  * ------------------------------------------------------------
  */
 {
-	"sections": {
-		"banner": {
-			"type": "home-banner",
-			"settings": {
-				"background_image": "shopify://shop_images/bg-photo.jpg",
-				"heading": "YOUR PRODUCT NAME",
-				"button_text": "SHOP NOW"
-			}
-		},
-		"text-banner": {
-			"type": "home-text-banner",
-			"settings": {}
-		},
-		"featured-products": {
-			"type": "home-featured-products"
-		},
-		"marquee": {
-			"type": "home-marquee"
-		},
-		"multirow": {
-			"type": "home-multirow"
-		},
-		"call-to-action": {
-			"type": "home-cta"
-		}
-	},
-	"order": [
-		"banner",
-		"text-banner",
-		"featured-products",
-		"marquee",
-		"multirow",
-		"call-to-action"
-	]
+  "sections": {
+    "banner": {
+      "type": "home-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/IMG_6784.jpg",
+        "heading": "YOUR PRODUCT NAME",
+        "button_text": "SHOP NOW"
+      }
+    },
+    "text-banner": {
+      "type": "home-text-banner",
+      "settings": {}
+    },
+    "featured-products": {
+      "type": "home-featured-products",
+      "settings": {}
+    },
+    "marquee": {
+      "type": "home-marquee",
+      "settings": {}
+    },
+    "multirow": {
+      "type": "home-multirow",
+      "settings": {}
+    },
+    "call-to-action": {
+      "type": "home-cta",
+      "settings": {}
+    }
+  },
+  "order": [
+    "banner",
+    "text-banner",
+    "featured-products",
+    "marquee",
+    "multirow",
+    "call-to-action"
+  ]
 }
