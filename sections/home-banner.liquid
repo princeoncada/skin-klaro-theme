@@ -1,13 +1,15 @@
 <div class="x-relative x-overflow-hidden x-h-[850px]">
     <div class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center x-hidden md:x-block" data-rellax-speed="-5"
         data-rellax-mobile-speed="-2"
-        style="background-image: url({{ section.settings.background_image_desktop | image_url: width: 1000 }});">
+        style="background-image: url({{ 'placeholder.jpg' |  asset_img_url: "1000x1000" }});">
+        {% comment %} style="background-image: url({{ section.settings.background_image_desktop | image_url: width: 1000 }});"> {% endcomment %}
         &nbsp;
     </div>
 
     <div class="rellax x-absolute x-inset-0 x-w-full x-h-[110%] x-bg-cover x-bg-center x-block md:x-hidden" data-rellax-speed="-5"
         data-rellax-mobile-speed="-2"
-        style="background-image: url({{ section.settings.background_image_mobile | image_url: width: 1000 }});">
+        style="background-image: url({{ 'placeholder.jpg' |  asset_img_url: "1000x1000" }});">
+        {% comment %} style="background-image: url({{ section.settings.background_image_mobile | image_url: width: 1000 }});"> {% endcomment %}
         &nbsp;
     </div>
 

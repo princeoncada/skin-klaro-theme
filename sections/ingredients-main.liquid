@@ -5,7 +5,8 @@
                 data-aos-duration="1000" data-aos-once="true" data-aos-delay="300">
                 <div class="rellax x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
                     data-rellax-speed="-5" data-rellax-mobile-speed="-2" data-rellax-percentage="0.65"
-                    style="background-image: url({{ "asset1.webp" | asset_url }});">
+                    style="background-image: url({{ 'placeholder.jpg' |  asset_img_url: "1000x1000" }});">
+                    {% comment %} style="background-image: url({{ "asset1.webp" | asset_url }});"> {% endcomment %}
                     &nbsp;
                 </div>
             </div>
@@ -90,7 +91,8 @@
                 data-aos-duration="1000" data-aos-once="true" data-aos-delay="100">
                 <div class="rellax x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
                     data-rellax-speed="-5" data-rellax-mobile-speed="-2" data-rellax-percentage="0.5"
-                    style="background-image: url({{ "asset2.jpg" | asset_url }});">
+                    style="background-image: url({{ 'placeholder.jpg' |  asset_img_url: "1000x1000" }});">
+                    {% comment %} style="background-image: url({{ "asset2.jpg" | asset_url }});"> {% endcomment %}
                     &nbsp;
                 </div>
             </div>
