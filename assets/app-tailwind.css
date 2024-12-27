@@ -1707,11 +1707,6 @@ html {
   background-color: rgb(0 0 53 / var(--tw-bg-opacity)) !important;
 }
 
-.x-bg-\[\#1A483C\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(26 72 60 / var(--tw-bg-opacity)) !important;
-}
-
 .x-bg-\[\#6C7D4A\] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(108 125 74 / var(--tw-bg-opacity)) !important;
@@ -1745,11 +1740,6 @@ html {
 .x-bg-\[\#f9faf9\] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(249 250 249 / var(--tw-bg-opacity)) !important;
-}
-
-.x-bg-\[\#fefffe\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(254 255 254 / var(--tw-bg-opacity)) !important;
 }
 
 .x-bg-\[\#ffffff80\] {
@@ -1803,10 +1793,6 @@ html {
 .x-bg-white {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
-}
-
-.x-bg-\[\] {
-  background-color:  !important;
 }
 
 .x-bg-opacity-40 {
@@ -2781,8 +2767,8 @@ html {
     max-width: 1440px !important;
   }
 
-  .lg\:x-grid-cols-5 {
-    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  .lg\:x-grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 
   .lg\:x-gap-\[32px\] {
