@@ -1,4 +1,14 @@
-<section class="x-bg-[#fefffe] x-border-t-[1px]">
+{% if template == 'page.our-story' %}
+    {%  assign color = 'white' %}
+{% elsif template == 'page.ingredients' %}
+    {%  assign color = 'white' %}
+{% elsif template == 'page.sustainability' %}
+    {%  assign color = 'white' %}
+{% else %}
+    {%  assign color = 'black' %}
+{% endif %}
+
+<section class="footer-wrapper x-border-t-[1px]">
     <div
         class="x-p-[16px] x-flex x-flex-col x-gap-[56px] x-py-[36px] md:x-p-[50px] md:x-py-[75px] lg:x-max-w-[1440px] lg:x-mx-auto x-font-myriad-pro">
         {% comment %} <div class="logo-container x-w-[200px] md:x-w-[160px]">
@@ -10,13 +20,13 @@
                 <div class="x-text-[14px]">Stay current with updates from our social channels.</div>
                 <div class="x-flex x-flex-row x-gap-[16px]">
                     <a href="#" class="x-w-[20px] x-h-[20px]">
-                        {% render 'instagram-logo' %}
+                        {% render 'instagram-logo', hex_color: color %}
                     </a>
                     <a href="#" class="x-w-[20px] x-h-[20px]">
-                        {% render 'tiktok-logo' %}
+                        {% render 'tiktok-logo', hex_color: color %}
                     </a>
                     <a href="#" class="x-w-[20px] x-h-[20px]">
-                        {% render 'pinterest-logo' %}
+                        {% render 'pinterest-logo', hex_color: color %}
                     </a>
                 </div>
             </div>
