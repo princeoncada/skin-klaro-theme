@@ -26,10 +26,7 @@
       "type": "home-featured-products",
       "settings": {}
     },
-    "marquee": {
-      "type": "home-marquee",
-      "settings": {}
-    },
+
     "multirow": {
       "type": "home-multirow",
       "settings": {}
@@ -43,7 +40,6 @@
     "banner",
     "text-banner",
     "featured-products",
-    "marquee",
     "multirow",
     "call-to-action"
   ]
