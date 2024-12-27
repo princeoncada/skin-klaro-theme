@@ -5,11 +5,33 @@
         stroke-width: .25px;
       }
 
-      .cls-1, .cls-2 {
-        fill: #006837;
-        stroke: #006837;
-        stroke-miterlimit: 10;
-      }
+      
+
+      {% if template == "page.our-story" %}
+        .cls-1, .cls-2 {
+            fill: #FFEDDC;
+            stroke: #FFEDDC;
+            stroke-miterlimit: 10;
+        }
+      {% elsif template == "page.ingredients" %}
+        .cls-1, .cls-2 {
+            fill: #FFEDDC;
+            stroke: #FFEDDC;
+            stroke-miterlimit: 10;
+        }
+      {% elsif template == "page.sustainability" %}
+        .cls-1, .cls-2 {
+            fill: #FFEDDC;
+            stroke: #FFEDDC;
+            stroke-miterlimit: 10;
+        }
+      {% else %}
+        .cls-1, .cls-2 {
+            fill: #6C7D4A;
+            stroke: #6C7D4A;
+            stroke-miterlimit: 10;
+        }
+      {% endif %}
 
       .cls-2 {
         stroke-width: .5px;
