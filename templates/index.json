@@ -23,22 +23,11 @@
     "featured-products": {
       "type": "home-featured-products",
       "settings": {}
-    },
-
-    "multirow": {
-      "type": "home-multirow",
-      "settings": {}
-    },
-    "call-to-action": {
-      "type": "home-cta",
-      "settings": {}
     }
   },
   "order": [
     "banner",
     "text-banner",
-    "featured-products",
-    "multirow",
-    "call-to-action"
+    "featured-products"
   ]
 }
