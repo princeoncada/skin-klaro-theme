@@ -1,59 +1,30 @@
 <div>
     <div>
         <div>
-            <div class="x-flex x-flex-col md:x-flex-row x-font-myriad-pro">
-                <div class="x-relative x-overflow-hidden x-h-[700px] x-w-full md:x-w-1/2" data-aos="fade-in"
-                    data-aos-duration="1000" data-aos-once="true">
-                    <div class="rellax x-absolute x-inset-0 x-w-full x-h-[130%] x-bg-cover x-bg-center"
-                        data-rellax-speed="-5" data-rellax-mobile-speed="-2" data-rellax-percentage="0.5"
-                        style="background-image: url({{ 'placeholder.jpg' |  asset_img_url: "1000x1000" }});">
-                        {% comment %} style="background-image: url({{ 'founder_pholder.png' | asset_url }});"> {% endcomment %}
+            <div class="x-flex x-flex-col x-font-myriad-pro">
+                <div class="x-flex x-flex-col md:x-flex-row">
+                    <div class="x-w-full x-aspect-square x-border x-border-[#e5e7eb]" style='background-image: url({{ 'placeholder.jpg' |  asset_img_url: "1000x1000" }}); background-size: cover; background-position: center;'>
+                        &nbsp;
+                    </div>
+                    <div class="x-w-full x-aspect-square x-border x-border-[#e5e7eb]" style='background-image: url({{ 'placeholder.jpg' |  asset_img_url: "1000x1000" }}); background-size: cover; background-position: center;'>
+                        &nbsp;
+                    </div>
+                    <div class="x-w-full x-aspect-square x-border x-border-[#e5e7eb]" style='background-image: url({{ 'placeholder.jpg' |  asset_img_url: "1000x1000" }}); background-size: cover; background-position: center;'>
                         &nbsp;
                     </div>
                 </div>
-                <div class="md:x-w-1/2 x-flex x-items-center x-bg-[#FFE8D2]">
-                    <div class="x-py-[26px] x-px-[16px] md:x-px-[50px] x-flex x-flex-col x-gap-[10px] md:x-gap-[16px] ">
-                        {% comment %} <div class="x-text-[16px] md:x-text-[14px] translate-up-20" data-aos="fade-up"
-                            data-aos-duration="1000" data-aos-once="true" data-aos-delay="100">
-                            Plant Extracts • Ayurvedic Herbs • Conscious Packaging
-                        </div>
-                        <div class="x-text-[24px] md:x-text-[24px] x-leading-[28px] md:x-leading-[34px] translate-up-20"
-                            data-aos="fade-up" data-aos-duration="1000" data-aos-once="true" data-aos-delay="200">
-                            Makeup that's good for your skin
-                        </div>
-                        <div class="x-text-[12px] md:x-text-[14px] translate-up-20" data-aos="fade-up"
-                        data-aos-duration="1000" data-aos-once="true" data-aos-delay="300">
-                            Refined beauty essentials formulated with botanical oils and Ayurvedic herbs that nourish
-                            and protect your
-                            skin while adding rich and long-wearing pigments
-                        </div> {% endcomment %}
-                        <div class="x-text-[24px] md:x-text-[24px] x-leading-[28px] md:x-leading-[34px] translate-up-20"
-                            data-aos="fade-up" data-aos-duration="1000" data-aos-once="true" data-aos-delay="100">
-                            Crafted in Small Batches
-                        </div>
-                        <div class="x-text-[24px] md:x-text-[24px] x-leading-[28px] md:x-leading-[34px] translate-up-20"
-                            data-aos="fade-up" data-aos-duration="1000" data-aos-once="true" data-aos-delay="200">
-                            Ethically Sourced Ingredients
-                        </div>
+                <div class="x-bg-[#215033] x-text-white x-text-center md:x-text-start x-py-[48px] md:x-px-[48px] lg:x-px-[96px] lg:x-py-[64px]">
+                    <div class="x-text-[28px] md:x-text-[40px] x-font-garamond-premier-pro">
+                        Glow Naturally
+                    </div>
+                    <div class="x-text-[20px] md:x-text-[32px] x-font-garamond-premier-pro-display x-italic">
+                        Powered by Plants
                     </div>
                 </div>
             </div>
         </div>
-        <div>
-            <div
-                class="wrapper x-flex x-flex-col x-justify-center x-w-full x-max-w-full x-ms-auto x-me-auto x-relative x-h-[75px] x-overflow-hidden x-border-t-[1px] x-bg-[#E2AC2D] x-font-myriad-pro">
-                <div class="item item-1 x-text-white x-text-center x-w-[180px] x-absolute">INCLUSIVE SHADES</div>
-                <div class="item item-2 x-text-white x-text-center x-w-[180px] x-absolute">PLANT BASED INGREDIENTS</div>
-                <div class="item item-3 x-text-white x-text-center x-w-[180px] x-absolute">ADAPTOGEN POWERED</div>
-                <div class="item item-4 x-text-white x-text-center x-w-[180px] x-absolute">HIGH PERFORMING</div>
-                <div class="item item-5 x-text-white x-text-center x-w-[180px] x-absolute">CARBON NEUTRAL</div>
-                <div class="item item-6 x-text-white x-text-center x-w-[180px] x-absolute">INFINITELY RECYCLABLE</div>
-                <div class="item item-7 x-text-white x-text-center x-w-[180px] x-absolute">VEGAN</div>
-                <div class="item item-8 x-text-white x-text-center x-w-[180px] x-absolute">CRUELTY FREE</div>
-            </div>
-        </div>
         <div class="">
-            <div class="x-flex x-flex-col md:x-grid md:x-grid-cols-3">
+            <div class="x-flex x-flex-col md:x-grid md:x-grid-cols-4">
                 {%- assign delay = 0 -%}
                 {% for product in collection.products %}
                 <div data-aos="fade-in" data-aos-duration="800" data-aos-once="true" data-aos-delay="{{ delay }}"
@@ -66,33 +37,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    // $(document).ready(function () {
-    //   applyParallax();
-    // });
-
-    // $(window).on('scroll', function () {
-    //   applyParallax();
-    // });
-
-    // function applyParallax() {
-    //   $('.parallax-sa').each(function () {
-    //     const speed = 0.3; // Adjust the speed for the desired parallax effect
-    //     const initialOffset = 0; // Offset to move the image down initially
-    //     const sectionTop = $(this).parent().offset().top; // Get the top position of the parent element relative to the document
-    //     const scrollPosition = $(window).scrollTop();
-    //     const windowHeight = $(window).height();
-    //     const sectionHeight = $(this).parent().outerHeight();
-
-    //     // Check if the section is in the viewport
-    //     if (scrollPosition + windowHeight > sectionTop && scrollPosition < sectionTop + sectionHeight) {
-    //       const yPos = (scrollPosition - sectionTop) * speed + initialOffset; // Apply the initial offset
-    //       $(this).css('transform', `translateY(${yPos}px)`);
-    //     }
-    //   });
-    // }
-</script>
 
 <style>
     @keyframes scrollleft {
