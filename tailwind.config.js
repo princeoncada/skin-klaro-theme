@@ -12,6 +12,9 @@ module.exports = {
         fontFamily: {
           'amandine': ['amandine', 'sans-serif'],
           'myriad-pro': ['myriad-pro', 'sans-serif'],
+          'garamond-premier-pro': ['garamond-premier-pro', 'serif'],
+          'garamond-premier-pro-display': ['garamond-premier-pro-display', 'serif'],
+          'minion-pro-display': ['minion-pro-display', 'serif'],
         },
         transitionProperty: {
           'collapse': 'height !important, margin !important'
