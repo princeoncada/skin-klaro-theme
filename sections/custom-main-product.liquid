@@ -126,16 +126,17 @@
       <div class="product-contents x-flex x-flex-col x-gap-[32px] md:x-w-[420px] md:x-sticky md:x-top-[120px] x-font-myriad-pro">
         <div class="x-flex x-flex-col x-gap-[20px]">
           <div class="x-flex x-flex-col x-gap-[6px]">
-            <div class="x-text-[24px] x-uppercase">{{ product.title }}</div>
-            <div>reviews</div>
-          </div>
-          <div class="x-flex x-flex-col x-gap-[6px]">
-            <div class="x-text-[20px]">{{ product.price | money }}</div>
-            {% comment %} <div class="x-text-[16px] x-uppercase">Lorem ipsum dolor</div> {% endcomment %}
+            <div class="x-text-[28px] x-uppercase">{{ product.title }}</div>
+            <div class="x-text-[16px]">{{ product.metafields.custom.product_summary }}</div>
           </div>
         </div>
         <div>
           <div class="x-text-[14px] x-leading-[20px]">{{ product.content }}</div>
+        </div>
+        
+        <div class="x-flex x-flex-col x-gap-[12px]">
+            <div class="x-text-[16px]"><span class="x-font-bold">Scent</span> - {{ product.metafields.custom.product_scent }}</div>
+            <div class="x-text-[20px]">{{ product.price | money }}</div>
         </div>
         <div>
           <div class="variant-description x-text-[14px]">
@@ -234,7 +235,7 @@
           <div class="x-text-[12px]">{{ product.metafields.product.details }}</div>
         </div>
         <div class="x-flex x-flex-col x-gap-[10px] x-flex-1">
-          <div class="x-text-[16px] md:x-text-[18px]">Our Ingredients</div>
+          <div class="x-text-[16px] md:x-text-[18px]">Benefits</div>
           <div class="x-text-[12px]">{{ product.metafields.custom.base_ingredients }}</div>
         </div>
       </div>
@@ -253,150 +254,8 @@
         </div>
         <div class="x-w-full x-px-[16px] md:x-px-[20px]">
           <div class="x-flex x-flex-col x-gap-[10px]">
-            <div class="x-text-[16px]">Our Ingredients</div>
+            <div class="x-text-[16px]">Benefits</div>
             <div class="x-text-[12px]">{{ product.metafields.custom.base_ingredients }}</div>
-            <a href="">ADD LINK HERE</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="x-py-[30px] x-font-myriad-pro">
-    <div class="collapse x-px-[16px] md:x-px-[50px] md:x-mb-[0px] lg:x-max-w-[1440px] lg:x-mx-auto">
-      <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-      <div class="x-border-t-[1px] x-border-b-[1px]">
-        <div class="x-flex x-flex-row x-justify-between x-py-[24px] x-items-center">
-          <div class="x-text-[16px]">Ingredients</div>
-          <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-            <div
-              class="x-absolute x-bg-black x-h-[16px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out"
-            >
-              &nbsp;
-            </div>
-            <div class="x-absolute x-bg-black x-w-[16px] x-h-[1px]">&nbsp;</div>
-          </div>
-        </div>
-        <div
-          class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-          style="height: 0px; margin: 0px 0px;"
-        >
-          <div class="x-text-[12px]">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt ullam consectetur commodi enim et, nam
-            dolorem odio ea officia, earum pariatur natus facere, alias expedita assumenda ut! Explicabo, odit veniam!
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="collapse x-px-[16px] md:x-px-[50px] md:x-mb-[0px] lg:x-max-w-[1440px] lg:x-mx-auto">
-      <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-      <div class="x-border-t-[1px] x-border-b-[1px]">
-        <div class="x-flex x-flex-row x-justify-between x-py-[24px] x-items-center">
-          <div class="x-text-[16px]">How to Recycle</div>
-          <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-            <div
-              class="x-absolute x-bg-black x-h-[16px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out"
-            >
-              &nbsp;
-            </div>
-            <div class="x-absolute x-bg-black x-w-[16px] x-h-[1px]">&nbsp;</div>
-          </div>
-        </div>
-        <div
-          class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-          style="height: 0px; margin: 0px 0px;"
-        >
-          <div class="x-text-[12px]">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt ullam consectetur commodi enim et, nam
-            dolorem odio ea officia, earum pariatur natus facere, alias expedita assumenda ut! Explicabo, odit veniam!
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="collapse x-px-[16px] md:x-px-[50px] md:x-mb-[0px] lg:x-max-w-[1440px] lg:x-mx-auto">
-      <input class="x-h-[0px] x-overflow-hidden x-absolute x-invisible" type="checkbox">
-      <div class="x-border-t-[1px] x-border-b-[1px]">
-        <div class="x-flex x-flex-row x-justify-between x-py-[24px] x-items-center">
-          <div class="x-text-[16px]">Shipping & Returns</div>
-          <div class="collapse-sign x-flex x-justify-center x-items-center x-w-[16px] x-h-[16px]">
-            <div
-              class="x-absolute x-bg-black x-h-[16px] x-w-[1px] x-transition-transform x-duration-500 x-ease-in-out"
-            >
-              &nbsp;
-            </div>
-            <div class="x-absolute x-bg-black x-w-[16px] x-h-[1px]">&nbsp;</div>
-          </div>
-        </div>
-        <div
-          class="collapse-content x-overflow-hidden x-transition-collapse x-duration-500 x-ease-in-out"
-          style="height: 0px; margin: 0px 0px;"
-        >
-          <div class="x-hidden md:x-flex x-flex-row x-gap-[24px] lg:x-gap-[32px]">
-            <div class="x-flex x-flex-col x-gap-[10px] x-flex-1">
-              <div class="x-text-[16px] md:x-text-[18px]">Fast Shipping</div>
-              <div class="x-text-[12px]">
-                All orders are shipped within 1-2 business days, or 3-5 business days during busy periods. Tracking
-                numbers are automatically sent as soon as your order is packed. Shipping within US takes 3-5 business
-                days, international shipping takes 10-20 business days.
-              </div>
-            </div>
-            <div class="x-flex x-flex-col x-gap-[10px] x-flex-1">
-              <div class="x-text-[16px] md:x-text-[18px]">Return Policy</div>
-              <div class="x-text-[12px]">
-                USA - Returns and exchanges are accepted within 14 days of delivery. If you didn't enjoy our products,
-                you can email us at info@officialchloee.com for a refund/exchange.
-
-                Kindly note, we are unable to refund the initial shipping cost and the return shipping label fee will be
-                deducted from your refund.
-
-                CANADA - Unfortunately, we are unable to accept returns & exchanges for international orders at this
-                time.
-              </div>
-            </div>
-            <div class="x-flex x-flex-col x-gap-[10px] x-flex-1">
-              <div class="x-text-[16px] md:x-text-[18px]">Get in touch</div>
-              <div class="x-text-[12px]">
-                If you have any other questions or inquiries, please contact us at info@officialchloee.com
-              </div>
-            </div>
-          </div>
-          <div class="details-carousel x-block md:x-hidden x-shadow-none">
-            <div class="x-w-full x-mr-[16px]">
-              <div class="x-flex x-flex-col x-gap-[10px]">
-                <div class="x-text-[16px]">Fast shipping</div>
-                <div class="x-text-[12px]">
-                  All orders are shipped within 1-2 business days, or 3-5 business days during busy periods. Tracking
-                  numbers are automatically sent as soon as your order is packed. Shipping within US takes 3-5 business
-                  days, international shipping takes 10-20 business days.
-                </div>
-              </div>
-            </div>
-            <div class="x-w-full x-mr-[16px]">
-              <div class="x-flex x-flex-col x-gap-[10px]">
-                <div class="x-text-[16px]">Return Policy</div>
-                <div class="x-text-[12px]">
-                  USA - Returns and exchanges are accepted within 14 days of delivery. If you didn't enjoy our products,
-                  you can email us at info@OfficialChloee.com for a refund/exchange.
-
-                  Kindly note, we are unable to refund the initial shipping cost and the return shipping label fee will
-                  be deducted from your refund.
-
-                  CANADA - Unfortunately, we are unable to accept returns & exchanges for international orders at this
-                  time.
-                </div>
-              </div>
-            </div>
-            <div class="x-w-full x-mr-[16px]">
-              <div class="x-flex x-flex-col x-gap-[10px]">
-                <div class="x-text-[16px]">Get in touch</div>
-                <div class="x-text-[12px]">
-                  If you have any other questions or inquiries, please contact us at info@officialchloee.com
-                </div>
-                <a href="">ADD LINK HERE</a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
