@@ -10,8 +10,8 @@
 {
   "sections": {
   "main":{
-    "type": "sustainability-main",
-  },
+    "type": "sustainability-main-new"
+  }
     
   },
   "order": [
