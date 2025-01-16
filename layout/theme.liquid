@@ -453,7 +453,7 @@
             outlines.forEach((outline) => {
               outline.style.backgroundColor = 'black';
             });
-            logoSvg.innerHTML = `{% render "main-logo" %}`;
+            logoSvg.innerHTML = `{% render "new-main-logo" %}`;
           } else {
             header.classList.remove('scrolled');
             spans.forEach((span) => {
@@ -462,7 +462,7 @@
             outlines.forEach((outline) => {
               outline.style.backgroundColor = 'white';
             });
-            logoSvg.innerHTML = `{% render "main-logo-light" %}`;
+            logoSvg.innerHTML = `{% render "new-main-logo-light" %}`;
           }
         };
       </script>
@@ -497,8 +497,8 @@
             }
 
             .footer-wrapper {
-                background-color: #215033 !important;
-                color: white;
+                background-color: #E2AC2D !important;
+                color: black;
             }
         </style>
     {% elsif template == 'page.ingredients' %}
@@ -527,8 +527,8 @@
             }
 
             .footer-wrapper {
-                background-color: #215033 !important;
-                color: white;
+                background-color: #E2AC2D !important;
+                color: black;
             }
         </style>
     {% else %}
