@@ -1170,6 +1170,10 @@ html {
   height: 0px !important;
 }
 
+.x-h-\[100px\] {
+  height: 100px !important;
+}
+
 .x-h-\[110\%\] {
   height: 110% !important;
 }
@@ -1200,10 +1204,6 @@ html {
 
 .x-h-\[400px\] {
   height: 400px !important;
-}
-
-.x-h-\[455px\] {
-  height: 455px !important;
 }
 
 .x-h-\[472px\] {
@@ -1262,6 +1262,18 @@ html {
   width: 0.5rem !important;
 }
 
+.x-w-3 {
+  width: 0.75rem !important;
+}
+
+.x-w-4 {
+  width: 1rem !important;
+}
+
+.x-w-5 {
+  width: 1.25rem !important;
+}
+
 .x-w-\[120px\] {
   width: 120px !important;
 }
@@ -1306,16 +1318,16 @@ html {
   width: 96% !important;
 }
 
+.x-w-\[96px\] {
+  width: 96px !important;
+}
+
 .x-w-auto {
   width: auto !important;
 }
 
 .x-w-full {
   width: 100% !important;
-}
-
-.x-w-1\/2 {
-  width: 50% !important;
 }
 
 .x-min-w-\[280px\] {
@@ -1357,6 +1369,10 @@ html {
 
 .x-flex-shrink-0 {
   flex-shrink: 0 !important;
+}
+
+.x-flex-grow {
+  flex-grow: 1 !important;
 }
 
 .x-border-spacing-x-2 {
@@ -1509,12 +1525,20 @@ html {
   gap: 32px !important;
 }
 
+.x-gap-\[36px\] {
+  gap: 36px !important;
+}
+
 .x-gap-\[54px\] {
   gap: 54px !important;
 }
 
 .x-gap-\[56px\] {
   gap: 56px !important;
+}
+
+.x-gap-\[64px\] {
+  gap: 64px !important;
 }
 
 .x-gap-\[6px\] {
@@ -1624,6 +1648,21 @@ html {
   border-width: 1px !important;
 }
 
+.x-border-x {
+  border-left-width: 1px !important;
+  border-right-width: 1px !important;
+}
+
+.x-border-y {
+  border-top-width: 1px !important;
+  border-bottom-width: 1px !important;
+}
+
+.x-border-y-2 {
+  border-top-width: 2px !important;
+  border-bottom-width: 2px !important;
+}
+
 .x-border-b {
   border-bottom-width: 1px !important;
 }
@@ -1636,12 +1675,24 @@ html {
   border-bottom-width: 1px !important;
 }
 
+.x-border-l-0 {
+  border-left-width: 0px !important;
+}
+
 .x-border-l-\[5px\] {
   border-left-width: 5px !important;
 }
 
 .x-border-r {
   border-right-width: 1px !important;
+}
+
+.x-border-r-0 {
+  border-right-width: 0px !important;
+}
+
+.x-border-t-2 {
+  border-top-width: 2px !important;
 }
 
 .x-border-t-\[1px\] {
@@ -1711,6 +1762,11 @@ html {
   background-color: rgb(0 0 53 / var(--tw-bg-opacity)) !important;
 }
 
+.x-bg-\[\#215033\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(33 80 51 / var(--tw-bg-opacity)) !important;
+}
+
 .x-bg-\[\#6C7D4A\] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(108 125 74 / var(--tw-bg-opacity)) !important;
@@ -1748,11 +1804,6 @@ html {
 
 .x-bg-\[\#ffffff80\] {
   background-color: #ffffff80 !important;
-}
-
-.x-bg-\[\#ffffff\] {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
 }
 
 .x-bg-black {
@@ -1970,9 +2021,19 @@ html {
   padding-bottom: 36px !important;
 }
 
+.x-py-\[48px\] {
+  padding-top: 48px !important;
+  padding-bottom: 48px !important;
+}
+
 .x-py-\[50px\] {
   padding-top: 50px !important;
   padding-bottom: 50px !important;
+}
+
+.x-py-\[64px\] {
+  padding-top: 64px !important;
+  padding-bottom: 64px !important;
 }
 
 .x-py-\[72px\] {
@@ -2017,6 +2078,14 @@ html {
   padding-top: 32px !important;
 }
 
+.x-pt-\[48px\] {
+  padding-top: 48px !important;
+}
+
+.x-pt-\[56px\] {
+  padding-top: 56px !important;
+}
+
 .x-text-left {
   text-align: left !important;
 }
@@ -2035,6 +2104,18 @@ html {
 
 .x-font-amandine {
   font-family: amandine, sans-serif !important;
+}
+
+.x-font-garamond-premier-pro {
+  font-family: garamond-premier-pro, serif !important;
+}
+
+.x-font-garamond-premier-pro-display {
+  font-family: garamond-premier-pro-display, serif !important;
+}
+
+.x-font-minion-pro-display {
+  font-family: minion-pro-display, serif !important;
 }
 
 .x-font-myriad-pro {
@@ -2089,6 +2170,10 @@ html {
   font-size: 20px !important;
 }
 
+.x-text-\[22px\] {
+  font-size: 22px !important;
+}
+
 .x-text-\[24px\] {
   font-size: 24px !important;
 }
@@ -2097,12 +2182,12 @@ html {
   font-size: 26px !important;
 }
 
-.x-text-\[32px\] {
-  font-size: 32px !important;
+.x-text-\[28px\] {
+  font-size: 28px !important;
 }
 
-.x-text-\[34px\] {
-  font-size: 34px !important;
+.x-text-\[32px\] {
+  font-size: 32px !important;
 }
 
 .x-text-\[36px\] {
@@ -2111,6 +2196,10 @@ html {
 
 .x-text-\[40px\] {
   font-size: 40px !important;
+}
+
+.x-text-\[48px\] {
+  font-size: 48px !important;
 }
 
 .x-text-base {
@@ -2183,10 +2272,6 @@ html {
 
 .x-leading-\[20px\] {
   line-height: 20px !important;
-}
-
-.x-leading-\[22px\] {
-  line-height: 22px !important;
 }
 
 .x-leading-\[24px\] {
@@ -2470,12 +2555,20 @@ html {
     width: 50% !important;
   }
 
+  .md\:x-w-1\/4 {
+    width: 25% !important;
+  }
+
   .md\:x-w-1\/6 {
     width: 16.666667% !important;
   }
 
   .md\:x-w-2\/3 {
     width: 66.666667% !important;
+  }
+
+  .md\:x-w-5\/6 {
+    width: 83.333333% !important;
   }
 
   .md\:x-w-\[100\%\] {
@@ -2500,14 +2593,6 @@ html {
 
   .md\:x-w-auto {
     width: auto !important;
-  }
-
-  .md\:x-w-1\/3 {
-    width: 33.333333% !important;
-  }
-
-  .md\:x-w-1\/4 {
-    width: 25% !important;
   }
 
   .md\:x-min-w-fit {
@@ -2611,6 +2696,11 @@ html {
     padding-right: 24px !important;
   }
 
+  .md\:x-px-\[48px\] {
+    padding-left: 48px !important;
+    padding-right: 48px !important;
+  }
+
   .md\:x-px-\[50px\] {
     padding-left: 50px !important;
     padding-right: 50px !important;
@@ -2659,6 +2749,10 @@ html {
     padding-top: 90px !important;
   }
 
+  .md\:x-text-start {
+    text-align: start !important;
+  }
+
   .md\:x-text-\[14px\] {
     font-size: 14px !important;
   }
@@ -2681,6 +2775,10 @@ html {
 
   .md\:x-text-\[30px\] {
     font-size: 30px !important;
+  }
+
+  .md\:x-text-\[32px\] {
+    font-size: 32px !important;
   }
 
   .md\:x-text-\[36px\] {
@@ -2715,8 +2813,8 @@ html {
     line-height: 28.6px !important;
   }
 
-  .md\:x-leading-\[28px\] {
-    line-height: 28px !important;
+  .md\:x-leading-\[32px\] {
+    line-height: 32px !important;
   }
 
   .md\:x-leading-\[34px\] {
@@ -2759,8 +2857,16 @@ html {
     width: 33.333333% !important;
   }
 
+  .lg\:x-w-1\/4 {
+    width: 25% !important;
+  }
+
   .lg\:x-w-2\/3 {
     width: 66.666667% !important;
+  }
+
+  .lg\:x-w-3\/6 {
+    width: 50% !important;
   }
 
   .lg\:x-w-\[90\%\] {
@@ -2793,6 +2899,16 @@ html {
 
   .lg\:x-p-\[0px\] {
     padding: 0px !important;
+  }
+
+  .lg\:x-px-\[96px\] {
+    padding-left: 96px !important;
+    padding-right: 96px !important;
+  }
+
+  .lg\:x-py-\[64px\] {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
   }
 
   .lg\:x-text-\[16px\] {
