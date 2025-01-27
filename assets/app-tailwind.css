@@ -2765,6 +2765,10 @@ html {
     font-size: 18px !important;
   }
 
+  .md\:x-text-\[20px\] {
+    font-size: 20px !important;
+  }
+
   .md\:x-text-\[24px\] {
     font-size: 24px !important;
   }
@@ -2825,12 +2829,12 @@ html {
     line-height: 48px !important;
   }
 
-  .md\:x-tracking-\[3px\] {
-    letter-spacing: 3px !important;
+  .md\:x-leading-\[24px\] {
+    line-height: 24px !important;
   }
 
-  .md\:x-tracking-\[5px\] {
-    letter-spacing: 5px !important;
+  .md\:x-tracking-\[3px\] {
+    letter-spacing: 3px !important;
   }
 }
 
