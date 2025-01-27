@@ -2094,6 +2094,10 @@ html {
   font-family: amandine, sans-serif !important;
 }
 
+.x-font-contralto-small {
+  font-family: contralto-small, sans-serif !important;
+}
+
 .x-font-garamond-premier-pro {
   font-family: garamond-premier-pro, serif !important;
 }
@@ -2214,6 +2218,10 @@ html {
   font-weight: 700 !important;
 }
 
+.x-font-extralight {
+  font-weight: 200 !important;
+}
+
 .x-font-light {
   font-weight: 300 !important;
 }
@@ -2284,6 +2292,10 @@ html {
 
 .x-tracking-\[2px\] {
   letter-spacing: 2px !important;
+}
+
+.x-tracking-tighter {
+  letter-spacing: -0.05em !important;
 }
 
 .x-text-\[\#6C7D4A\] {
@@ -2777,8 +2789,8 @@ html {
     font-size: 40px !important;
   }
 
-  .md\:x-text-\[56px\] {
-    font-size: 56px !important;
+  .md\:x-text-\[48px\] {
+    font-size: 48px !important;
   }
 
   .md\:x-leading-\[18px\] {
@@ -2815,6 +2827,10 @@ html {
 
   .md\:x-tracking-\[3px\] {
     letter-spacing: 3px !important;
+  }
+
+  .md\:x-tracking-\[5px\] {
+    letter-spacing: 5px !important;
   }
 }
 
@@ -2907,6 +2923,10 @@ html {
     font-size: 18px !important;
   }
 
+  .lg\:x-text-\[26px\] {
+    font-size: 26px !important;
+  }
+
   .lg\:x-text-\[34px\] {
     font-size: 34px !important;
   }
@@ -2917,10 +2937,6 @@ html {
 
   .lg\:x-text-\[52px\] {
     font-size: 52px !important;
-  }
-
-  .lg\:x-text-\[26px\] {
-    font-size: 26px !important;
   }
 
   .lg\:x-leading-\[21\.6px\] {
@@ -2937,9 +2953,5 @@ html {
 
   .lg\:x-leading-\[52px\] {
     line-height: 52px !important;
-  }
-
-  .lg\:x-text-\[\] {
-    color:  !important;
   }
 }
