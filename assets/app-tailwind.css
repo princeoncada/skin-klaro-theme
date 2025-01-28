@@ -2889,8 +2889,8 @@ html {
     max-width: 1440px !important;
   }
 
-  .lg\:x-grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  .lg\:x-grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
 
   .lg\:x-gap-\[32px\] {
