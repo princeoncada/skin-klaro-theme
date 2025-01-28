@@ -2805,12 +2805,12 @@ html {
     line-height: 19.2px !important;
   }
 
-  .md\:x-leading-\[20px\] {
-    line-height: 20px !important;
-  }
-
   .md\:x-leading-\[21\.6px\] {
     line-height: 21.6px !important;
+  }
+
+  .md\:x-leading-\[24px\] {
+    line-height: 24px !important;
   }
 
   .md\:x-leading-\[28\.6px\] {
@@ -2827,10 +2827,6 @@ html {
 
   .md\:x-leading-\[48px\] {
     line-height: 48px !important;
-  }
-
-  .md\:x-leading-\[24px\] {
-    line-height: 24px !important;
   }
 
   .md\:x-tracking-\[3px\] {
