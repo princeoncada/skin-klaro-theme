@@ -135,7 +135,9 @@
         </div>
         
         <div class="x-flex x-flex-col x-gap-[12px]">
-            <div class="x-text-[16px]"><span class="x-font-bold">Scent</span> - {{ product.metafields.custom.product_scent }}</div>
+            {% if product.metafields.custom.product_scent %}
+                <div class="x-text-[16px]"><span class="x-font-bold">Scent</span> - {{ product.metafields.custom.product_scent }}</div>
+            {% endif %}
             <div class="x-text-[20px]">{{ product.price | money }}</div>
         </div>
         <div>
