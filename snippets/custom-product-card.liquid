@@ -5,6 +5,7 @@
     class="product-image x-relative x-h-full x-bg-cover x-bg-center"
     style="background-image: url({{ product.featured_image | image_url: width: 1000  }});"
   >
+    &nbsp;
     {% if product.has_only_default_variant == false %}
       <div class="variants x-flex x-flex-row x-absolute x-bottom-0 x-w-full x-overflow-y-hidden x-items-center">
         <button class="back-button x-absolute x-left-[12px] x-text-[24px] x-text-gray-400 hover:x-text-gray-800 x-transition-colors x-duration-300 x-flex x-items-center">
@@ -44,6 +45,10 @@
       {% assign only_variant = product.first_available_variant.id %}
     {% endif %}
 
+    <a href="{{ product.url }}" class="x-absolute x-bg-transparent x-w-full x-h-full x-left-0">
+        &nbsp;
+    </a>
+
     <button
       class="add-button desktop x-bg-[#f5f8f5] x-absolute x-bottom-0 x-w-full x-overflow-y-hidden x-hidden md:x-flex x-items-center x-justify-center x-font-myriad-pro"
       data-id="{{ only_variant }}"
@@ -59,9 +64,10 @@
   </div>
   <a
     href="{{ product.url }}"
-    class="product-details x-flex x-flex-col x-justify-center x-p-[16px] x-border-t-[1px] x-border-[#e5e7eb] x-bg-[#f9faf9]"
+    class="product-details x-flex x-flex-col x-justify-center x-p-[16px] x-border-t-[1px] x-border-[#e5e7eb] x-bg-[#f9faf9] x-flex-grow"
   >
-    <div>{{ product.title }}</div>
+    <div class="md:x-hidden x-block">{{ product.title | truncate: 40, '...' }}</div>
+    <div class="x-hidden md:x-block">{{ product.title}}</div>
     <div>{{ product.price | money }}</div>
   </a>
 </div>
