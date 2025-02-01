@@ -126,17 +126,17 @@
       <div class="product-contents x-flex x-flex-col x-gap-[32px] md:x-w-[420px] md:x-sticky md:x-top-[120px] x-font-myriad-pro">
         <div class="x-flex x-flex-col x-gap-[20px]">
           <div class="x-flex x-flex-col x-gap-[6px]">
-            <div class="x-text-[28px] x-uppercase">{{ product.title }}</div>
-            <div class="x-text-[16px]">{{ product.metafields.custom.product_summary }}</div>
+            <div class="x-text-[24px] md:x-text-[28px] x-uppercase x-font-century-gothic">{{ product.title }}</div>
+            <div class="x-text-[18px] md:x-text-[20px] x-font-minion-pro">{{ product.metafields.custom.product_summary }}</div>
           </div>
         </div>
         <div>
-          <div class="x-text-[14px] x-leading-[20px]">{{ product.content }}</div>
+          <div class="x-text-[14px] md:x-text-[16px] x-leading-[20px] x-font-minion-pro">{{ product.content }}</div>
         </div>
         
         <div class="x-flex x-flex-col x-gap-[12px]">
             {% if product.metafields.custom.product_scent %}
-                <div class="x-text-[16px]"><span class="x-font-bold">Scent</span> - {{ product.metafields.custom.product_scent }}</div>
+                <div class="x-text-[16px] md:x-text-[18px] x-font-minion-pro"><span class="x-font-bold">Scent</span> - {{ product.metafields.custom.product_scent }}</div>
             {% endif %}
             <div class="x-text-[20px]">{{ product.price | money }}</div>
         </div>
@@ -214,7 +214,7 @@
           </div>
           <button
             id="add-to-cart"
-            class="x-w-full x-h-[55px] x-uppercase x-text-[10px] x-text-center x-text-white x-bg-green-800 disabled:x-bg-green-950 x-transition-colors x-duration-300 x-ease-in-out"
+            class="x-w-full x-h-[55px] x-uppercase x-text-[10px] md:x-text-[14px] x-text-center x-text-white x-bg-green-800 disabled:x-bg-green-950 x-transition-colors x-duration-300 x-ease-in-out"
           >
             Add to Cart
           </button>
@@ -226,19 +226,46 @@
 
 <section class="x-py-[32px] md:x-py-[40px]">
   <div class="x-max-w-[1440px] x-mx-auto md:x-px-[50px] x-font-myriad-pro">
-    <div>
+    <div class="x-font-minion-pro">
       <div class="x-hidden md:x-flex x-flex-row x-gap-[24px] lg:x-gap-[32px]">
         <div class="x-flex x-flex-col x-gap-[10px] x-flex-1">
-          <div class="x-text-[16px] md:x-text-[18px]">How to Use</div>
-          <div class="x-text-[12px]">{{ product.metafields.product.how_to_use }}</div>
+          <div class="x-text-[18px] md:x-text-[20px]">How to Use</div>
+          <div class="x-text-[14px]">{{ product.metafields.product.how_to_use }}</div>
         </div>
         <div class="x-flex x-flex-col x-gap-[10px] x-flex-1">
-          <div class="x-text-[16px] md:x-text-[18px]">Details</div>
-          <div class="x-text-[12px]">{{ product.metafields.product.details }}</div>
+          <div class="x-text-[18px] md:x-text-[20px]">Details</div>
+          <div class="x-text-[14px]">{{ product.metafields.product.details }}</div>
+          <div class="x-flex x-gap-[14px] x-text-[14px] x-pt-[8px]">
+            <div class="x-flex x-flex-col x-items-center">
+                <div class="x-h-[50px] x-aspect-square">
+                    {% render 'clean-icon' %}
+                </div>
+                <div>
+                    Clean Beauty
+                </div>
+            </div>
+            <div class="x-flex x-flex-col x-items-center">
+                <div class="x-h-[50px] x-aspect-square">
+                    {% render 'vegan-icon' %}
+                </div>
+                <div>
+                    Vegan
+                </div>
+            </div>
+            <div class="x-flex x-flex-col x-items-center">
+                <div class="x-h-[50px] x-aspect-square">
+                    {% render 'animal-icon' %}
+                </div>
+                <div>
+                    Not tested <br> 
+                    on animals
+                </div>
+            </div>
+          </div>
         </div>
         <div class="x-flex x-flex-col x-gap-[10px] x-flex-1">
-          <div class="x-text-[16px] md:x-text-[18px]">Benefits</div>
-          <div class="x-text-[12px]">{{ product.metafields.custom.base_ingredients }}</div>
+          <div class="x-text-[18px] md:x-text-[20px]">Benefits</div>
+          <div class="x-text-[14px]">{{ product.metafields.custom.base_ingredients }}</div>
         </div>
       </div>
       <div class="details-carousel x-block md:x-hidden x-shadow-none">
@@ -252,6 +279,33 @@
           <div class="x-flex x-flex-col x-gap-[10px]">
             <div class="x-text-[16px]">Details</div>
             <div class="x-text-[12px]">{{ product.metafields.product.details }}</div>
+            <div class="x-flex x-gap-[14px] x-text-[10px] x-pt-[8px]">
+            <div class="x-flex x-flex-col x-items-center">
+                <div class="x-h-[36px] x-aspect-square">
+                    {% render 'clean-icon' %}
+                </div>
+                <div>
+                    Clean Beauty
+                </div>
+            </div>
+            <div class="x-flex x-flex-col x-items-center">
+                <div class="x-h-[36px] x-aspect-square">
+                    {% render 'vegan-icon' %}
+                </div>
+                <div>
+                    Vegan
+                </div>
+            </div>
+            <div class="x-flex x-flex-col x-items-center">
+                <div class="x-h-[36px] x-aspect-square">
+                    {% render 'animal-icon' %}
+                </div>
+                <div>
+                    Not tested <br> 
+                    on animals
+                </div>
+            </div>
+          </div>
           </div>
         </div>
         <div class="x-w-full x-px-[16px] md:x-px-[20px]">
