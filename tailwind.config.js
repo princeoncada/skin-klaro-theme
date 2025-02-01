@@ -16,6 +16,8 @@ module.exports = {
           'garamond-premier-pro-display': ['garamond-premier-pro-display', 'serif'],
           'minion-pro-display': ['minion-pro-display', 'serif'],
           'contralto-small': ['contralto-small', 'sans-serif'],
+          'century-gothic': ['century-gothic', 'sans-serif'],
+          'minion-pro': ['minion-pro', 'serif'],
         },
         transitionProperty: {
           'collapse': 'height !important, margin !important'
